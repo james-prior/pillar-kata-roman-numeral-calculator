@@ -1,6 +1,10 @@
 # Roman Numeral Calculator
 For this programming exercise, you will be creating a library which will allow the addition and subtraction of Roman numerals. Once your solution is complete, please provide your solution as a Git repository (publicly available via Github or Bitbucket). Please include within your repository, all source and test code.
 
+This exercise is based on the Roman Numeral Calculator Kata at http://bit.ly/1VfHqlj.
+
+Please submit your test driven solution via a public Git repository (github/bitbucket).
+
 ### The solution will be reviewed for:
 * Test coverage
 * Test Driven Development
@@ -31,7 +35,3 @@ For this programming exercise, you will be creating a library which will allow t
 As a Roman bookkeeper, I want to be able to add two numbers together; so that I can do my work faster with fewer mathematical errors.  
 ### User Story: Subtraction 
 As a Roman bookkeeper, I want to be able to subtract one number from another; so that I can do my work faster and with fewer mathematical errors.
-
-This exercise is based on the Roman Numeral Calculator Kata at http://bit.ly/1VfHqlj.
-
-Please submit your test driven solution via a public Git repository (github/bitbucket).
