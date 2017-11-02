@@ -1,5 +1,8 @@
 # Roman Numeral Calculator
-For this programming exercise, you will be creating a library which will allow the addition and subtraction of Roman numerals. Once your solution is complete, please provide your solution as a Git repository (publicly available via Github or Bitbucket). Please include within your repository, all source and test code.
+For this programming exercise, you will be creating a library which will allow
+the addition and subtraction of Roman numerals. Once your solution is complete,
+please provide your solution as a Git repository (publicly available via Github
+or Bitbucket). Please include within your repository, all source and test code.
 
 This exercise is based on the Roman Numeral Calculator Kata at http://bit.ly/1VfHqlj.
 
