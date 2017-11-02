@@ -14,7 +14,7 @@ Please submit your test driven solution via a public Git repository (github/bitb
 * Completeness of the overall solution
 
 ### The environment for this programming exercise must utilize:
-* Ubuntu Linux 14.04
+* Ubuntu Linux 16.04 LTS
 * The C programming language
 * GNU GCC compiler tool chain
 * GNU Make
