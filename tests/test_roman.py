@@ -102,7 +102,7 @@ roman_expected_ints = [
     for x, roman in expected_roman_strings]
 @pytest.mark.parametrize('roman, expected', roman_expected_ints)
 def test_known_number_returns_expected(roman, expected):
-    assert expected == Roman(roman).value
+    assert expected == Roman(roman).get_value()
 
 
 bad_romans_expected_errors = (

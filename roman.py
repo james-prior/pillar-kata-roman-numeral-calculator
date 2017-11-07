@@ -69,3 +69,6 @@ class Roman:
         )
         if self.value < self.minimum:
             raise ValueError
+
+    def get_value(self):
+        return self.value
