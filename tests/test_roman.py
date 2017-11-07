@@ -172,6 +172,7 @@ int_string_romans = '''
     7 VII
     8 VIII
     9 IX
+    10 X
 '''.strip().split('\n')
 number_expected_roman_strings = (
     s.strip().split() for s in int_string_romans)
