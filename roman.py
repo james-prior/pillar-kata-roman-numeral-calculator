@@ -106,14 +106,10 @@ class Roman:
         return self.value
 
     def __add__(self, other):
-        if isinstance(other, Roman):
-            other = other.value
-        return Roman(self.value + other)
+        return Roman(self.value + other.value)
 
     def __sub__(self, other):
-        if isinstance(other, Roman):
-            other = other.value
-        return Roman(self.value - other)
+        return Roman(self.value - other.value)
 
     def __str__(self):
         value = self.value
