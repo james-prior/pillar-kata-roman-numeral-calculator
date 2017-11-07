@@ -113,7 +113,6 @@ class Roman:
     def __sub__(self, other):
         if isinstance(other, Roman):
             other = other.value
-        # return None
         return Roman(self.value - other)
 
     def __str__(self):
@@ -129,5 +128,4 @@ class Roman:
             d[i]
             for i, d in zip(reversed_digits, roman_dicts)
         ]
-        # return None
         return ''.join(reversed(terms))
