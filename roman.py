@@ -31,10 +31,33 @@ class Roman:
                 n > self.MAX_N_OF_LETTER.get(letter, n)
                 for letter, n in letter_counts.items()):
             raise ValueError
-            
-        self.value = sum(
+
+        next_letters = list(roman_numeral)[1:] + ['past end']
+        end_of_runs = [
+            letter != next_letter
+            for letter, next_letter in zip(roman_numeral, next_letters)]
+
+        letter_counts = []
+        n = 0
+        for letter, end_of_run in zip(roman_numeral, end_of_runs):
+            n += 1
+            if end_of_run:
+                letter_counts.append((letter, n))
+                n = 0
+
+        letter_values = [
             self.VALUE_OF_ROMAN_NUMERAL[letter]
-            for letter in roman_numeral)
+            for letter, _ in letter_counts]
+        next_letter_values = letter_values[1:] + [0]
+        signs = [
+            +1 if value > next_value else -1
+            for value, next_value
+            in zip(letter_values, next_letter_values)]
+
+        self.value = sum(
+            sign * n * letter_value
+            for sign, letter_value, (letter, n)
+            in zip(signs, letter_values, letter_counts))
 
         if self.value > self.MAXIMUM:
             raise ValueError
