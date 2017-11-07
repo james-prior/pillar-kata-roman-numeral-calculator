@@ -41,10 +41,8 @@ class Roman:
             # raise KeyError
             raise ValueError
         groups = m.groupdict()
-
-        value = 0
-        for s in groups.values():
-            value += self.combined.get(s, 0)
-
-        self.value = value
+        self.value = sum(
+            self.combined.get(s, 0)
+            for s in groups.values()
+        )
         # self.value = None
