@@ -61,7 +61,6 @@ class Roman:
     def __init__(self, roman_numeral):
         m = re.match(self.pattern, roman_numeral)
         if not m:
-            # raise KeyError
             raise ValueError
         groups = m.groupdict()
         self.value = sum(
@@ -69,7 +68,4 @@ class Roman:
             for s in groups.values()
         )
         if self.value < self.minimum:
-            # raise KeyError
             raise ValueError
-
-        # self.value = None
