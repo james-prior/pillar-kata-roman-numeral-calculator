@@ -102,7 +102,6 @@ class Roman:
         return self.value
 
     def __str__(self):
-        terms = []
         value = self.value
         reversed_digits = map(int, reversed(str(self.value)))
         roman_dicts = [
@@ -111,7 +110,9 @@ class Roman:
             self.roman_hundreds,
             self.roman_thousands,
         ]
-        for i, d in zip(reversed_digits, roman_dicts):
-            terms.append(d[i])
+        terms = [
+            d[i]
+            for i, d in zip(reversed_digits, roman_dicts)
+        ]
         # return None
         return ''.join(reversed(terms))
