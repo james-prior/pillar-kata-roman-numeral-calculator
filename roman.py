@@ -3,6 +3,7 @@ from collections import Counter
 
 class Roman:
     minimum = 1
+    maximum = 3999
 
     thousands = {
         'M': 1000,
@@ -85,6 +86,9 @@ class Roman:
         except ValueError:
             roman_numeral = roman_numeral_or_x
         else:
+            if self.value > self.maximum:
+                # raise KeyError
+                raise ValueError
             return
 
         m = re.match(self.pattern, roman_numeral)
