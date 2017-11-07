@@ -49,12 +49,20 @@ As a Roman bookkeeper, I want to be able to subtract one number from another; so
 
 roman_ints = '''
     I 1
+    II 2
+    III 3
     V 5
     X 10
+    XX 20
+    XXX 30
     L 50
     C 100
+    CC 200
+    CCC 300
     D 500
     M 1000
+    MM 2000
+    MMM 3000
 '''.strip().split('\n')
 roman_expected_strings = (s.strip().split() for s in roman_ints)
 roman_expected_ints = [
