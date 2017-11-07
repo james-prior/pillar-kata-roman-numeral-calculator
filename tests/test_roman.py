@@ -76,6 +76,7 @@ int_string_romans = '''
     49 IL
     50 L
     68 LXVIII
+    89 LXXXIX
     99 XCIX
     100 C
     199 CXCIX

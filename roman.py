@@ -26,12 +26,6 @@ class Roman:
                 for letter in roman_numeral):
             raise ValueError
 
-        letter_counts = Counter(list(roman_numeral))
-        if any(
-                n > self.MAX_N_OF_LETTER.get(letter, n)
-                for letter, n in letter_counts.items()):
-            raise ValueError
-
         next_letters = list(roman_numeral)[1:] + ['past end']
         end_of_runs = [
             letter != next_letter
@@ -44,6 +38,11 @@ class Roman:
             if end_of_run:
                 letter_counts.append((letter, n))
                 n = 0
+
+        if any(
+                n > self.MAX_N_OF_LETTER.get(letter, n)
+                for letter, n in letter_counts):
+            raise ValueError
 
         letter_values = [
             self.VALUE_OF_ROMAN_NUMERAL[letter]

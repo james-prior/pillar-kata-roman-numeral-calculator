@@ -29,8 +29,10 @@ Please submit your test driven solution via a public Git repository (github/bitb
 * An example would be "XIV" + "LX" = "LXXIV"  
 * Numerals can be concatenated to form a larger numeral ("XX" + "II" = "XXII").
 * If a lesser numeral is put before a bigger it means subtraction of the lesser from the bigger ("IV"  means four, "CM" means ninehundred).
-* If the numeral is I, X or C you can't have more than three ("II" + "II" = "IV" not “IIII”).
-* If the numeral is V, L or D you can't have more than one ("D" + "D" = "M" not “DD”)
+* If the numeral is I, X or C you can't have more than three consecutively
+  ("II" + "II" = "IV" not “IIII”).
+* If the numeral is V, L or D you can't have more than one consecutively
+  ("D" + "D" = "M" not “DD”)
 * The maximum roman numeral is 3999 (MMMCMXCIX)  
 
 ## Stories
