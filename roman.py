@@ -105,6 +105,12 @@ class Roman:
     def get_value(self):
         return self.value
 
+    def __add__(self, other):
+        if isinstance(other, Roman):
+            other = other.value
+        # return None
+        return Roman(self.value + other)
+
     def __str__(self):
         value = self.value
         reversed_digits = map(int, reversed(str(self.value)))
