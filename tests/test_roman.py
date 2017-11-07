@@ -47,9 +47,6 @@ As a Roman bookkeeper, I want to be able to add two numbers together; so that I 
 As a Roman bookkeeper, I want to be able to subtract one number from another; so that I can do my work faster and with fewer mathematical errors.
 '''
 
-'''
-'''
-
 int_string_romans = '''
     1 I
     2 II
@@ -125,14 +122,6 @@ def test_bad_roman_raises_expected_exception(
         _ = Roman(bad_roman)
 
 
-'''
-    1000 M
-    1883 MDCCCLXXXIII
-    2000 MM
-    3000 MMM
-    3883 MMMDCCCLXXXIII
-    3999 MMMCMXCIX
-'''
 int_string_romans = '''
     1 I
     2 II
@@ -172,6 +161,12 @@ int_string_romans = '''
     500 D
     888 DCCCLXXXVIII
     999 CMXCIX
+    1000 M
+    1883 MDCCCLXXXIII
+    2000 MM
+    3000 MMM
+    3883 MMMDCCCLXXXIII
+    3999 MMMCMXCIX
 '''.strip().split('\n')
 number_expected_roman_strings = (
     s.strip().split() for s in int_string_romans)
