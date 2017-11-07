@@ -69,19 +69,29 @@ int_string_romans = '''
     19 XIX
     20 XX
     30 XXX
+    40 XL
+    41 XLI
+    44 XLIV
+    49 XLIX
+    49 IL
     50 L
     68 LXVIII
+    99 XCIX
     100 C
+    199 CXCIX
     200 CC
     300 CCC
     383 CCCLXXXIII
+    499 CDXCIX
     500 D
     888 DCCCLXXXVIII
+    999 CMXCIX
     1000 M
     1883 MDCCCLXXXIII
     2000 MM
     3000 MMM
     3883 MMMDCCCLXXXIII
+    3999 MMMCMXCIX
 '''.strip().split('\n')
 expected_roman_strings = (s.strip().split() for s in int_string_romans)
 roman_expected_ints = [
