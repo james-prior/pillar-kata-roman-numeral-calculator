@@ -89,9 +89,9 @@ bad_romans_expected_errors = (
     ('ONE', ValueError), # not roman
     (4000, ValueError), # too big
     (0, ValueError), # too small
-    (None, ValueError),
-    (float('nan'), ValueError),
-    (1j, ValueError),
+    (None, TypeError),
+    (float('nan'), TypeError),
+    (1j, TypeError),
 )
 @pytest.mark.parametrize(
     'bad_roman, expected_exception', bad_romans_expected_errors)

@@ -83,8 +83,6 @@ class Roman:
     def __init__(self, roman_numeral_or_x):
         try:
             self.value = int(roman_numeral_or_x)
-        except TypeError:
-            raise ValueError
         except ValueError:
             roman_numeral = roman_numeral_or_x
         else:
@@ -93,10 +91,7 @@ class Roman:
             # raise KeyError
             raise ValueError
 
-        try:
-            m = re.match(self.pattern, roman_numeral)
-        except TypeError:
-            raise ValueError
+        m = re.match(self.pattern, roman_numeral)
         if not m:
             raise ValueError
         groups = m.groupdict()
