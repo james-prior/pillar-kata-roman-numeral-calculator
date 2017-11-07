@@ -46,6 +46,15 @@ class Roman:
     for d in thousands, hundreds, tens, units:
         combined.update(d)
 
+    t = {number: roman for roman, number in units.items()}
+    roman_units = []
+    for i in range(10):
+        roman_units.append(t.get(i, ''))
+    # roman_units = [
+    #     t.get(i, '')
+    #     for i in range(10)
+    # ]
+
     thousands_pattern = '(?P<thousands>' + '|'.join(thousands) + ')?'
     hundreds_pattern = '(?P<hundreds>' + '|'.join(hundreds) + ')?'
     tens_pattern = '(?P<tens>' + '|'.join(tens) + ')?'
@@ -82,4 +91,4 @@ class Roman:
 
     def __str__(self):
         # return None
-        return 'I'
+        return self.roman_units[self.value]

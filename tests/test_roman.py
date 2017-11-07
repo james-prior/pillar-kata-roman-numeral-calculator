@@ -126,14 +126,6 @@ def test_bad_roman_raises_expected_exception(
 
 
 '''
-    2 II
-    3 III
-    4 IV
-    5 V
-    6 VI
-    7 VII
-    8 VIII
-    9 IX
     10 X
     11 XI
     12 XII
@@ -172,6 +164,14 @@ def test_bad_roman_raises_expected_exception(
 '''
 int_string_romans = '''
     1 I
+    2 II
+    3 III
+    4 IV
+    5 V
+    6 VI
+    7 VII
+    8 VIII
+    9 IX
 '''.strip().split('\n')
 number_expected_roman_strings = (
     s.strip().split() for s in int_string_romans)
