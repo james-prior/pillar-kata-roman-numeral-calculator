@@ -27,7 +27,10 @@ Please submit your test driven solution via a public Git repository (github/bitb
 ## Roman Numeral rules:
 * Roman numerals consist of the following letters: I, V, X, L, C, D, and M which mean one, five, ten, fifty, hundred, five hundred and one thousand respectively.
 * An example would be "XIV" + "LX" = "LXXIV"  
-* Numerals can be concatenated to form a larger numeral ("XX" + "II" = "XXII").
+* Numerals can be concatenated to form a larger numeral ("XX" + "II" = "XXII")
+  as long as the value of the first letter of the second part is less than the
+  value of the last letter of the first part. ("XXI" + "V" is "XXVI", not
+  "XXIV").
 * If a lesser numeral is put before a bigger it means subtraction of the lesser from the bigger ("IV"  means four, "CM" means ninehundred).
 * If the numeral is I, X or C you can't have more than three consecutively
   ("II" + "II" = "IV" not “IIII”).
