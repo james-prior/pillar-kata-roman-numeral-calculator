@@ -58,7 +58,14 @@ class Roman:
         units_pattern +
         '$')
 
-    def __init__(self, roman_numeral):
+    def __init__(self, roman_numeral_or_x):
+        try:
+            self.value = int(roman_numeral_or_x)
+        except ValueError:
+            roman_numeral = roman_numeral_or_x
+        else:
+            return
+
         m = re.match(self.pattern, roman_numeral)
         if not m:
             raise ValueError
@@ -72,3 +79,7 @@ class Roman:
 
     def get_value(self):
         return self.value
+
+    def __str__(self):
+        # return None
+        return 'I'
