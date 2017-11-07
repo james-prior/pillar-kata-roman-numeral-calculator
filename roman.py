@@ -2,6 +2,7 @@ import re
 from collections import Counter
 
 class Roman:
+    minimum = 1
     MAXIMUM = 3999
 
     units = {
@@ -66,4 +67,8 @@ class Roman:
             self.combined.get(s, 0)
             for s in groups.values()
         )
+        if self.value < self.minimum:
+            # raise KeyError
+            raise ValueError
+
         # self.value = None

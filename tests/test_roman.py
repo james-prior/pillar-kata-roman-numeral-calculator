@@ -106,7 +106,7 @@ def test_known_number_returns_expected(roman, expected):
 
 
 bad_romans_expected_errors = (
-    # ('', ValueError),
+    ('', ValueError),
     ('IL', ValueError),
     ('XD', ValueError),
     # ('IIII', ValueError),
