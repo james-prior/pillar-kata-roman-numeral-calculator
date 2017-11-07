@@ -21,6 +21,11 @@ class Roman:
     }
     MAXIMUM = 3999
     def __init__(self, roman_numeral):
+        if any(
+                letter not in self.VALUE_OF_ROMAN_NUMERAL
+                for letter in roman_numeral):
+            raise ValueError
+
         letter_counts = Counter(list(roman_numeral))
         if any(
                 n > self.MAX_N_OF_LETTER.get(letter, n)
