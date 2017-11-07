@@ -79,6 +79,7 @@ bad_romans_expected_errors = (
     ('VV', ValueError),
     ('CCCC', ValueError),
     ('DD', ValueError),
+    ('MMMM', ValueError),
 )
 @pytest.mark.parametrize(
     'bad_roman, expected_exception', bad_romans_expected_errors)

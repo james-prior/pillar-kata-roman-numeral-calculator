@@ -19,6 +19,7 @@ class Roman:
         'D': 1,
         # No maximum was specified for 'M'.
     }
+    MAXIMUM = 3999
     def __init__(self, roman_numeral):
         letter_counts = Counter(list(roman_numeral))
         if any(
@@ -29,3 +30,6 @@ class Roman:
         self.value = sum(
             self.VALUE_OF_ROMAN_NUMERAL[letter]
             for letter in roman_numeral)
+
+        if self.value > self.MAXIMUM:
+            raise ValueError
