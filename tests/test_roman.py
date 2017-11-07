@@ -71,3 +71,18 @@ roman_expected_ints = [
 @pytest.mark.parametrize('roman, expected', roman_expected_ints)
 def test_known_number_returns_expected(roman, expected):
     assert expected == Roman(roman).value
+
+
+bad_romans_expected_errors = (
+    ('IIII', ValueError),
+    ('IIIII', ValueError),
+    ('VV', ValueError),
+    ('CCCC', ValueError),
+    ('DD', ValueError),
+)
+@pytest.mark.parametrize(
+    'bad_roman, expected_exception', bad_romans_expected_errors)
+def test_bad_roman_raises_expected_exception(
+        bad_roman, expected_exception):
+    with pytest.raises(expected_exception):
+        _ = Roman(bad_roman)
