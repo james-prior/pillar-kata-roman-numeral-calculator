@@ -21,9 +21,10 @@ class Roman:
     }
     def __init__(self, roman_numeral):
         letter_counts = Counter(list(roman_numeral))
-        for letter, n in letter_counts.items():
-            if n > self.MAX_N_OF_LETTER.get(letter, n):
-                raise ValueError
+        if any(
+                n > self.MAX_N_OF_LETTER.get(letter, n)
+                for letter, n in letter_counts.items()):
+            raise ValueError
             
         self.value = sum(
             self.VALUE_OF_ROMAN_NUMERAL[letter]
