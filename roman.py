@@ -26,14 +26,26 @@ class Roman:
         'LXXX': 80,
         'XC': 90,
     }
+    hundreds = {
+        'C': 100,
+        'CC': 200,
+        'CCC': 300,
+        'CD': 400,
+        'D': 500,
+        'DC': 600,
+        'DCC': 700,
+        'DCCC': 800,
+        'CM': 900,
+    }
     combined = {}
-    for d in units, tens:
+    for d in units, tens, hundreds:
         combined.update(d)
 
     units_pattern = '(?P<units>' + '|'.join(units) + ')?'
     tens_pattern = '(?P<tens>' + '|'.join(tens) + ')?'
+    hundreds_pattern = '(?P<hundreds>' + '|'.join(hundreds) + ')?'
     pattern = re.compile(
-        '^' + tens_pattern + units_pattern + '$')
+        '^' + hundreds_pattern + tens_pattern + units_pattern + '$')
 
     def __init__(self, roman_numeral):
         m = re.match(self.pattern, roman_numeral)

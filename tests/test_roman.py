@@ -48,15 +48,6 @@ As a Roman bookkeeper, I want to be able to subtract one number from another; so
 '''
 
 '''
-    100 C
-    199 CXCIX
-    200 CC
-    300 CCC
-    383 CCCLXXXIII
-    499 CDXCIX
-    500 D
-    888 DCCCLXXXVIII
-    999 CMXCIX
     1000 M
     1883 MDCCCLXXXIII
     2000 MM
@@ -95,6 +86,15 @@ int_string_romans = '''
     68 LXVIII
     89 LXXXIX
     99 XCIX
+    100 C
+    199 CXCIX
+    200 CC
+    300 CCC
+    383 CCCLXXXIII
+    499 CDXCIX
+    500 D
+    888 DCCCLXXXVIII
+    999 CMXCIX
 '''.strip().split('\n')
 expected_roman_strings = (s.strip().split() for s in int_string_romans)
 roman_expected_ints = [
