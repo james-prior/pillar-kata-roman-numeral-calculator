@@ -109,11 +109,11 @@ bad_romans_expected_errors = (
     ('', ValueError),
     ('IL', ValueError),
     ('XD', ValueError),
-    # ('IIII', ValueError),
-    # ('IIIII', ValueError),
-    # ('VV', ValueError),
-    # ('CCCC', ValueError),
-    # ('DD', ValueError),
+    ('IIII', ValueError),
+    ('IIIII', ValueError),
+    ('VV', ValueError),
+    ('CCCC', ValueError),
+    ('DD', ValueError),
     ('MMMM', ValueError), # too big value
     ('ONE', ValueError), # not roman
 )
