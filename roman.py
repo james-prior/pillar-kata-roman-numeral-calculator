@@ -58,6 +58,10 @@ class Roman:
     roman_tens = []
     for i in range(10):
         roman_tens.append(t.get(10*i, ''))
+    t = {number: roman for roman, number in hundreds.items()}
+    roman_hundreds = []
+    for i in range(10):
+        roman_hundreds.append(t.get(100*i, ''))
 
     thousands_pattern = '(?P<thousands>' + '|'.join(thousands) + ')?'
     hundreds_pattern = '(?P<hundreds>' + '|'.join(hundreds) + ')?'
@@ -96,7 +100,10 @@ class Roman:
     def __str__(self):
         terms = []
         value = self.value
-        for d in self.roman_units, self.roman_tens:
+        for d in (
+                self.roman_units,
+                self.roman_tens,
+                self.roman_hundreds):
             value, i = divmod(value, 10)
             terms.append(d[i])
         # return None
