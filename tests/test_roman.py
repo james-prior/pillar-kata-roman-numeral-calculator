@@ -47,27 +47,27 @@ As a Roman bookkeeper, I want to be able to add two numbers together; so that I 
 As a Roman bookkeeper, I want to be able to subtract one number from another; so that I can do my work faster and with fewer mathematical errors.
 '''
 
-roman_ints = '''
-    I 1
-    II 2
-    III 3
-    V 5
-    X 10
-    XX 20
-    XXX 30
-    L 50
-    C 100
-    CC 200
-    CCC 300
-    D 500
-    M 1000
-    MM 2000
-    MMM 3000
+int_string_romans = '''
+    1 I
+    2 II
+    3 III
+    5 V
+    10 X
+    20 XX
+    30 XXX
+    50 L
+    100 C
+    200 CC
+    300 CCC
+    500 D
+    1000 M
+    2000 MM
+    3000 MMM
 '''.strip().split('\n')
-roman_expected_strings = (s.strip().split() for s in roman_ints)
+expected_roman_strings = (s.strip().split() for s in int_string_romans)
 roman_expected_ints = [
     (roman, int(x))
-    for roman, x in roman_expected_strings]
+    for x, roman in expected_roman_strings]
 @pytest.mark.parametrize('roman, expected', roman_expected_ints)
 def test_known_number_returns_expected(roman, expected):
     assert expected == Roman(roman).value
