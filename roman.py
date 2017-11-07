@@ -1,3 +1,4 @@
+import re
 from collections import Counter
 
 class Roman:
@@ -20,39 +21,24 @@ class Roman:
         # No maximum was specified for 'M'.
     }
     MAXIMUM = 3999
+
+    UNITS = {
+        'I': 1,
+        'II': 2,
+        'III': 3,
+        'IV': 4,
+        'V': 5,
+        'VI': 6,
+        'VII': 7,
+        'VIII': 8,
+        'IX': 9,
+    }
+    units_pattern = re.compile('^(?P<units>' + '|'.join(UNITS) + ')$')
+
     def __init__(self, roman_numeral):
-        if not roman_numeral:
+        m = re.match(self.units_pattern, roman_numeral)
+        if not m:
+            raise KeyError
             raise ValueError
-
-        reversed_roman_numeral = list(reversed(roman_numeral))
-        previous_reversed_roman_numeral = (
-            ['after end'] + reversed_roman_numeral[:-1])
-        next_reversed_roman_numeral = (
-            reversed_roman_numeral[1:] + ['before beginning'])
-
-        value = 0
-        n = 0
-        letter_value = 0
-        for previous_letter, letter, next_letter in zip(
-                previous_reversed_roman_numeral,
-                reversed_roman_numeral,
-                next_reversed_roman_numeral):
-            n += 1
-            if previous_letter != letter:
-                previous_letter_value = letter_value
-                try:
-                    letter_value = self.VALUE_OF_ROMAN_NUMERAL[letter]
-                except KeyError:
-                    raise ValueError
-                sign = +1 if previous_letter_value < letter_value else -1
-            if next_letter != letter:
-                if n > self.MAX_N_OF_LETTER.get(letter, n):
-                    raise ValueError
-                value += sign * n * letter_value
-                n = 0
-
-        if value > self.MAXIMUM:
-            raise ValueError
-
-        self.value = value
-        return
+        self.value = self.UNITS[m.group('units')]
+        # self.value = None
