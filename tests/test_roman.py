@@ -105,19 +105,21 @@ def test_known_number_returns_expected(roman, expected):
     assert expected == Roman(roman).value
 
 
-# bad_romans_expected_errors = (
-#     # ('', ValueError),
-#     # ('IIII', ValueError),
-#     # ('IIIII', ValueError),
-#     # ('VV', ValueError),
-#     # ('CCCC', ValueError),
-#     # ('DD', ValueError),
-#     # ('MMMM', ValueError), # too big value
-#     # ('ONE', ValueError), # not roman
-# )
-# @pytest.mark.parametrize(
-#     'bad_roman, expected_exception', bad_romans_expected_errors)
-# def test_bad_roman_raises_expected_exception(
-#         bad_roman, expected_exception):
-#     with pytest.raises(expected_exception):
-#         _ = Roman(bad_roman)
+bad_romans_expected_errors = (
+    # ('', ValueError),
+    ('IL', ValueError),
+    ('XD', ValueError),
+    # ('IIII', ValueError),
+    # ('IIIII', ValueError),
+    # ('VV', ValueError),
+    # ('CCCC', ValueError),
+    # ('DD', ValueError),
+    # ('MMMM', ValueError), # too big value
+    # ('ONE', ValueError), # not roman
+)
+@pytest.mark.parametrize(
+    'bad_roman, expected_exception', bad_romans_expected_errors)
+def test_bad_roman_raises_expected_exception(
+        bad_roman, expected_exception):
+    with pytest.raises(expected_exception):
+        _ = Roman(bad_roman)

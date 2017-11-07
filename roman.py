@@ -37,6 +37,9 @@ class Roman:
 
     def __init__(self, roman_numeral):
         m = re.match(self.pattern, roman_numeral)
+        if not m:
+            # raise KeyError
+            raise ValueError
         groups = m.groupdict()
 
         value = 0
