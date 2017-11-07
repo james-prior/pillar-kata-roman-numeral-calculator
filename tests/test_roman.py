@@ -114,7 +114,7 @@ bad_romans_expected_errors = (
     # ('VV', ValueError),
     # ('CCCC', ValueError),
     # ('DD', ValueError),
-    # ('MMMM', ValueError), # too big value
+    ('MMMM', ValueError), # too big value
     ('ONE', ValueError), # not roman
 )
 @pytest.mark.parametrize(

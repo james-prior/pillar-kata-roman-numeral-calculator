@@ -3,7 +3,6 @@ from collections import Counter
 
 class Roman:
     minimum = 1
-    MAXIMUM = 3999
 
     units = {
         'I': 1,
