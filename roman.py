@@ -2,27 +2,9 @@ import re
 from collections import Counter
 
 class Roman:
-    VALUE_OF_ROMAN_NUMERAL = {
-        'I': 1,
-        'V': 5,
-        'X': 10,
-        'L': 50,
-        'C': 100,
-        'D': 500,
-        'M': 1000,
-    }
-    MAX_N_OF_LETTER = {
-        'I': 3,
-        'V': 1,
-        'X': 3,
-        'L': 1,
-        'C': 3,
-        'D': 1,
-        # No maximum was specified for 'M'.
-    }
     MAXIMUM = 3999
 
-    UNITS = {
+    units = {
         'I': 1,
         'II': 2,
         'III': 3,
@@ -33,12 +15,33 @@ class Roman:
         'VIII': 8,
         'IX': 9,
     }
-    units_pattern = re.compile('^(?P<units>' + '|'.join(UNITS) + ')$')
+    tens = {
+        'X': 10,
+        'XX': 20,
+        'XXX': 30,
+        'XL': 40,
+        'L': 50,
+        'LX': 60,
+        'LXX': 70,
+        'LXXX': 80,
+        'XC': 90,
+    }
+    combined = {}
+    for d in units, tens:
+        combined.update(d)
+
+    units_pattern = '(?P<units>' + '|'.join(units) + ')?'
+    tens_pattern = '(?P<tens>' + '|'.join(tens) + ')?'
+    pattern = re.compile(
+        '^' + tens_pattern + units_pattern + '$')
 
     def __init__(self, roman_numeral):
-        m = re.match(self.units_pattern, roman_numeral)
-        if not m:
-            raise KeyError
-            raise ValueError
-        self.value = self.UNITS[m.group('units')]
+        m = re.match(self.pattern, roman_numeral)
+        groups = m.groupdict()
+
+        value = 0
+        for s in groups.values():
+            value += self.combined.get(s, 0)
+
+        self.value = value
         # self.value = None

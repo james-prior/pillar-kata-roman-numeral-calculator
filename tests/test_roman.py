@@ -57,7 +57,6 @@ As a Roman bookkeeper, I want to be able to subtract one number from another; so
     7 VII
     8 VIII
     9 IX
-    10 X
     11 XI
     12 XII
     13 XIII
@@ -105,6 +104,7 @@ int_string_romans = '''
     7 VII
     8 VIII
     9 IX
+    10 X
 '''.strip().split('\n')
 expected_roman_strings = (s.strip().split() for s in int_string_romans)
 roman_expected_ints = [
