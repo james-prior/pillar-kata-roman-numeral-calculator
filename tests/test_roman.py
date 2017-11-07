@@ -52,17 +52,32 @@ int_string_romans = '''
     2 II
     3 III
     5 V
+    6 VI
+    7 VII
+    8 VIII
     10 X
+    11 XI
+    12 XII
+    13 XIII
+    15 XV
+    16 XVI
+    17 XVII
+    18 XVIII
     20 XX
     30 XXX
     50 L
+    68 LXVIII
     100 C
     200 CC
     300 CCC
+    383 CCCLXXXIII
     500 D
+    888 DCCCLXXXVIII
     1000 M
+    1883 MDCCCLXXXIII
     2000 MM
     3000 MMM
+    3883 MMMDCCCLXXXIII
 '''.strip().split('\n')
 expected_roman_strings = (s.strip().split() for s in int_string_romans)
 roman_expected_ints = [
