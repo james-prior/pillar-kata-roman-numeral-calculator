@@ -48,12 +48,6 @@ As a Roman bookkeeper, I want to be able to subtract one number from another; so
 '''
 
 '''
-    1000 M
-    1883 MDCCCLXXXIII
-    2000 MM
-    3000 MMM
-    3883 MMMDCCCLXXXIII
-    3999 MMMCMXCIX
 '''
 
 int_string_romans = '''
@@ -95,6 +89,12 @@ int_string_romans = '''
     500 D
     888 DCCCLXXXVIII
     999 CMXCIX
+    1000 M
+    1883 MDCCCLXXXIII
+    2000 MM
+    3000 MMM
+    3883 MMMDCCCLXXXIII
+    3999 MMMCMXCIX
 '''.strip().split('\n')
 expected_roman_strings = (s.strip().split() for s in int_string_romans)
 roman_expected_ints = [

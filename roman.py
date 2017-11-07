@@ -37,15 +37,24 @@ class Roman:
         'DCCC': 800,
         'CM': 900,
     }
+    thousands = {
+        'M': 1000,
+        'MM': 2000,
+        'MMM': 3000,
+    }
     combined = {}
-    for d in units, tens, hundreds:
+    for d in units, tens, hundreds, thousands:
         combined.update(d)
 
     units_pattern = '(?P<units>' + '|'.join(units) + ')?'
     tens_pattern = '(?P<tens>' + '|'.join(tens) + ')?'
     hundreds_pattern = '(?P<hundreds>' + '|'.join(hundreds) + ')?'
+    thousands_pattern = '(?P<thousands>' + '|'.join(thousands) + ')?'
     pattern = re.compile(
-        '^' + hundreds_pattern + tens_pattern + units_pattern + '$')
+        '^' +
+        thousands_pattern + hundreds_pattern +
+        tens_pattern + units_pattern +
+        '$')
 
     def __init__(self, roman_numeral):
         m = re.match(self.pattern, roman_numeral)
