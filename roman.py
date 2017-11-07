@@ -24,42 +24,35 @@ class Roman:
         if not roman_numeral:
             raise ValueError
 
-        if any(
-                letter not in self.VALUE_OF_ROMAN_NUMERAL
-                for letter in roman_numeral):
-            raise ValueError
+        reversed_roman_numeral = list(reversed(roman_numeral))
+        previous_reversed_roman_numeral = (
+            ['after end'] + reversed_roman_numeral[:-1])
+        next_reversed_roman_numeral = (
+            reversed_roman_numeral[1:] + ['before beginning'])
 
-        next_letters = list(roman_numeral)[1:] + ['past end']
-        end_of_runs = [
-            letter != next_letter
-            for letter, next_letter in zip(roman_numeral, next_letters)]
-
-        letter_counts = []
+        value = 0
         n = 0
-        for letter, end_of_run in zip(roman_numeral, end_of_runs):
+        letter_value = 0
+        for previous_letter, letter, next_letter in zip(
+                previous_reversed_roman_numeral,
+                reversed_roman_numeral,
+                next_reversed_roman_numeral):
             n += 1
-            if end_of_run:
-                letter_counts.append((letter, n))
+            if previous_letter != letter:
+                previous_letter_value = letter_value
+                try:
+                    letter_value = self.VALUE_OF_ROMAN_NUMERAL[letter]
+                except KeyError:
+                    raise ValueError
+                sign = +1 if previous_letter_value < letter_value else -1
+            if next_letter != letter:
+                if n > self.MAX_N_OF_LETTER.get(letter, n):
+                    raise ValueError
+                value += sign * n * letter_value
                 n = 0
 
-        if any(
-                n > self.MAX_N_OF_LETTER.get(letter, n)
-                for letter, n in letter_counts):
+        if value > self.MAXIMUM:
             raise ValueError
 
-        letter_values = [
-            self.VALUE_OF_ROMAN_NUMERAL[letter]
-            for letter, _ in letter_counts]
-        next_letter_values = letter_values[1:] + [0]
-        signs = [
-            +1 if value > next_value else -1
-            for value, next_value
-            in zip(letter_values, next_letter_values)]
-
-        self.value = sum(
-            sign * n * letter_value
-            for sign, letter_value, (letter, n)
-            in zip(signs, letter_values, letter_counts))
-
-        if self.value > self.MAXIMUM:
-            raise ValueError
+        self.value = value
+        return
