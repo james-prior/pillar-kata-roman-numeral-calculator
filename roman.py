@@ -125,3 +125,9 @@ class Roman:
             for i, d in zip(reversed_digits, roman_dicts)
         ]
         return ''.join(reversed(terms))
+
+    def __repr__(self):
+        return "{name}({value})".format(
+            name=self.__class__.__name__,
+            value=repr(str(self)),
+        )
