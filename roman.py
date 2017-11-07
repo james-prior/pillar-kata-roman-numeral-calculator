@@ -93,7 +93,10 @@ class Roman:
             # raise KeyError
             raise ValueError
 
-        m = re.match(self.pattern, roman_numeral)
+        try:
+            m = re.match(self.pattern, roman_numeral)
+        except TypeError:
+            raise ValueError
         if not m:
             raise ValueError
         groups = m.groupdict()
