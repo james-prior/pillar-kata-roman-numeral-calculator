@@ -98,52 +98,6 @@ def test_bad_roman_raises_expected_exception(
         _ = Roman(bad_roman)
 
 
-int_string_romans = '''
-    1 I
-    2 II
-    3 III
-    4 IV
-    5 V
-    6 VI
-    7 VII
-    8 VIII
-    9 IX
-    10 X
-    11 XI
-    12 XII
-    13 XIII
-    14 XIV
-    15 XV
-    16 XVI
-    17 XVII
-    18 XVIII
-    19 XIX
-    20 XX
-    30 XXX
-    40 XL
-    41 XLI
-    44 XLIV
-    49 XLIX
-    50 L
-    68 LXVIII
-    89 LXXXIX
-    99 XCIX
-    100 C
-    199 CXCIX
-    200 CC
-    300 CCC
-    383 CCCLXXXIII
-    499 CDXCIX
-    500 D
-    888 DCCCLXXXVIII
-    999 CMXCIX
-    1000 M
-    1883 MDCCCLXXXIII
-    2000 MM
-    3000 MMM
-    3883 MMMDCCCLXXXIII
-    3999 MMMCMXCIX
-'''.strip().split('\n')
 number_expected_roman_strings = (
     s.strip().split() for s in int_string_romans)
 int_expected_roman_numerals = [
