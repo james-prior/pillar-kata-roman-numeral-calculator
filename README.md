@@ -32,6 +32,9 @@ Please submit your test driven solution via a public Git repository (github/bitb
   value of the last letter of the first part. ("XXI" + "V" is "XXVI", not
   "XXIV").
 * If a lesser numeral is put before a bigger it means subtraction of the lesser from the bigger ("IV" means four, "CM" means ninehundred).
+    * I is allowed before only V and X
+    * X is allowed before only L and C
+    * C is allowed before only D and M
 * If the numeral is I, X or C you can't have more than three consecutively
   ("II" + "II" = "IV" not “IIII”).
 * If the numeral is V, L or D you can't have more than one consecutively
