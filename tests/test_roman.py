@@ -48,35 +48,6 @@ As a Roman bookkeeper, I want to be able to subtract one number from another; so
 '''
 
 '''
-    1 I
-    2 II
-    3 III
-    4 IV
-    5 V
-    6 VI
-    7 VII
-    8 VIII
-    9 IX
-    11 XI
-    12 XII
-    13 XIII
-    14 XIV
-    15 XV
-    16 XVI
-    17 XVII
-    18 XVIII
-    19 XIX
-    20 XX
-    30 XXX
-    40 XL
-    41 XLI
-    44 XLIV
-    49 XLIX
-    49 IL
-    50 L
-    68 LXVIII
-    89 LXXXIX
-    99 XCIX
     100 C
     199 CXCIX
     200 CC
@@ -105,6 +76,25 @@ int_string_romans = '''
     8 VIII
     9 IX
     10 X
+    11 XI
+    12 XII
+    13 XIII
+    14 XIV
+    15 XV
+    16 XVI
+    17 XVII
+    18 XVIII
+    19 XIX
+    20 XX
+    30 XXX
+    40 XL
+    41 XLI
+    44 XLIV
+    49 XLIX
+    50 L
+    68 LXVIII
+    89 LXXXIX
+    99 XCIX
 '''.strip().split('\n')
 expected_roman_strings = (s.strip().split() for s in int_string_romans)
 roman_expected_ints = [
