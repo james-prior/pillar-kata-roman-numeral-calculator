@@ -94,6 +94,10 @@ class Roman:
         return self.value
 
     def __str__(self):
-        a, b = divmod(self.value, 10)
+        terms = []
+        value = self.value
+        for d in self.roman_units, self.roman_tens:
+            value, i = divmod(value, 10)
+            terms.append(d[i])
         # return None
-        return self.roman_tens[a] + self.roman_units[b]
+        return ''.join(reversed(terms))
