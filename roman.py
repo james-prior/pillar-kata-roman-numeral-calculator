@@ -25,15 +25,15 @@ class Roman:
     value_of_roman_hundreds = _make_value_of_roman_digits(roman_hundreds, 100)
     value_of_roman_tens = _make_value_of_roman_digits(roman_tens, 10)
     value_of_roman_units = _make_value_of_roman_digits(roman_units, 1)
-    value_of_roman_digits = (
+    value_dicts = (
         value_of_roman_thousands,
         value_of_roman_hundreds,
         value_of_roman_tens,
         value_of_roman_units,
     )
-    combined = {}
-    for d in value_of_roman_digits:
-        combined.update(d)
+    value_of_roman_digits = {}
+    for d in value_dicts:
+        value_of_roman_digits.update(d)
 
     thousands_pattern = '(?P<value_of_roman_thousands>' + '|'.join(value_of_roman_thousands) + ')?'
     hundreds_pattern = '(?P<value_of_roman_hundreds>' + '|'.join(value_of_roman_hundreds) + ')?'
@@ -62,7 +62,7 @@ class Roman:
             raise ValueError
         groups = m.groupdict()
         self.value = sum(
-            self.combined.get(s, 0)
+            self.value_of_roman_digits.get(s, 0)
             for s in groups.values()
         )
         if self.value < self.minimum:
