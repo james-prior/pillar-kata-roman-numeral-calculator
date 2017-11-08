@@ -32,12 +32,12 @@ class Roman:
         'M': 3, # not specified in README.md, but works nice
     }
     valid_subtractive_value_pairs = {
-        (1, 5),
-        (1, 10),
-        (10, 50),
-        (10, 100),
-        (100, 500),
-        (100, 1000),
+        (1, 5),  # IV
+        (1, 10),  # IX
+        (10, 50),  # XL
+        (10, 100),  # XC
+        (100, 500),  # CD
+        (100, 1000),  # CM
     }
 
     def __init__(self, roman_numeral_or_int):
