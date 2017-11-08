@@ -38,16 +38,9 @@ class Roman:
     def _make_digits_pattern(roman_digits):
         return '(' + '|'.join(roman_digits) + ')?'
 
-    thousands_pattern = _make_digits_pattern(value_of_roman_thousands)
-    hundreds_pattern = _make_digits_pattern(value_of_roman_hundreds)
-    tens_pattern = _make_digits_pattern(value_of_roman_tens)
-    units_pattern = _make_digits_pattern(value_of_roman_units)
     pattern = re.compile(
         '^' +
-        thousands_pattern +
-        hundreds_pattern +
-        tens_pattern +
-        units_pattern +
+        ''.join(map(_make_digits_pattern, value_dicts)) +
         '$')
 
     def __init__(self, roman_numeral_or_x):
