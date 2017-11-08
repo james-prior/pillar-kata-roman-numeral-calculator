@@ -35,10 +35,13 @@ class Roman:
     for d in value_dicts:
         value_of_roman_digits.update(d)
 
-    thousands_pattern = '(' + '|'.join(value_of_roman_thousands) + ')?'
-    hundreds_pattern = '(' + '|'.join(value_of_roman_hundreds) + ')?'
-    tens_pattern = '(' + '|'.join(value_of_roman_tens) + ')?'
-    units_pattern = '(' + '|'.join(value_of_roman_units) + ')?'
+    def _make_digits_pattern(roman_digits):
+        return '(' + '|'.join(roman_digits) + ')?'
+
+    thousands_pattern = _make_digits_pattern(value_of_roman_thousands)
+    hundreds_pattern = _make_digits_pattern(value_of_roman_hundreds)
+    tens_pattern = _make_digits_pattern(value_of_roman_tens)
+    units_pattern = _make_digits_pattern(value_of_roman_units)
     pattern = re.compile(
         '^' +
         thousands_pattern +
