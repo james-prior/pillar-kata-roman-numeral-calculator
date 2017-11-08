@@ -208,21 +208,21 @@ def test_subtracting(subs_sum):
     assert expected_sum == str(Roman(sub1) - Roman(sub2))
 
 
-# bad_subs_expected_errors = (
-#     ('I', 'I', OverflowError),
-#     ('I', 'II', OverflowError),
-#     ('M', 'MM', OverflowError),
-#     ('MMMCMXCVIII', 'MMMCMXCIX', OverflowError),
-#     ('MMMCMXCIX', 'MMMCMXCIX', OverflowError),
-# )
-# @pytest.mark.parametrize(
-#     'sub1, sub2, expected_exception', bad_subs_expected_errors)
-# def test_bad_sub_raises_expected_exception(
-#         sub1, sub2, expected_exception):
-#     with pytest.raises(expected_exception):
-#         Roman(sub1) - Roman(sub2)
-# 
-# 
+bad_subs_expected_errors = (
+    ('I', 'I', OverflowError),
+    ('I', 'II', OverflowError),
+    ('M', 'MM', OverflowError),
+    ('MMMCMXCVIII', 'MMMCMXCIX', OverflowError),
+    ('MMMCMXCIX', 'MMMCMXCIX', OverflowError),
+)
+@pytest.mark.parametrize(
+    'sub1, sub2, expected_exception', bad_subs_expected_errors)
+def test_bad_sub_raises_expected_exception(
+        sub1, sub2, expected_exception):
+    with pytest.raises(expected_exception):
+        Roman(sub1) - Roman(sub2)
+
+
 # roman_expected_repr = (
 #     (Roman('I'), "Roman('I')"),
 #     (Roman('II'), "Roman('II')"),

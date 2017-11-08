@@ -146,12 +146,11 @@ class Roman:
         return Roman(value)
 
     def __sub__(self, other):
-        # return 0
-        return Roman(self.value - other.value)
-    #     value = self.value - other.value
-    #     if value < self.minimum:
-    #         raise OverflowError
-    #     return Roman(value)
+        value = self.value - other.value
+        if value < self.minimum:
+            # raise KeyError
+            raise OverflowError
+        return Roman(value)
 
     def __str__(self):
         roman_dicts = (
