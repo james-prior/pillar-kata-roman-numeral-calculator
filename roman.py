@@ -2,7 +2,7 @@ import re
 from collections import Counter
 
 class Roman:
-    # minimum = 1
+    minimum = 1
     # maximum = 3999
 
     def _make_list_of_roman_digits(s):
@@ -79,6 +79,9 @@ class Roman:
         except ValueError:
             roman_numeral = roman_numeral_or_int
         else:
+            if self.value < self.minimum:
+                # raise KeyError
+                raise ValueError
             # self.value = 0
             return
 
