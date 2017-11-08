@@ -47,26 +47,17 @@ class Roman:
     for d in thousands, hundreds, tens, units:
         combined.update(d)
 
-    t = {number: roman for roman, number in units.items()}
-    roman_units = []
-    for i in range(10):
-        roman_units.append(t.get(i, ''))
-    # roman_units = [
-    #     t.get(i, '')
-    #     for i in range(10)
-    # ]
-    t = {number: roman for roman, number in tens.items()}
-    roman_tens = []
-    for i in range(10):
-        roman_tens.append(t.get(10*i, ''))
-    t = {number: roman for roman, number in hundreds.items()}
-    roman_hundreds = []
-    for i in range(10):
-        roman_hundreds.append(t.get(100*i, ''))
-    t = {number: roman for roman, number in thousands.items()}
-    roman_thousands = []
-    for i in range(10):
-        roman_thousands.append(t.get(1000*i, ''))
+    def _make_digits_list_from_dict(d, multiplier):
+        t = {number: roman for roman, number in d.items()}
+        a = []
+        for i in range(10):
+            a.append(t.get(multiplier * i, ''))
+        return a
+
+    roman_units = _make_digits_list_from_dict(units, 1)
+    roman_tens = _make_digits_list_from_dict(tens, 10)
+    roman_hundreds = _make_digits_list_from_dict(hundreds, 100)
+    roman_thousands = _make_digits_list_from_dict(thousands, 1000)
 
     thousands_pattern = '(?P<thousands>' + '|'.join(thousands) + ')?'
     hundreds_pattern = '(?P<hundreds>' + '|'.join(hundreds) + ')?'
