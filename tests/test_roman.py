@@ -117,6 +117,17 @@ def test_bad_roman_raises_expected_exception(
         Roman(bad_roman)
 
 
+number_expected_roman_strings = (
+    s.strip().split() for s in int_string_romans)
+ints = [
+    int(x)
+    for x, roman in number_expected_roman_strings]
+@pytest.mark.parametrize(
+    'number', ints)
+def test_str_returns_expected(number):
+    assert number == Roman(number).get_value()
+
+
 # number_expected_roman_strings = (
 #     s.strip().split() for s in int_string_romans)
 # int_expected_roman_numerals = [

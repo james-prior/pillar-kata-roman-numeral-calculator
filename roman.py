@@ -70,10 +70,18 @@ class Roman:
         (100, 1000),
     }
 
-    def __init__(self, roman_numeral):
-        if not roman_numeral:
+    def __init__(self, roman_numeral_or_int):
+        if not roman_numeral_or_int:
             # raise KeyError
             raise ValueError
+        try:
+            self.value = int(roman_numeral_or_int)
+        except ValueError:
+            roman_numeral = roman_numeral_or_int
+        else:
+            # self.value = 0
+            return
+
         value = 0
         old_letter_value = 0
         n = 0
