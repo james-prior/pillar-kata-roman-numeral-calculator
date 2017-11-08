@@ -85,7 +85,6 @@ class Roman:
         else:
             if self.minimum <= self.value <= self.maximum:
                 return
-            # raise KeyError
             raise ValueError
 
         m = re.match(self.pattern, roman_numeral)
