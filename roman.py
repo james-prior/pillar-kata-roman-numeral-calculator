@@ -145,7 +145,9 @@ class Roman:
             raise OverflowError
         return Roman(value)
 
-    # def __sub__(self, other):
+    def __sub__(self, other):
+        # return 0
+        return Roman(self.value - other.value)
     #     value = self.value - other.value
     #     if value < self.minimum:
     #         raise OverflowError

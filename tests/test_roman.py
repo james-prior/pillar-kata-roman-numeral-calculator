@@ -181,33 +181,33 @@ def test_bad_add_raises_expected_exception(
         Roman(addend1) + Roman(addend2)
 
 
-# subs_sums_lines = '''
-#     II I I
-#     III I II
-#     V II III
-#     VIII III V
-#     XIII V VIII
-#     XXI VIII XIII
-#     XXXIV XIII XXI
-#     LV XXI XXXIV
-#     LXXXIX XXXIV LV
-#     CXLIV LV LXXXIX
-#     CCXXXIII LXXXIX CXLIV
-#     CCCLXXVII CXLIV CCXXXIII
-#     DCX CCXXXIII CCCLXXVII
-#     CMLXXXVII CCCLXXVII DCX
-#     MDXCVII DCX CMLXXXVII
-#     MMDLXXXIV CMLXXXVII MDXCVII
-#     MMMCMXCIX MMMCMXCVIII I
-# '''.strip().split('\n')
-# subs_sums = (
-#     s.strip().split() for s in subs_sums_lines)
-# @pytest.mark.parametrize('subs_sum', subs_sums)
-# def test_subtracting(subs_sum):
-#     sub1, sub2, expected_sum = subs_sum
-#     assert expected_sum == str(Roman(sub1) - Roman(sub2))
-# 
-# 
+subs_sums_lines = '''
+    II I I
+    III I II
+    V II III
+    VIII III V
+    XIII V VIII
+    XXI VIII XIII
+    XXXIV XIII XXI
+    LV XXI XXXIV
+    LXXXIX XXXIV LV
+    CXLIV LV LXXXIX
+    CCXXXIII LXXXIX CXLIV
+    CCCLXXVII CXLIV CCXXXIII
+    DCX CCXXXIII CCCLXXVII
+    CMLXXXVII CCCLXXVII DCX
+    MDXCVII DCX CMLXXXVII
+    MMDLXXXIV CMLXXXVII MDXCVII
+    MMMCMXCIX MMMCMXCVIII I
+'''.strip().split('\n')
+subs_sums = (
+    s.strip().split() for s in subs_sums_lines)
+@pytest.mark.parametrize('subs_sum', subs_sums)
+def test_subtracting(subs_sum):
+    sub1, sub2, expected_sum = subs_sum
+    assert expected_sum == str(Roman(sub1) - Roman(sub2))
+
+
 # bad_subs_expected_errors = (
 #     ('I', 'I', OverflowError),
 #     ('I', 'II', OverflowError),
