@@ -72,7 +72,6 @@ class Roman:
 
     def __init__(self, roman_numeral_or_int):
         if not roman_numeral_or_int:
-            # raise KeyError
             raise ValueError
         try:
             self.value = int(roman_numeral_or_int)
@@ -82,7 +81,6 @@ class Roman:
             if self.minimum <= self.value <= self.maximum:
                 # self.value = 0
                 return
-            # raise KeyError
             raise ValueError
 
         value = 0
@@ -93,23 +91,19 @@ class Roman:
             try:
                 letter_value = self.value_of_roman_letters[letter]
             except KeyError:
-                # raise KeyError
                 raise ValueError
             if letter_value != old_letter_value:
                 n = 0
             n += 1
             if n > self.max_run_lengths_of_roman_letters[letter]:
-                # raise KeyError
                 raise ValueError
             if sign == -1 and n > 1:
-                # raise KeyError
                 raise ValueError
             sign = -1 if letter_value < old_letter_value else +1
             if (
                     sign == -1 and
                     (letter_value, old_letter_value)
                     not in self.valid_subtractive_value_pairs):
-                # raise KeyError
                 raise ValueError
             value += sign * letter_value
             old_letter_value = letter_value
@@ -141,14 +135,12 @@ class Roman:
     def __add__(self, other):
         value = self.value + other.value
         if value > self.maximum:
-            # raise KeyError
             raise OverflowError
         return Roman(value)
 
     def __sub__(self, other):
         value = self.value - other.value
         if value < self.minimum:
-            # raise KeyError
             raise OverflowError
         return Roman(value)
 
@@ -165,11 +157,9 @@ class Roman:
             d[i]
             for i, d in zip(reversed_digits, roman_dicts)
         ]
-        # return 'fail army'
         return ''.join(reversed(roman_digits))
 
     def __repr__(self):
-        # return 0
         return "{name}({value})".format(
             name=self.__class__.__name__,
             value=repr(str(self)),
