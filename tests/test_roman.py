@@ -78,6 +78,19 @@ def test_known_number_returns_expected(roman, expected):
 
 bad_romans_expected_errors = (
     # ('', ValueError),
+    # log runs
+    ('IIII', ValueError),
+    ('IIIII', ValueError),
+    ('VV', ValueError),
+    ('CCCC', ValueError),
+    ('DD', ValueError),
+    ('MMMM', ValueError), # too big value
+    # log runs of subtractive letter
+    ('IIV', ValueError),
+    ('IIX', ValueError),
+    ('XXL', ValueError),
+    ('XXC', ValueError),
+    ('CCM', ValueError),
     # invalid subtractive combinations
     ('IL', ValueError),
     ('IC', ValueError),
@@ -87,20 +100,6 @@ bad_romans_expected_errors = (
     ('VL', ValueError),
     ('XD', ValueError),
     ('XM', ValueError),
-    ('XM', ValueError),
-    # log runs of subtractive letter
-    ('IIV', ValueError),
-    ('IIX', ValueError),
-    ('XXL', ValueError),
-    ('XXC', ValueError),
-    ('CCM', ValueError),
-    # log runs
-    ('IIII', ValueError),
-    ('IIIII', ValueError),
-    ('VV', ValueError),
-    ('CCCC', ValueError),
-    ('DD', ValueError),
-    ('MMMM', ValueError), # too big value
     # ('ONE', ValueError), # not roman
     # (4000, ValueError), # too big
     # (0, ValueError), # too small
