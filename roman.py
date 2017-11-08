@@ -35,10 +35,10 @@ class Roman:
     for d in value_dicts:
         value_of_roman_digits.update(d)
 
-    thousands_pattern = '(?P<value_of_roman_thousands>' + '|'.join(value_of_roman_thousands) + ')?'
-    hundreds_pattern = '(?P<value_of_roman_hundreds>' + '|'.join(value_of_roman_hundreds) + ')?'
-    tens_pattern = '(?P<value_of_roman_tens>' + '|'.join(value_of_roman_tens) + ')?'
-    units_pattern = '(?P<value_of_roman_units>' + '|'.join(value_of_roman_units) + ')?'
+    thousands_pattern = '(' + '|'.join(value_of_roman_thousands) + ')?'
+    hundreds_pattern = '(' + '|'.join(value_of_roman_hundreds) + ')?'
+    tens_pattern = '(' + '|'.join(value_of_roman_tens) + ')?'
+    units_pattern = '(' + '|'.join(value_of_roman_units) + ')?'
     pattern = re.compile(
         '^' +
         thousands_pattern +
@@ -60,10 +60,10 @@ class Roman:
         m = re.match(self.pattern, roman_numeral)
         if not m:
             raise ValueError
-        groups = m.groupdict()
         self.value = sum(
-            self.value_of_roman_digits.get(s, 0)
-            for s in groups.values()
+            self.value_of_roman_digits[s]
+            for s in m.groups()
+            if s
         )
         if self.value < self.minimum:
             raise ValueError
