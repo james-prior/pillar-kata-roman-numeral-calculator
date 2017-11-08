@@ -17,7 +17,7 @@ class Roman:
         return {
             roman_digit: i * scaler
             for i, roman_digit in enumerate(roman_digits)
-            if i > 0
+            if roman_digit
         }
 
     value_of_roman_thousands = _make_value_of_roman_digits(
