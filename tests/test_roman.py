@@ -6,12 +6,10 @@ from roman import Roman
     2 II
     3 III
     4 IV
-    5 V
     6 VI
     7 VII
     8 VIII
     9 IX
-    10 X
     11 XI
     12 XII
     13 XIII
@@ -29,7 +27,6 @@ from roman import Roman
     41 XLI
     44 XLIV
     49 XLIX
-    50 L
     56 LVI
     65 LXV
     68 LXVIII
@@ -38,7 +35,6 @@ from roman import Roman
     89 LXXXIX
     92 XCII
     99 XCIX
-    100 C
     123 CXXIII
     199 CXCIX
     200 CC
@@ -48,7 +44,6 @@ from roman import Roman
     383 CCCLXXXIII
     456 CDLVI
     499 CDXCIX
-    500 D
     567 DLXVII
     678 DCLXXVIII
     789 DCCLXXXIX
@@ -56,7 +51,6 @@ from roman import Roman
     890 DCCCXC
     999 CMXCIX
     901 CMI
-    1000 M
     1098 MXCVIII
     1883 MDCCCLXXXIII
     2000 MM
@@ -69,6 +63,12 @@ from roman import Roman
 
 int_string_romans = '''
     1 I
+    5 V
+    10 X
+    50 L
+    100 C
+    500 D
+    1000 M
 '''.strip().split('\n')
 expected_roman_strings = (s.strip().split() for s in int_string_romans)
 roman_expected_ints = [

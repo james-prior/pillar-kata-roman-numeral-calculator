@@ -43,8 +43,18 @@ class Roman:
     #     ''.join(map(_make_digits_pattern, value_dicts)) +
     #     '$')
 
-    def __init__(self, roman_numeral_or_x):
-        self.value = 1
+    value_of_roman_letters = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000,
+    }
+
+    def __init__(self, roman_numeral):
+        self.value = self.value_of_roman_letters[roman_numeral]
         # self.value = None
     #     try:
     #         self.value = int(roman_numeral_or_x)
