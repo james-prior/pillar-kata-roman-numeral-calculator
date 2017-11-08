@@ -181,11 +181,11 @@ def test_subtracting(subs_sum):
 
 
 bad_subs_expected_errors = (
-    ('I', 'I', ValueError),
-    ('I', 'II', ValueError),
-    ('M', 'MM', ValueError),
-    ('MMMCMXCVIII', 'MMMCMXCIX', ValueError),
-    ('MMMCMXCIX', 'MMMCMXCIX', ValueError),
+    ('I', 'I', OverflowError),
+    ('I', 'II', OverflowError),
+    ('M', 'MM', OverflowError),
+    ('MMMCMXCVIII', 'MMMCMXCIX', OverflowError),
+    ('MMMCMXCIX', 'MMMCMXCIX', OverflowError),
 )
 @pytest.mark.parametrize(
     'sub1, sub2, expected_exception', bad_subs_expected_errors)
