@@ -1,3 +1,61 @@
-python3 -m venv env
-source env/bin/activate
-pip install -r requirements.txt
+A Roman bookkeeper has two ways of using the roman libary (in Ubuntu 16.04LTS).
+One way is with the Python REPL.
+The other is with a dedicated calculator program.
+(what has to be installed?)
+
+Perform addition and subtraction in Python REPL.
+
+    doric@column:~/pillar/kata-roman-numeral-calculator$ python3
+    Python 3.5.2 (default, Sep 14 2017, 22:51:06) 
+    [GCC 5.4.0 20160609] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> from roman import Roman
+    >>> Roman('XXIV') + Roman('XIX')
+    Roman('XLIII')
+    >>> _ + Roman('VI')
+    Roman('XLIX')
+    >>> _ + Roman('II')
+    Roman('LI')
+    >>> s = _
+    >>> s + s
+    Roman('CII')
+    >>> s - Roman('II')
+    Roman('XLIX')
+    >>> s - Roman('II') - Roman('L')
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "/home/jep/pillar/kata-roman-numeral-calculator/roman.py", line 93, in __sub__
+        raise OverflowError
+    OverflowError
+    >>> s - Roman('II') - Roman('XL')
+    Roman('IX')
+    >>> Roman('X') - Roman('IX')
+    Roman('I')
+    >>> s = Roman('X')
+    >>> s
+    Roman('X')
+    >>> s -= Roman('I')
+    >>> s
+    Roman('IX')
+    >>> s += Roman('M')
+    >>> s
+    Roman('MIX')
+    >>> s -= Roman('MM')
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "/home/jep/pillar/kata-roman-numeral-calculator/roman.py", line 93, in __sub__
+        raise OverflowError
+    OverflowError
+    >>> s
+    Roman('MIX')
+    >>> 
+    doric@column:~/pillar/kata-roman-numeral-calculator$ 
+
+To run pytest for development, run the following on Ubuntu.
+
+    sudo apt-get update
+    sudo apt-get install -y python3-venv
+    python3 -m venv env
+    source env/bin/activate
+    pip install -r requirements-dev.txt
+    py.test -f .
