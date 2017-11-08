@@ -223,11 +223,11 @@ def test_bad_sub_raises_expected_exception(
         Roman(sub1) - Roman(sub2)
 
 
-# roman_expected_repr = (
-#     (Roman('I'), "Roman('I')"),
-#     (Roman('II'), "Roman('II')"),
-#     (Roman('MMMCMXCIX'), "Roman('MMMCMXCIX')"),
-# )
-# @pytest.mark.parametrize('roman, expected_repr', roman_expected_repr)
-# def test_repr(roman, expected_repr):
-#     assert expected_repr == repr(roman)
+roman_expected_repr = (
+    (Roman('I'), "Roman('I')"),
+    (Roman('II'), "Roman('II')"),
+    (Roman('MMMCMXCIX'), "Roman('MMMCMXCIX')"),
+)
+@pytest.mark.parametrize('roman, expected_repr', roman_expected_repr)
+def test_repr(roman, expected_repr):
+    assert expected_repr == repr(roman)

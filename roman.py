@@ -168,8 +168,9 @@ class Roman:
         # return 'fail army'
         return ''.join(reversed(roman_digits))
 
-    # def __repr__(self):
-    #     return "{name}({value})".format(
-    #         name=self.__class__.__name__,
-    #         value=repr(str(self)),
-    #     )
+    def __repr__(self):
+        # return 0
+        return "{name}({value})".format(
+            name=self.__class__.__name__,
+            value=repr(str(self)),
+        )
