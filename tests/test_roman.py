@@ -104,7 +104,7 @@ bad_romans_expected_errors = (
 
     ('ONE', ValueError), # not roman
     # (4000, ValueError), # too big
-    # (0, ValueError), # too small
+    (0, ValueError), # too small
     # (None, TypeError),
     # (float('nan'), TypeError),
     # (1j, TypeError),
