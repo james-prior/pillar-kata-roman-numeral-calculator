@@ -79,11 +79,11 @@ class Roman:
         except ValueError:
             roman_numeral = roman_numeral_or_int
         else:
-            if not (self.minimum <= self.value <= self.maximum):
-                # raise KeyError
-                raise ValueError
-            # self.value = 0
-            return
+            if self.minimum <= self.value <= self.maximum:
+                # self.value = 0
+                return
+            # raise KeyError
+            raise ValueError
 
         value = 0
         old_letter_value = 0
