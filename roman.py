@@ -52,13 +52,29 @@ class Roman:
         'D': 500,
         'M': 1000,
     }
+    max_run_lengths_of_roman_letters = {
+        'I': 3,
+        'V': 1,
+        'X': 3,
+        'L': 1,
+        'C': 3,
+        'D': 1,
+        'M': 3, # not specified in README.md, but works nice
+    }
 
     def __init__(self, roman_numeral):
         value = 0
         old_letter_value = 0
+        n = 0
         for letter in reversed(roman_numeral):
             letter_value = self.value_of_roman_letters[letter]
             sign = -1 if letter_value < old_letter_value else +1
+            if letter_value != old_letter_value:
+                n = 0
+            n += 1
+            if n > self.max_run_lengths_of_roman_letters[letter]:
+                # raise KeyError
+                raise ValueError
             value += sign * letter_value
             old_letter_value = letter_value
         self.value = value

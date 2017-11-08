@@ -76,31 +76,31 @@ def test_known_number_returns_expected(roman, expected):
     assert expected == Roman(roman).get_value()
 
 
-# bad_romans_expected_errors = (
-#     ('', ValueError),
-#     ('IL', ValueError),
-#     ('XD', ValueError),
-#     ('IIII', ValueError),
-#     ('IIIII', ValueError),
-#     ('VV', ValueError),
-#     ('CCCC', ValueError),
-#     ('DD', ValueError),
-#     ('MMMM', ValueError), # too big value
-#     ('ONE', ValueError), # not roman
-#     (4000, ValueError), # too big
-#     (0, ValueError), # too small
-#     (None, TypeError),
-#     (float('nan'), TypeError),
-#     (1j, TypeError),
-# )
-# @pytest.mark.parametrize(
-#     'bad_roman, expected_exception', bad_romans_expected_errors)
-# def test_bad_roman_raises_expected_exception(
-#         bad_roman, expected_exception):
-#     with pytest.raises(expected_exception):
-#         _ = Roman(bad_roman)
-# 
-# 
+bad_romans_expected_errors = (
+    # ('', ValueError),
+    # ('IL', ValueError),
+    # ('XD', ValueError),
+    ('IIII', ValueError),
+    ('IIIII', ValueError),
+    ('VV', ValueError),
+    ('CCCC', ValueError),
+    ('DD', ValueError),
+    ('MMMM', ValueError), # too big value
+    # ('ONE', ValueError), # not roman
+    # (4000, ValueError), # too big
+    # (0, ValueError), # too small
+    # (None, TypeError),
+    # (float('nan'), TypeError),
+    # (1j, TypeError),
+)
+@pytest.mark.parametrize(
+    'bad_roman, expected_exception', bad_romans_expected_errors)
+def test_bad_roman_raises_expected_exception(
+        bad_roman, expected_exception):
+    with pytest.raises(expected_exception):
+        Roman(bad_roman)
+
+
 # number_expected_roman_strings = (
 #     s.strip().split() for s in int_string_romans)
 # int_expected_roman_numerals = [
