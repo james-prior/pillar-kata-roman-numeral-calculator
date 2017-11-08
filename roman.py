@@ -76,7 +76,11 @@ class Roman:
         n = 0
         sign = +1
         for letter in reversed(roman_numeral):
-            letter_value = self.value_of_roman_letters[letter]
+            try:
+                letter_value = self.value_of_roman_letters[letter]
+            except KeyError:
+                # raise KeyError
+                raise ValueError
             if letter_value != old_letter_value:
                 n = 0
             n += 1

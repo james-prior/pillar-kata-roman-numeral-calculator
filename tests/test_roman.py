@@ -100,7 +100,8 @@ bad_romans_expected_errors = (
     ('VL', ValueError),
     ('XD', ValueError),
     ('XM', ValueError),
-    # ('ONE', ValueError), # not roman
+
+    ('ONE', ValueError), # not roman
     # (4000, ValueError), # too big
     # (0, ValueError), # too small
     # (None, TypeError),
