@@ -71,6 +71,9 @@ class Roman:
     }
 
     def __init__(self, roman_numeral):
+        if not roman_numeral:
+            # raise KeyError
+            raise ValueError
         value = 0
         old_letter_value = 0
         n = 0
