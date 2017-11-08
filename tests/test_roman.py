@@ -78,8 +78,16 @@ def test_known_number_returns_expected(roman, expected):
 
 bad_romans_expected_errors = (
     # ('', ValueError),
-    # ('IL', ValueError),
-    # ('XD', ValueError),
+    # invalid subtractive combinations
+    ('IL', ValueError),
+    ('IC', ValueError),
+    ('ID', ValueError),
+    ('IM', ValueError),
+    ('VX', ValueError),
+    ('VL', ValueError),
+    ('XD', ValueError),
+    ('XM', ValueError),
+    ('XM', ValueError),
     # log runs of subtractive letter
     ('IIV', ValueError),
     ('IIX', ValueError),

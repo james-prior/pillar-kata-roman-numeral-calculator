@@ -61,6 +61,14 @@ class Roman:
         'D': 1,
         'M': 3, # not specified in README.md, but works nice
     }
+    valid_subtractive_value_pairs = {
+        (1, 5),
+        (1, 10),
+        (10, 50),
+        (10, 100),
+        (100, 500),
+        (100, 1000),
+    }
 
     def __init__(self, roman_numeral):
         value = 0
@@ -79,6 +87,12 @@ class Roman:
                 # raise KeyError
                 raise ValueError
             sign = -1 if letter_value < old_letter_value else +1
+            if (
+                    sign == -1 and
+                    (letter_value, old_letter_value)
+                    not in self.valid_subtractive_value_pairs):
+                # raise KeyError
+                raise ValueError
             value += sign * letter_value
             old_letter_value = letter_value
         self.value = value
