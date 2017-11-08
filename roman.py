@@ -49,7 +49,6 @@ class Roman:
             roman_numeral = roman_numeral_or_int
         else:
             if self.minimum <= self.value <= self.maximum:
-                # self.value = 0
                 return
             raise ValueError
 
@@ -78,7 +77,6 @@ class Roman:
             value += sign * letter_value
             old_letter_value = letter_value
         self.value = value
-        # self.value = None
 
     def get_value(self):
         return self.value
