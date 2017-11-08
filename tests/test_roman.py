@@ -140,33 +140,33 @@ def test_str_returns_expected(number, expected_roman_numeral):
     assert expected_roman_numeral == str(Roman(number))
 
 
-# addends_sums_lines = '''
-#     I I II
-#     I II III
-#     II III V
-#     III V VIII
-#     V VIII XIII
-#     VIII XIII XXI
-#     XIII XXI XXXIV
-#     XXI XXXIV LV
-#     XXXIV LV LXXXIX
-#     LV LXXXIX CXLIV
-#     LXXXIX CXLIV CCXXXIII
-#     CXLIV CCXXXIII CCCLXXVII
-#     CCXXXIII CCCLXXVII DCX
-#     CCCLXXVII DCX CMLXXXVII
-#     DCX CMLXXXVII MDXCVII
-#     CMLXXXVII MDXCVII MMDLXXXIV
-#     MMMCMXCVIII I MMMCMXCIX
-# '''.strip().split('\n')
-# addends_sums = (
-#     s.strip().split() for s in addends_sums_lines)
-# @pytest.mark.parametrize('addends_sum', addends_sums)
-# def test_adding(addends_sum):
-#     addend1, addend2, expected_sum = addends_sum
-#     assert expected_sum == str(Roman(addend1) + Roman(addend2))
-# 
-# 
+addends_sums_lines = '''
+    I I II
+    I II III
+    II III V
+    III V VIII
+    V VIII XIII
+    VIII XIII XXI
+    XIII XXI XXXIV
+    XXI XXXIV LV
+    XXXIV LV LXXXIX
+    LV LXXXIX CXLIV
+    LXXXIX CXLIV CCXXXIII
+    CXLIV CCXXXIII CCCLXXVII
+    CCXXXIII CCCLXXVII DCX
+    CCCLXXVII DCX CMLXXXVII
+    DCX CMLXXXVII MDXCVII
+    CMLXXXVII MDXCVII MMDLXXXIV
+    MMMCMXCVIII I MMMCMXCIX
+'''.strip().split('\n')
+addends_sums = (
+    s.strip().split() for s in addends_sums_lines)
+@pytest.mark.parametrize('addends_sum', addends_sums)
+def test_adding(addends_sum):
+    addend1, addend2, expected_sum = addends_sum
+    assert expected_sum == str(Roman(addend1) + Roman(addend2))
+
+
 # bad_adds_expected_errors = (
 #     ('MM', 'MM', OverflowError),
 #     ('MMMCMXCIX', 'I', OverflowError),

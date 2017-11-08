@@ -138,7 +138,9 @@ class Roman:
     def get_value(self):
         return self.value
 
-    # def __add__(self, other):
+    def __add__(self, other):
+        # return 0
+        return Roman(self.value + other.value)
     #     value = self.value + other.value
     #     if value > self.maximum:
     #         raise OverflowError
