@@ -139,6 +139,20 @@ def test_adding(addends_sum):
     assert expected_sum == str(Roman(addend1) + Roman(addend2))
 
 
+bad_adds_expected_errors = (
+    ('MM', 'MM', OverflowError),
+    ('MMMCMXCIX', 'I', OverflowError),
+    ('I', 'MMMCMXCIX', OverflowError),
+    ('MMMCMXCIX', 'MMMCMXCIX', OverflowError),
+)
+@pytest.mark.parametrize(
+    'addend1, addend2, expected_exception', bad_adds_expected_errors)
+def test_bad_add_raises_expected_exception(
+        addend1, addend2, expected_exception):
+    with pytest.raises(expected_exception):
+        Roman(addend1) + Roman(addend2)
+
+
 subs_sums_lines = '''
     II I I
     III I II

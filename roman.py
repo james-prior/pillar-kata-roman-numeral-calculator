@@ -106,7 +106,10 @@ class Roman:
         return self.value
 
     def __add__(self, other):
-        return Roman(self.value + other.value)
+        value = self.value + other.value
+        if value > self.maximum:
+            raise OverflowError
+        return Roman(value)
 
     def __sub__(self, other):
         return Roman(self.value - other.value)
