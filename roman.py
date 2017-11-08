@@ -13,44 +13,18 @@ class Roman:
     roman_hundreds = _make_list_of_roman_digits('C CC CCC CD D DC DCC DCCC CM')
     roman_thousands = _make_list_of_roman_digits('M MM MMM')
 
-    value_of_roman_thousands = {
-        'M': 1000,
-        'MM': 2000,
-        'MMM': 3000,
-    }
-    value_of_roman_hundreds = {
-        'C': 100,
-        'CC': 200,
-        'CCC': 300,
-        'CD': 400,
-        'D': 500,
-        'DC': 600,
-        'DCC': 700,
-        'DCCC': 800,
-        'CM': 900,
-    }
-    value_of_roman_tens = {
-        'X': 10,
-        'XX': 20,
-        'XXX': 30,
-        'XL': 40,
-        'L': 50,
-        'LX': 60,
-        'LXX': 70,
-        'LXXX': 80,
-        'XC': 90,
-    }
-    value_of_roman_units = {
-        'I': 1,
-        'II': 2,
-        'III': 3,
-        'IV': 4,
-        'V': 5,
-        'VI': 6,
-        'VII': 7,
-        'VIII': 8,
-        'IX': 9,
-    }
+    def _make_value_of_roman_digits(roman_digits, scaler):
+        return {
+            roman_digit: i * scaler
+            for i, roman_digit in enumerate(roman_digits)
+            if i > 0
+        }
+
+    value_of_roman_thousands = _make_value_of_roman_digits(
+        roman_thousands, 1000)
+    value_of_roman_hundreds = _make_value_of_roman_digits(roman_hundreds, 100)
+    value_of_roman_tens = _make_value_of_roman_digits(roman_tens, 10)
+    value_of_roman_units = _make_value_of_roman_digits(roman_units, 1)
     value_of_roman_digits = (
         value_of_roman_thousands,
         value_of_roman_hundreds,
