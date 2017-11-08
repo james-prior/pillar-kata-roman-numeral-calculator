@@ -128,17 +128,17 @@ def test_str_returns_expected(number):
     assert number == Roman(number).get_value()
 
 
-# number_expected_roman_strings = (
-#     s.strip().split() for s in int_string_romans)
-# int_expected_roman_numerals = [
-#     (int(x), roman)
-#     for x, roman in number_expected_roman_strings]
-# @pytest.mark.parametrize(
-#     'number, expected_roman_numeral', int_expected_roman_numerals)
-# def test_str_returns_expected(number, expected_roman_numeral):
-#     assert expected_roman_numeral == str(Roman(number))
-# 
-# 
+number_expected_roman_strings = (
+    s.strip().split() for s in int_string_romans)
+int_expected_roman_numerals = [
+    (int(x), roman)
+    for x, roman in number_expected_roman_strings]
+@pytest.mark.parametrize(
+    'number, expected_roman_numeral', int_expected_roman_numerals)
+def test_str_returns_expected(number, expected_roman_numeral):
+    assert expected_roman_numeral == str(Roman(number))
+
+
 # addends_sums_lines = '''
 #     I I II
 #     I II III

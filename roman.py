@@ -5,13 +5,13 @@ class Roman:
     # minimum = 1
     # maximum = 3999
 
-    # def _make_list_of_roman_digits(s):
-    #     return [''] + s.split()
+    def _make_list_of_roman_digits(s):
+        return [''] + s.split()
 
-    # roman_units = _make_list_of_roman_digits('I II III IV V VI VII VIII IX')
-    # roman_tens = _make_list_of_roman_digits('X XX XXX XL L LX LXX LXXX XC')
-    # roman_hundreds = _make_list_of_roman_digits('C CC CCC CD D DC DCC DCCC CM')
-    # roman_thousands = _make_list_of_roman_digits('M MM MMM')
+    roman_units = _make_list_of_roman_digits('I II III IV V VI VII VIII IX')
+    roman_tens = _make_list_of_roman_digits('X XX XXX XL L LX LXX LXXX XC')
+    roman_hundreds = _make_list_of_roman_digits('C CC CCC CD D DC DCC DCCC CM')
+    roman_thousands = _make_list_of_roman_digits('M MM MMM')
 
     # def _make_value_of_roman_digits(roman_digits, scaler):
     #     return {
@@ -147,20 +147,21 @@ class Roman:
     #         raise OverflowError
     #     return Roman(value)
 
-    # def __str__(self):
-    #     value = self.value
-    #     reversed_digits = map(int, reversed(str(self.value)))
-    #     roman_dicts = [
-    #         self.roman_units,
-    #         self.roman_tens,
-    #         self.roman_hundreds,
-    #         self.roman_thousands,
-    #     ]
-    #     terms = [
-    #         d[i]
-    #         for i, d in zip(reversed_digits, roman_dicts)
-    #     ]
-    #     return ''.join(reversed(terms))
+    def __str__(self):
+        roman_dicts = (
+            self.roman_units,
+            self.roman_tens,
+            self.roman_hundreds,
+            self.roman_thousands,
+        )
+
+        reversed_digits = map(int, reversed(str(self.value)))
+        roman_digits = [
+            d[i]
+            for i, d in zip(reversed_digits, roman_dicts)
+        ]
+        # return 'fail army'
+        return ''.join(reversed(roman_digits))
 
     # def __repr__(self):
     #     return "{name}({value})".format(
