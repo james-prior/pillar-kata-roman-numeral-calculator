@@ -5,12 +5,12 @@ class Roman:
     minimum = 1
     maximum = 3999
 
-    thousands = {
+    value_of_roman_thousands = {
         'M': 1000,
         'MM': 2000,
         'MMM': 3000,
     }
-    hundreds = {
+    value_of_roman_hundreds = {
         'C': 100,
         'CC': 200,
         'CCC': 300,
@@ -21,7 +21,7 @@ class Roman:
         'DCCC': 800,
         'CM': 900,
     }
-    tens = {
+    value_of_roman_tens = {
         'X': 10,
         'XX': 20,
         'XXX': 30,
@@ -32,7 +32,7 @@ class Roman:
         'LXXX': 80,
         'XC': 90,
     }
-    units = {
+    value_of_roman_units = {
         'I': 1,
         'II': 2,
         'III': 3,
@@ -43,8 +43,14 @@ class Roman:
         'VIII': 8,
         'IX': 9,
     }
+    value_of_roman_digits = (
+        value_of_roman_thousands,
+        value_of_roman_hundreds,
+        value_of_roman_tens,
+        value_of_roman_units,
+    )
     combined = {}
-    for d in thousands, hundreds, tens, units:
+    for d in value_of_roman_digits:
         combined.update(d)
 
     def _make_digits_list_from_dict(d, multiplier):
@@ -54,15 +60,15 @@ class Roman:
             a.append(t.get(multiplier * i, ''))
         return a
 
-    roman_units = _make_digits_list_from_dict(units, 1)
-    roman_tens = _make_digits_list_from_dict(tens, 10)
-    roman_hundreds = _make_digits_list_from_dict(hundreds, 100)
-    roman_thousands = _make_digits_list_from_dict(thousands, 1000)
+    roman_units = _make_digits_list_from_dict(value_of_roman_units, 1)
+    roman_tens = _make_digits_list_from_dict(value_of_roman_tens, 10)
+    roman_hundreds = _make_digits_list_from_dict(value_of_roman_hundreds, 100)
+    roman_thousands = _make_digits_list_from_dict(value_of_roman_thousands, 1000)
 
-    thousands_pattern = '(?P<thousands>' + '|'.join(thousands) + ')?'
-    hundreds_pattern = '(?P<hundreds>' + '|'.join(hundreds) + ')?'
-    tens_pattern = '(?P<tens>' + '|'.join(tens) + ')?'
-    units_pattern = '(?P<units>' + '|'.join(units) + ')?'
+    thousands_pattern = '(?P<value_of_roman_thousands>' + '|'.join(value_of_roman_thousands) + ')?'
+    hundreds_pattern = '(?P<value_of_roman_hundreds>' + '|'.join(value_of_roman_hundreds) + ')?'
+    tens_pattern = '(?P<value_of_roman_tens>' + '|'.join(value_of_roman_tens) + ')?'
+    units_pattern = '(?P<value_of_roman_units>' + '|'.join(value_of_roman_units) + ')?'
     pattern = re.compile(
         '^' +
         thousands_pattern +
