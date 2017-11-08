@@ -80,6 +80,13 @@ bad_romans_expected_errors = (
     # ('', ValueError),
     # ('IL', ValueError),
     # ('XD', ValueError),
+    # log runs of subtractive letter
+    ('IIV', ValueError),
+    ('IIX', ValueError),
+    ('XXL', ValueError),
+    ('XXC', ValueError),
+    ('CCM', ValueError),
+    # log runs
     ('IIII', ValueError),
     ('IIIII', ValueError),
     ('VV', ValueError),
