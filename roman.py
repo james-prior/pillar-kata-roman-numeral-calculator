@@ -5,6 +5,14 @@ class Roman:
     minimum = 1
     maximum = 3999
 
+    def _make_list_of_roman_digits(s):
+        return [''] + s.split()
+
+    roman_units = _make_list_of_roman_digits('I II III IV V VI VII VIII IX')
+    roman_tens = _make_list_of_roman_digits('X XX XXX XL L LX LXX LXXX XC')
+    roman_hundreds = _make_list_of_roman_digits('C CC CCC CD D DC DCC DCCC CM')
+    roman_thousands = _make_list_of_roman_digits('M MM MMM')
+
     value_of_roman_thousands = {
         'M': 1000,
         'MM': 2000,
@@ -52,18 +60,6 @@ class Roman:
     combined = {}
     for d in value_of_roman_digits:
         combined.update(d)
-
-    def _make_digits_list_from_dict(d, multiplier):
-        t = {number: roman for roman, number in d.items()}
-        a = []
-        for i in range(10):
-            a.append(t.get(multiplier * i, ''))
-        return a
-
-    roman_units = _make_digits_list_from_dict(value_of_roman_units, 1)
-    roman_tens = _make_digits_list_from_dict(value_of_roman_tens, 10)
-    roman_hundreds = _make_digits_list_from_dict(value_of_roman_hundreds, 100)
-    roman_thousands = _make_digits_list_from_dict(value_of_roman_thousands, 1000)
 
     thousands_pattern = '(?P<value_of_roman_thousands>' + '|'.join(value_of_roman_thousands) + ')?'
     hundreds_pattern = '(?P<value_of_roman_hundreds>' + '|'.join(value_of_roman_hundreds) + ')?'
