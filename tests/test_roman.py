@@ -3,8 +3,6 @@ import pytest
 from roman import Roman
 
 '''
-    2 II
-    3 III
     4 IV
     6 VI
     7 VII
@@ -19,9 +17,7 @@ from roman import Roman
     17 XVII
     18 XVIII
     19 XIX
-    20 XX
     29 XXIX
-    30 XXX
     38 XXXVIII
     40 XL
     41 XLI
@@ -37,9 +33,7 @@ from roman import Roman
     99 XCIX
     123 CXXIII
     199 CXCIX
-    200 CC
     234 CCXXXIV
-    300 CCC
     345 CCCXLV
     383 CCCLXXXIII
     456 CDLVI
@@ -53,9 +47,7 @@ from roman import Roman
     901 CMI
     1098 MXCVIII
     1883 MDCCCLXXXIII
-    2000 MM
     2109 MMCIX
-    3000 MMM
     3210 MMMCCX
     3883 MMMDCCCLXXXIII
     3999 MMMCMXCIX
@@ -63,12 +55,20 @@ from roman import Roman
 
 int_string_romans = '''
     1 I
+    2 II
+    3 III
     5 V
     10 X
+    20 XX
+    30 XXX
     50 L
     100 C
+    200 CC
+    300 CCC
     500 D
     1000 M
+    2000 MM
+    3000 MMM
 '''.strip().split('\n')
 expected_roman_strings = (s.strip().split() for s in int_string_romans)
 roman_expected_ints = [

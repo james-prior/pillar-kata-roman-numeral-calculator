@@ -54,7 +54,10 @@ class Roman:
     }
 
     def __init__(self, roman_numeral):
-        self.value = self.value_of_roman_letters[roman_numeral]
+        self.value = sum(
+            self.value_of_roman_letters[letter]
+            for letter in roman_numeral
+        )
         # self.value = None
     #     try:
     #         self.value = int(roman_numeral_or_x)
