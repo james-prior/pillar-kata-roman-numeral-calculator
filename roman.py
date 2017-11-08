@@ -3,7 +3,7 @@ from collections import Counter
 
 class Roman:
     minimum = 1
-    # maximum = 3999
+    maximum = 3999
 
     def _make_list_of_roman_digits(s):
         return [''] + s.split()
@@ -79,7 +79,7 @@ class Roman:
         except ValueError:
             roman_numeral = roman_numeral_or_int
         else:
-            if self.value < self.minimum:
+            if not (self.minimum <= self.value <= self.maximum):
                 # raise KeyError
                 raise ValueError
             # self.value = 0
