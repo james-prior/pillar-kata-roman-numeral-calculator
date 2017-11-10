@@ -95,19 +95,20 @@ class Roman:
         return Roman(value)
 
     def __str__(self):
-        roman_dicts = (
-            self.roman_units,
-            self.roman_tens,
-            self.roman_hundreds,
+        roman_digits_lists = (
             self.roman_thousands,
+            self.roman_hundreds,
+            self.roman_tens,
+            self.roman_units,
         )
 
-        reversed_digits = reversed(str(self.value))
-        reversed_roman_digits = [
+        n_digits = len(roman_digits_lists)
+        digits = '%0*d' % (n_digits, self.value)
+        roman_digits = [
             d[int(i)]
-            for i, d in zip(reversed_digits, roman_dicts)
+            for i, d in zip(digits, roman_digits_lists)
         ]
-        return ''.join(reversed(reversed_roman_digits))
+        return ''.join(roman_digits)
 
     def __repr__(self):
         return "{name}({value})".format(
