@@ -102,11 +102,11 @@ class Roman:
         )
 
         reversed_digits = map(int, reversed(str(self.value)))
-        roman_digits = [
+        reversed_roman_digits = [
             d[i]
             for i, d in zip(reversed_digits, roman_dicts)
         ]
-        return ''.join(reversed(roman_digits))
+        return ''.join(reversed(reversed_roman_digits))
 
     def __repr__(self):
         return "{name}({value})".format(
