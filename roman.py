@@ -102,9 +102,9 @@ class Roman:
             self.roman_thousands,
         )
 
-        reversed_digits = map(int, reversed(str(self.value)))
+        reversed_digits = reversed(str(self.value))
         reversed_roman_digits = [
-            d[i]
+            d[int(i)]
             for i, d in zip(reversed_digits, roman_dicts)
         ]
         return ''.join(reversed(reversed_roman_digits))
