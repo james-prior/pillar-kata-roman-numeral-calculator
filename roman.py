@@ -5,13 +5,16 @@ class Roman:
     minimum = 1
     maximum = 3999
 
-    def _make_list_of_roman_digits(s):
-        return [''] + s.split()
+    def _make_dict_of_roman_digits(s):
+        roman_digits = [''] + s.split()
+        return {
+            str(i): roman_digit
+            for i, roman_digit in enumerate(roman_digits)}
 
-    roman_units = _make_list_of_roman_digits('I II III IV V VI VII VIII IX')
-    roman_tens = _make_list_of_roman_digits('X XX XXX XL L LX LXX LXXX XC')
-    roman_hundreds = _make_list_of_roman_digits('C CC CCC CD D DC DCC DCCC CM')
-    roman_thousands = _make_list_of_roman_digits('M MM MMM')
+    roman_units = _make_dict_of_roman_digits('I II III IV V VI VII VIII IX')
+    roman_tens = _make_dict_of_roman_digits('X XX XXX XL L LX LXX LXXX XC')
+    roman_hundreds = _make_dict_of_roman_digits('C CC CCC CD D DC DCC DCCC CM')
+    roman_thousands = _make_dict_of_roman_digits('M MM MMM')
 
     value_of_roman_letters = {
         'I': 1,
@@ -95,18 +98,18 @@ class Roman:
         return Roman(value)
 
     def __str__(self):
-        roman_digits_lists = (
+        roman_digits_dicts = (
             self.roman_thousands,
             self.roman_hundreds,
             self.roman_tens,
             self.roman_units,
         )
 
-        n_digits = len(roman_digits_lists)
-        digits = '%0*d' % (n_digits, self.value)
+        max_n_digits = len(roman_digits_dicts)
+        digits = '%0*d' % (max_n_digits, self.value)
         roman_digits = [
-            d[int(i)]
-            for i, d in zip(digits, roman_digits_lists)
+            d[i]
+            for i, d in zip(digits, roman_digits_dicts)
         ]
         return ''.join(roman_digits)
 
