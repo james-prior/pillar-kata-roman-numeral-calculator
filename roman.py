@@ -43,6 +43,7 @@ class Roman:
     def __init__(self, roman_numeral_or_int):
         if not roman_numeral_or_int:
             raise ValueError
+
         try:
             self.value = int(roman_numeral_or_int)
         except ValueError:
