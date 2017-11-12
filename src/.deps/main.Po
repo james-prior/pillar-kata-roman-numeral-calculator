@@ -1,1 +1,5 @@
-# dummy
+main.o: main.c /usr/include/stdc-predef.h roman.h
+
+/usr/include/stdc-predef.h:
+
+roman.h:
