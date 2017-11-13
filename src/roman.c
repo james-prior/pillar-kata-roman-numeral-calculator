@@ -172,7 +172,7 @@ char *print_roman(struct roman_struct *roman_numeral)
         value /= 10U;
     }
 
-    for (i = ARRAY_LENGTH(roman_digits_lists) - 1; i >= 0; i--)
+    for (i = ARRAY_LENGTH(roman_digits_lists); --i >= 0; )
         strcat(buf, roman_digits_lists[i][digits[i]]);
 
     return buf;
