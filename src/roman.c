@@ -106,6 +106,11 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
     return sum;
 }
 
+char *print_roman(struct roman_struct *roman_numeral)
+{
+    return "I";
+}
+
 struct roman_struct *new_roman(char *roman_numeral)
 {
     struct roman_struct *r;
