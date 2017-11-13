@@ -2,13 +2,35 @@
 #include <check.h>
 #include "../src/roman.h"
 
+#define ARRAY_LENGTH(x) (sizeof(x) / sizeof(*(x)))
+
 START_TEST(test_new_roman)
 {
+    struct example_struct {
+        char *roman_numeral;
+        unsigned value;
+    };
+    struct example_struct good_examples[] = {
+        {"I", 1},
+        {"V", 5},
+        {"X", 10},
+        {"L", 50},
+        {"C", 100},
+        {"D", 500},
+        {"M", 1000},
+    };
+    int i;
+
+    struct example_struct *p;
     struct roman_struct *r;
 
-    r = new_roman("I");
-    ck_assert_int_eq(get_roman_value(r), 1);
-    free_roman(r);
+    for (i = 0; i < ARRAY_LENGTH(good_examples); i++) {
+        p = &good_examples[i];
+
+        r = new_roman(p->roman_numeral);
+        ck_assert_int_eq(get_roman_value(r), p->value);
+        free_roman(r);
+    }
 }
 END_TEST
 

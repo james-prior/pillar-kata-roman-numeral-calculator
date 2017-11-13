@@ -1,6 +1,19 @@
 #include <stdlib.h>
-#include <string.h>
 #include "roman.h"
+
+static unsigned get_value_of_roman_letter(int roman_letter)
+{
+    switch (roman_letter) {
+    case 'I': return    1U; break;
+    case 'V': return    5U; break;
+    case 'X': return   10U; break;
+    case 'L': return   50U; break;
+    case 'C': return  100U; break;
+    case 'D': return  500U; break;
+    case 'M': return 1000U; break;
+    default:  return    0U; break;
+    }
+}
 
 struct roman_struct *new_roman(char *roman_numeral)
 {
@@ -10,11 +23,9 @@ struct roman_struct *new_roman(char *roman_numeral)
     if (r == NULL)
         return NULL;
 
-    if (strcmp(roman_numeral, "I") == 0) {
-        r->value = 1;
-    } else {
+    r->value = get_value_of_roman_letter(roman_numeral[0]);
+    if (r->value <= 0)
         return NULL;
-    }
 
     return r;
 }
