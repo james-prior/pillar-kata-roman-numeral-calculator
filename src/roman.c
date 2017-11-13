@@ -108,7 +108,19 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
 
 char *print_roman(struct roman_struct *roman_numeral)
 {
-    return "I";
+    static char *roman_numerals[] = {
+        "",
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V",
+        "VI",
+        "VII",
+        "VIII",
+        "IX",
+    };
+    return roman_numerals[roman_numeral->value];
 }
 
 struct roman_struct *new_roman(char *roman_numeral)

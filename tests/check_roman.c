@@ -213,7 +213,6 @@ START_TEST(test_print_roman)
     };
     struct example_struct good_examples[] = {
         {1U, "I"},
-/*
         {2U, "II"},
         {3U, "III"},
         {4U, "IV"},
@@ -222,6 +221,7 @@ START_TEST(test_print_roman)
         {7U, "VII"},
         {8U, "VIII"},
         {9U, "IX"},
+/*
         {10U, "X"},
         {11U, "XI"},
         {12U, "XII"},
