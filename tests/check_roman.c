@@ -248,7 +248,6 @@ START_TEST(test_print_roman)
         {89U, "LXXXIX"},
         {92U, "XCII"},
         {99U, "XCIX"},
-/*
         {100U, "C"},
         {123U, "CXXIII"},
         {199U, "CXCIX"},
@@ -267,6 +266,7 @@ START_TEST(test_print_roman)
         {890U, "DCCCXC"},
         {901U, "CMI"},
         {999U, "CMXCIX"},
+/*
         {1000U, "M"},
         {1098U, "MXCVIII"},
         {1883U, "MDCCCLXXXIII"},

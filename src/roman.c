@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "roman.h"
 
 #define FALSE (0)
@@ -132,12 +133,39 @@ char *print_roman(struct roman_struct *roman_numeral)
         "LXXX",
         "XC",
     };
-    static char buf[9];
+    static char *roman_hundreds[] = {
+        "",
+        "C",
+        "CC",
+        "CCC",
+        "CD",
+        "D",
+        "DC",
+        "DCC",
+        "DCCC",
+        "CM",
+    };
+    static char **roman_digits_lists[] = {
+        roman_units,
+        roman_tens,
+        roman_hundreds,
+    };
+
+    static char buf[4 * ARRAY_LENGTH(roman_digits_lists) + 1];
+    unsigned digits[3];
+    unsigned value;
+    int i;
 
     buf[0] = '\0';
 
-    strcat(buf, roman_tens[roman_numeral->value / 10]);
-    strcat(buf, roman_units[roman_numeral->value % 10]);
+    value = roman_numeral->value;
+    for (i = 0; i < ARRAY_LENGTH(digits); i++) {
+        digits[i] = value % 10U;
+        value /= 10U;
+    }
+
+    for (i = ARRAY_LENGTH(roman_digits_lists) - 1; i >= 0; i--)
+        strcat(buf, roman_digits_lists[i][digits[i]]);
 
     return buf;
 }
