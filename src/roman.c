@@ -5,6 +5,9 @@
 #define FALSE (0)
 #define TRUE (!FALSE)
 
+#define MIN_ROMAN_NUMERAL_VALUE (1U)
+#define MAX_ROMAN_NUMERAL_VALUE (3999U)
+
 #define ARRAY_LENGTH(x) (sizeof(x) / sizeof(*(x)))
 
 static unsigned get_value_of_roman_letter(int roman_letter)
@@ -123,6 +126,10 @@ struct roman_struct *new_roman(char *roman_numeral)
 struct roman_struct *new_roman_from_uint(unsigned value)
 {
     struct roman_struct *r;
+
+    if (value < MIN_ROMAN_NUMERAL_VALUE ||
+            value > MAX_ROMAN_NUMERAL_VALUE)
+        return NULL;
 
     r = malloc(sizeof(struct roman_struct));
     if (r == NULL)
