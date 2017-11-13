@@ -181,7 +181,16 @@ struct roman_struct *add_roman(
     struct roman_struct *addend2
 )
 {
-    return new_roman("II");
+    unsigned sum;
+    struct roman_struct *r;
+    char *s;
+
+    sum = addend1->value + addend2->value;
+    r = new_roman_from_uint(sum);
+    if (r == NULL)
+        return NULL;
+
+    return r;
 }
 
 struct roman_struct *new_roman(char *roman_numeral)
