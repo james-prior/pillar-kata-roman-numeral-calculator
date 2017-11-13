@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "roman.h"
 
 /* only main should be in this file, to make all other functions in
@@ -5,7 +6,7 @@
    whole program testing framework like Autotest.
 */
 
-int main(void)
+int main(int argc, char *argv[])
 {
-    return 0;
+    return EXIT_SUCCESS;
 }
