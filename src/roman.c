@@ -15,6 +15,24 @@ static unsigned get_value_of_roman_letter(int roman_letter)
     }
 }
 
+static unsigned get_value_of_roman_numeral(char *roman_numeral)
+{
+    unsigned sum;
+    unsigned x;
+
+    sum = 0U;
+
+    for ( ; *roman_numeral != '\0'; roman_numeral++) {
+        x = get_value_of_roman_letter(*roman_numeral);
+        if (x == 0U)
+            return 0U;
+
+        sum += x;
+    }
+
+    return sum;
+}
+
 struct roman_struct *new_roman(char *roman_numeral)
 {
     struct roman_struct *r;
@@ -23,7 +41,7 @@ struct roman_struct *new_roman(char *roman_numeral)
     if (r == NULL)
         return NULL;
 
-    r->value = get_value_of_roman_letter(roman_numeral[0]);
+    r->value = get_value_of_roman_numeral(roman_numeral);
     if (r->value <= 0)
         return NULL;
 

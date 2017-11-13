@@ -12,12 +12,20 @@ START_TEST(test_new_roman)
     };
     struct example_struct good_examples[] = {
         {"I", 1},
+        {"II", 2},
+        {"III", 3},
         {"V", 5},
         {"X", 10},
+        {"XX", 20},
+        {"XXX", 30},
         {"L", 50},
         {"C", 100},
+        {"CC", 200},
+        {"CCC", 300},
         {"D", 500},
         {"M", 1000},
+        {"MM", 2000},
+        {"MMM", 3000},
     };
     int i;
 
