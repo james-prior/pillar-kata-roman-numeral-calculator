@@ -90,6 +90,32 @@ START_TEST(test_new_roman)
 }
 END_TEST
 
+START_TEST(test_new_roman_from_uint)
+{
+    struct example_struct {
+        unsigned value; // Both input and expected output
+    };
+    struct example_struct examples[] = {
+        {1U},
+        {2U},
+        {3998U},
+        {3999U},
+    };
+    int i;
+
+    struct example_struct *p;
+    struct roman_struct *r;
+
+    for (i = 0; i < ARRAY_LENGTH(examples); i++) {
+        p = &examples[i];
+
+        r = new_roman_from_uint(p->value);
+        ck_assert_uint_eq(get_roman_value(r), p->value);
+        free_roman(r);
+    }
+}
+END_TEST
+
 START_TEST(test_new_bad_roman)
 {
     struct bad_example_struct {
@@ -164,6 +190,7 @@ Suite *roman_suite(void)
     tc_core = tcase_create("Core");
 
     tcase_add_test(tc_core, test_new_roman);
+    tcase_add_test(tc_core, test_new_roman_from_uint);
     suite_add_tcase(s, tc_core);
 
     /* bad test cases */

@@ -120,6 +120,19 @@ struct roman_struct *new_roman(char *roman_numeral)
     return r;
 }
 
+struct roman_struct *new_roman_from_uint(unsigned value)
+{
+    struct roman_struct *r;
+
+    r = malloc(sizeof(struct roman_struct));
+    if (r == NULL)
+        return NULL;
+
+    r->value = value;
+
+    return r;
+}
+
 unsigned get_roman_value(struct roman_struct *r)
 {
     return r->value;
