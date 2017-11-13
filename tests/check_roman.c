@@ -96,6 +96,8 @@ START_TEST(test_new_bad_roman)
         char *bad_roman_numeral;
     };
     struct bad_example_struct bad_examples[] = {
+        // empty string
+        {""},
         /* roman letter repeated too many times consecutively */
         {"IIII"},
         {"IIIII"},
