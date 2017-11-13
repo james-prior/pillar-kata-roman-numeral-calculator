@@ -1,8 +1,11 @@
 #include <stdlib.h>
+#include <string.h>
 #include "roman.h"
 
 #define FALSE (0)
 #define TRUE (!FALSE)
+
+#define ARRAY_LENGTH(x) (sizeof(x) / sizeof(*(x)))
 
 static unsigned get_value_of_roman_letter(int roman_letter)
 {
@@ -36,30 +39,26 @@ static int is_valid_subtractive_combination_of_roman_letters(
     int subtractive_roman_letter,
     int additive_roman_letter)
 {
-    switch (subtractive_roman_letter) {
-    case 'I':
-        switch (additive_roman_letter) {
-        case 'V': return  TRUE; break;
-        case 'X': return  TRUE; break;
-        default:  return FALSE; break;
-        }
-        break;
-    case 'X':
-        switch (additive_roman_letter) {
-        case 'L': return  TRUE; break;
-        case 'C': return  TRUE; break;
-        default:  return FALSE; break;
-        }
-        break;
-    case 'C':
-        switch (additive_roman_letter) {
-        case 'D': return  TRUE; break;
-        case 'M': return  TRUE; break;
-        default:  return FALSE; break;
-        }
-        break;
-    default:  return FALSE; break;
-    }
+    static char *valid_combinations[] = {
+        "IV",
+        "IX",
+        "XL",
+        "XC",
+        "CD",
+        "CM",
+    };
+    int i;
+    char candidate[3];
+
+    candidate[0] = subtractive_roman_letter;
+    candidate[1] = additive_roman_letter;
+    candidate[2] = '\0';
+
+    for (i = 0; i < ARRAY_LENGTH(valid_combinations); i++)
+        if (strcmp(candidate, valid_combinations[i]) == 0)
+            return TRUE;
+
+    return FALSE;
 }
 
 static unsigned get_value_of_roman_numeral(char *roman_numeral)
