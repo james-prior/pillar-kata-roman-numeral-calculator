@@ -145,14 +145,21 @@ char *print_roman(struct roman_struct *roman_numeral)
         "DCCC",
         "CM",
     };
+    static char *roman_thousands[] = {
+        "",
+        "M",
+        "MM",
+        "MMM",
+    };
     static char **roman_digits_lists[] = {
         roman_units,
         roman_tens,
         roman_hundreds,
+        roman_thousands,
     };
 
     static char buf[4 * ARRAY_LENGTH(roman_digits_lists) + 1];
-    unsigned digits[3];
+    unsigned digits[ARRAY_LENGTH(roman_digits_lists)];
     unsigned value;
     int i;
 

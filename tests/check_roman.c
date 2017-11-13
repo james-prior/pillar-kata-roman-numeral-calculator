@@ -266,7 +266,6 @@ START_TEST(test_print_roman)
         {890U, "DCCCXC"},
         {901U, "CMI"},
         {999U, "CMXCIX"},
-/*
         {1000U, "M"},
         {1098U, "MXCVIII"},
         {1883U, "MDCCCLXXXIII"},
@@ -276,7 +275,6 @@ START_TEST(test_print_roman)
         {3210U, "MMMCCX"},
         {3883U, "MMMDCCCLXXXIII"},
         {3999U, "MMMCMXCIX"},
-*/
     };
     int i;
 
