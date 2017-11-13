@@ -1,0 +1,14 @@
+# this is a very rough work in progress
+
+sudo apt install autoconf
+sudo apt install check
+sudo apt-get install libtool libtool-bin libtool-doc
+
+autoreconf --install
+cp -pi build-aux/install-sh .
+./configure
+make
+make check
+sudo make install
+sudo ldconfig
+while inotifywait -r -e modify src tests; do make;make check; done
