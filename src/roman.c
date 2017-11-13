@@ -46,8 +46,10 @@ struct roman_struct *new_roman(char *roman_numeral)
         return NULL;
 
     r->value = get_value_of_roman_numeral(roman_numeral);
-    if (r->value <= 0)
+    if (r->value <= 0) {
+        free_roman(r);
         return NULL;
+    }
 
     return r;
 }
