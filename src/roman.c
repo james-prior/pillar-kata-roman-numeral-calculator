@@ -15,23 +15,51 @@ static unsigned get_value_of_roman_letter(int roman_letter)
     }
 }
 
+static int get_max_run_length_of_roman_letter(int roman_letter)
+{
+    switch (roman_letter) {
+    case 'I': return 3; break;
+    case 'V': return 1; break;
+    case 'X': return 3; break;
+    case 'L': return 1; break;
+    case 'C': return 3; break;
+    case 'D': return 1; break;
+    case 'M': return 3; break;
+    default:  return 0; break;
+    }
+}
+
 static unsigned get_value_of_roman_numeral(char *roman_numeral)
 {
     unsigned sum;
+    unsigned old_x;
     unsigned x;
     unsigned next_x;
+    int n;
 
     sum = 0U;
 
+    old_x = 0U; /* deliberately does not match any roman letter value */
+    n = 0;
     for ( ; *roman_numeral != '\0'; roman_numeral++) {
         x = get_value_of_roman_letter(roman_numeral[0]);
         next_x = get_value_of_roman_letter(roman_numeral[1]);
+
+        if (x != old_x) {
+            n = 0;
+            old_x = x;
+        }
+        n++;
+        if (n > get_max_run_length_of_roman_letter(roman_numeral[0]))
+            return 0U;
+
         if (x == 0U)
             return 0U;
         if (x < next_x)
             sum -= x;
         else
             sum += x;
+
     }
 
     return sum;

@@ -90,10 +90,40 @@ START_TEST(test_new_roman)
 }
 END_TEST
 
+START_TEST(test_new_bad_roman)
+{
+    struct bad_example_struct {
+        char *bad_roman_numeral;
+    };
+    struct bad_example_struct bad_examples[] = {
+        /* roman letter repeated too many times consecutively */
+        {"IIII"},
+        {"IIIII"},
+        {"VV"},
+        {"CCCC"},
+        {"DD"},
+    };
+    int i;
+
+    struct bad_example_struct *p;
+    struct roman_struct *r;
+
+    for (i = 0; i < ARRAY_LENGTH(bad_examples); i++) {
+        p = &bad_examples[i];
+
+        r = new_roman(p->bad_roman_numeral);
+        ck_assert_ptr_eq(r, NULL);
+        if (r != NULL)
+            free_roman(r);
+    }
+}
+END_TEST
+
 Suite *roman_suite(void)
 {
     Suite *s;
     TCase *tc_core;
+    TCase *tc_bad;
 
     s = suite_create("Roman");
 
@@ -102,6 +132,12 @@ Suite *roman_suite(void)
 
     tcase_add_test(tc_core, test_new_roman);
     suite_add_tcase(s, tc_core);
+
+    /* bad test cases */
+    tc_bad = tcase_create("bad");
+
+    tcase_add_test(tc_bad, test_new_bad_roman);
+    suite_add_tcase(s, tc_bad);
 
     return s;
 }
