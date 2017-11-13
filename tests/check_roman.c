@@ -112,6 +112,23 @@ START_TEST(test_new_bad_roman)
         {"XXC"},
         {"CCD"},
         {"CCM"},
+        /* invalid subtractive combinations */
+        {"VX"},
+        {"IL"},
+        {"VL"},
+        {"IC"},
+        {"VC"},
+        {"LC"},
+        {"ID"},
+        {"VD"},
+        {"XD"},
+        {"LD"},
+        {"LD"},
+        {"IM"},
+        {"VM"},
+        {"XM"},
+        {"LM"},
+        {"DM"},
     };
     int i;
 
