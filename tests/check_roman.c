@@ -84,7 +84,7 @@ START_TEST(test_new_roman)
         p = &good_examples[i];
 
         r = new_roman(p->roman_numeral);
-        ck_assert_int_eq(get_roman_value(r), p->value);
+        ck_assert_uint_eq(get_roman_value(r), p->value);
         free_roman(r);
     }
 }
