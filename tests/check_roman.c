@@ -221,7 +221,6 @@ START_TEST(test_print_roman)
         {7U, "VII"},
         {8U, "VIII"},
         {9U, "IX"},
-/*
         {10U, "X"},
         {11U, "XI"},
         {12U, "XII"},
@@ -249,6 +248,7 @@ START_TEST(test_print_roman)
         {89U, "LXXXIX"},
         {92U, "XCII"},
         {99U, "XCIX"},
+/*
         {100U, "C"},
         {123U, "CXXIII"},
         {199U, "CXCIX"},

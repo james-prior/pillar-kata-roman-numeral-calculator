@@ -108,7 +108,7 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
 
 char *print_roman(struct roman_struct *roman_numeral)
 {
-    static char *roman_numerals[] = {
+    static char *roman_units[] = {
         "",
         "I",
         "II",
@@ -120,7 +120,26 @@ char *print_roman(struct roman_struct *roman_numeral)
         "VIII",
         "IX",
     };
-    return roman_numerals[roman_numeral->value];
+    static char *roman_tens[] = {
+        "",
+        "X",
+        "XX",
+        "XXX",
+        "XL",
+        "L",
+        "LX",
+        "LXX",
+        "LXXX",
+        "XC",
+    };
+    static char buf[9];
+
+    buf[0] = '\0';
+
+    strcat(buf, roman_tens[roman_numeral->value / 10]);
+    strcat(buf, roman_units[roman_numeral->value % 10]);
+
+    return buf;
 }
 
 struct roman_struct *new_roman(char *roman_numeral)
