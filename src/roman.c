@@ -52,6 +52,9 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
         n++;
         if (n > get_max_run_length_of_roman_letter(roman_numeral[0]))
             return 0U;
+        if (n > 1 && x < next_x)
+            // Too many subtractive letters consecutively.
+            return 0U;
 
         if (x == 0U)
             return 0U;

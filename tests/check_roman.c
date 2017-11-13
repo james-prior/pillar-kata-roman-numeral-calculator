@@ -102,6 +102,16 @@ START_TEST(test_new_bad_roman)
         {"VV"},
         {"CCCC"},
         {"DD"},
+        /* subtractive roman letter repeated too many times
+        *  consecutively */
+        {"IIV"},
+        {"IIIV"},
+        {"IIIIV"},
+        {"IIX"},
+        {"XXL"},
+        {"XXC"},
+        {"CCD"},
+        {"CCM"},
     };
     int i;
 
