@@ -8,7 +8,7 @@ START_TEST(test_new_roman)
 {
     struct example_struct {
         char *roman_numeral;
-        unsigned value;
+        unsigned expected_value;
     };
     struct example_struct good_examples[] = {
         {"I", 1U},
@@ -84,7 +84,7 @@ START_TEST(test_new_roman)
         p = &good_examples[i];
 
         r = new_roman(p->roman_numeral);
-        ck_assert_uint_eq(get_roman_value(r), p->value);
+        ck_assert_uint_eq(get_roman_value(r), p->expected_value);
         free_roman(r);
     }
 }
