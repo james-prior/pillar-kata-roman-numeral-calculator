@@ -294,12 +294,67 @@ START_TEST(test_print_roman)
 }
 END_TEST
 
+START_TEST(test_add_roman_numerals)
+{
+    struct example_struct {
+        // all are Roman numerals.
+        char *addend1;
+        char *addend2;
+        char *expected_sum;
+    };
+    struct example_struct good_examples[] = {
+        {"I", "I", "II"},
+        //{"I", "II", "III"},
+        //{"II", "III", "V"},
+        //{"III", "V", "VIII"},
+        //{"V", "VIII", "XIII"},
+        //{"VIII", "XIII", "XXI"},
+        //{"XIII", "XXI", "XXXIV"},
+        //{"XXI", "XXXIV", "LV"},
+        //{"XXXIV", "LV", "LXXXIX"},
+        //{"LV", "LXXXIX", "CXLIV"},
+        //{"LXXXIX", "CXLIV", "CCXXXIII"},
+        //{"CXLIV", "CCXXXIII", "CCCLXXVII"},
+        //{"CCXXXIII", "CCCLXXVII", "DCX"},
+        //{"CCCLXXVII", "DCX", "CMLXXXVII"},
+        //{"DCX", "CMLXXXVII", "MDXCVII"},
+        //{"CMLXXXVII", "MDXCVII", "MMDLXXXIV"},
+        //{"MMMCMXCVIII", "I", "MMMCMXCIX"},
+    };
+    int i;
+
+    struct example_struct *p;
+    struct roman_struct *addend1;
+    struct roman_struct *addend2;
+    struct roman_struct *sum;
+    char *s;
+
+    for (i = 0; i < ARRAY_LENGTH(good_examples); i++) {
+        p = &good_examples[i];
+
+        addend1 = new_roman(p->addend1);
+        ck_assert_ptr_ne(addend1, NULL);
+        addend2 = new_roman(p->addend1);
+        ck_assert_ptr_ne(addend2, NULL);
+        sum = add_roman(addend1, addend2);
+        ck_assert_ptr_ne(sum, NULL);
+        s = print_roman(sum);
+        ck_assert_ptr_ne(s, NULL);
+        ck_assert_str_eq(s, p->expected_sum);
+        free_roman(addend1);
+        free_roman(addend2);
+        free_roman(sum);
+    }
+}
+END_TEST
+
 Suite *roman_suite(void)
 {
     Suite *s;
     TCase *tc_core;
     TCase *tc_bad;
     TCase *tc_print;
+    TCase *tc_math;
 
     s = suite_create("Roman");
 
@@ -315,6 +370,12 @@ Suite *roman_suite(void)
 
     tcase_add_test(tc_core, test_print_roman);
     suite_add_tcase(s, tc_print);
+
+    /* do roman numeral arithment */
+    tc_math = tcase_create("arithmetic");
+
+    tcase_add_test(tc_core, test_add_roman_numerals);
+    suite_add_tcase(s, tc_math);
 
     /* bad test cases */
     tc_bad = tcase_create("bad");
