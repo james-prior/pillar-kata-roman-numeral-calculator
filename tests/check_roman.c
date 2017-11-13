@@ -133,6 +133,8 @@ START_TEST(test_new_bad_roman)
         {"DM"},
         // Invalid letters
         {"HELLO"},
+        // number that is too large
+        // {"MMMM"},
     };
     int i;
 
