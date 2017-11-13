@@ -159,7 +159,8 @@ char *print_roman(struct roman_struct *roman_numeral)
     };
 
     static char buf[4 * ARRAY_LENGTH(roman_digits_lists) + 1];
-    unsigned digits[ARRAY_LENGTH(roman_digits_lists)];
+    unsigned digits[ARRAY_LENGTH(roman_digits_lists)]; /*
+        least significant digit first */
     unsigned value;
     int i;
 
