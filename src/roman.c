@@ -163,14 +163,13 @@ char *print_roman(struct roman_struct *roman_numeral)
     unsigned value;
     int i;
 
-    buf[0] = '\0';
-
     value = roman_numeral->value;
     for (i = 0; i < ARRAY_LENGTH(digits); i++) {
         digits[i] = value % 10U;
         value /= 10U;
     }
 
+    buf[0] = '\0';
     for (i = ARRAY_LENGTH(roman_digits_lists); --i >= 0; )
         strcat(buf, roman_digits_lists[i][digits[i]]);
 
