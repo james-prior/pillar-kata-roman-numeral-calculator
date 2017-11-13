@@ -129,6 +129,8 @@ START_TEST(test_new_bad_roman)
         {"XM"},
         {"LM"},
         {"DM"},
+        // Invalid letters
+        {"HELLO"},
     };
     int i;
 
