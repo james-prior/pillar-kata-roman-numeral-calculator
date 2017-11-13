@@ -98,7 +98,6 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
         } else {
             sum += x;
         }
-
     }
 
     return sum;
