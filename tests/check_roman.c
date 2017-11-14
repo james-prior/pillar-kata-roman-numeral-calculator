@@ -479,17 +479,18 @@ Suite *roman_suite(void)
 {
     Suite *s;
     TCase *tc_core;
-    TCase *tc_bad;
     TCase *tc_print;
     TCase *tc_math;
 
     s = suite_create("Roman");
 
-    /* Core test case */
-    tc_core = tcase_create("Core");
+    /* creation test cases */
+    tc_core = tcase_create("create");
 
     tcase_add_test(tc_core, test_new_roman);
     tcase_add_test(tc_core, test_new_roman_from_uint);
+    tcase_add_test(tc_core, test_new_bad_roman);
+    tcase_add_test(tc_core, test_new_bad_roman_from_uint);
     suite_add_tcase(s, tc_core);
 
     /* print roman numerals */
@@ -506,13 +507,6 @@ Suite *roman_suite(void)
     tcase_add_test(tc_core, test_addition_overflow_roman_numerals);
     tcase_add_test(tc_core, test_bad_subtract_roman_numerals);
     suite_add_tcase(s, tc_math);
-
-    /* bad test cases */
-    tc_bad = tcase_create("bad");
-
-    tcase_add_test(tc_bad, test_new_bad_roman);
-    tcase_add_test(tc_bad, test_new_bad_roman_from_uint);
-    suite_add_tcase(s, tc_bad);
 
     return s;
 }
