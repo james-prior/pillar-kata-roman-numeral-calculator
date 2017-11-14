@@ -402,6 +402,42 @@ START_TEST(test_subtract_roman_numerals)
 }
 END_TEST
 
+START_TEST(test_addition_overflow_roman_numerals)
+{
+    struct example_struct {
+        // all are Roman numerals.
+        char *addend1;
+        char *addend2;
+    };
+    struct example_struct bad_examples[] = {
+        {"MM", "MM"},
+        {"MMMCMXCIX", "I"},
+        {"I", "MMMCMXCIX"},
+        {"MMMCMXCIX", "MMMCMXCIX"},
+    };
+    int i;
+
+    struct example_struct *p;
+    struct roman_struct *addend1;
+    struct roman_struct *addend2;
+    struct roman_struct *sum;
+
+    for (i = 0; i < ARRAY_LENGTH(bad_examples); i++) {
+        p = &bad_examples[i];
+
+        addend1 = new_roman(p->addend1);
+        ck_assert_ptr_ne(addend1, NULL);
+        addend2 = new_roman(p->addend2);
+        ck_assert_ptr_ne(addend2, NULL);
+        sum = add_roman(addend1, addend2);
+        ck_assert_ptr_eq(sum, NULL);
+        free_roman(addend1);
+        free_roman(addend2);
+        free_roman(sum);
+    }
+}
+END_TEST
+
 Suite *roman_suite(void)
 {
     Suite *s;
@@ -430,6 +466,7 @@ Suite *roman_suite(void)
 
     tcase_add_test(tc_core, test_add_roman_numerals);
     tcase_add_test(tc_core, test_subtract_roman_numerals);
+    tcase_add_test(tc_core, test_addition_overflow_roman_numerals);
     suite_add_tcase(s, tc_math);
 
     /* bad test cases */
