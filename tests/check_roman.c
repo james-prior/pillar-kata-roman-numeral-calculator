@@ -348,6 +348,60 @@ START_TEST(test_add_roman_numerals)
 }
 END_TEST
 
+START_TEST(test_subtract_roman_numerals)
+{
+    struct example_struct {
+        // all are Roman numerals.
+        char *minuend;
+        char *subtrahend;
+        char *expected_difference;
+    };
+    struct example_struct good_examples[] = {
+        {"II", "I", "I"},
+        //{"III", "II", "I"},
+        //{"V", "III", "II"},
+        //{"VIII", "V", "III"},
+        //{"XIII", "VIII", "V"},
+        //{"XXI", "XIII", "VIII"},
+        //{"XXXIV", "XXI", "XIII"},
+        //{"LV", "XXXIV", "XXI"},
+        //{"LXXXIX", "LV", "XXXIV"},
+        //{"CXLIV", "LXXXIX", "LV"},
+        //{"CCXXXIII", "CXLIV", "LXXXIX"},
+        //{"CCCLXXVII", "CCXXXIII", "CXLIV"},
+        //{"DCX", "CCCLXXVII", "CCXXXIII"},
+        //{"CMLXXXVII", "DCX", "CCCLXXVII"},
+        //{"MDXCVII", "CMLXXXVII", "DCX"},
+        //{"MMDLXXXIV", "MDXCVII", "CMLXXXVII"},
+        //{"MMMCMXCIX", "I", "MMMCMXCVIII"},
+    };
+    int i;
+
+    struct example_struct *p;
+    struct roman_struct *minuend;
+    struct roman_struct *subtrahend;
+    struct roman_struct *expected_difference;
+    char *s;
+
+    for (i = 0; i < ARRAY_LENGTH(good_examples); i++) {
+        p = &good_examples[i];
+
+        minuend = new_roman(p->minuend);
+        ck_assert_ptr_ne(minuend, NULL);
+        subtrahend = new_roman(p->subtrahend);
+        ck_assert_ptr_ne(subtrahend, NULL);
+        expected_difference = subtract_roman(minuend, subtrahend);
+        ck_assert_ptr_ne(expected_difference, NULL);
+        s = print_roman(expected_difference);
+        ck_assert_ptr_ne(s, NULL);
+        ck_assert_str_eq(s, p->expected_difference);
+        free_roman(minuend);
+        free_roman(subtrahend);
+        free_roman(expected_difference);
+    }
+}
+END_TEST
+
 Suite *roman_suite(void)
 {
     Suite *s;
@@ -375,6 +429,7 @@ Suite *roman_suite(void)
     tc_math = tcase_create("arithmetic");
 
     tcase_add_test(tc_core, test_add_roman_numerals);
+    tcase_add_test(tc_core, test_subtract_roman_numerals);
     suite_add_tcase(s, tc_math);
 
     /* bad test cases */

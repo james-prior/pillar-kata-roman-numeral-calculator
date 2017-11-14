@@ -193,6 +193,14 @@ struct roman_struct *add_roman(
     return r;
 }
 
+struct roman_struct *subtract_roman(
+    struct roman_struct *minuend,
+    struct roman_struct *subtrahend
+)
+{
+    return new_roman("I");
+}
+
 struct roman_struct *new_roman(char *roman_numeral)
 {
     struct roman_struct *r;

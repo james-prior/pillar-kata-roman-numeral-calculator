@@ -12,6 +12,10 @@ struct roman_struct *add_roman(
     struct roman_struct *,
     struct roman_struct *
 );
+struct roman_struct *subtract_roman(
+    struct roman_struct *minuend,
+    struct roman_struct *subtrahend
+);
 unsigned get_roman_value(struct roman_struct *roman);
 void free_roman(struct roman_struct *m);
 
