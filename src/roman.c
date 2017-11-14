@@ -198,7 +198,16 @@ struct roman_struct *subtract_roman(
     struct roman_struct *subtrahend
 )
 {
-    return new_roman("I");
+    unsigned difference;
+    struct roman_struct *r;
+    char *s;
+
+    difference = minuend->value - subtrahend->value;
+    r = new_roman_from_uint(difference);
+    if (r == NULL)
+        return NULL;
+
+    return r;
 }
 
 struct roman_struct *new_roman(char *roman_numeral)
