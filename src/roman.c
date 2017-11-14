@@ -5,10 +5,10 @@
 #define FALSE (0)
 #define TRUE (!FALSE)
 
+#define ARRAY_LENGTH(x) (sizeof(x) / sizeof(*(x)))
+
 #define MIN_ROMAN_NUMERAL_VALUE (1U)
 #define MAX_ROMAN_NUMERAL_VALUE (3999U)
-
-#define ARRAY_LENGTH(x) (sizeof(x) / sizeof(*(x)))
 
 static unsigned get_value_of_roman_letter(int roman_letter)
 {
