@@ -64,8 +64,6 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
         x = get_value_of_roman_letter(roman_numeral[0]);
         next_x = get_value_of_roman_letter(roman_numeral[1]);
 
-        if (x == 0U)
-            return 0U;
         if (x < next_x) {
             sum -= x;
         } else {
