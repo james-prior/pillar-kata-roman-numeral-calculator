@@ -28,7 +28,6 @@ static unsigned get_value_of_roman_letter(int roman_letter)
 static unsigned get_value_of_roman_numeral(char *roman_numeral)
 {
     static regex_t regex;
-    int reti;
     unsigned sum;
     unsigned x;
     unsigned next_x;
@@ -44,16 +43,12 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
 
     if (please_compile_regex) {
         if (regcomp(&regex, regex_string, 0))
-            // regex_string failed to compile.
             return 0U;
         please_compile_regex = FALSE;
     }
 
-    reti = regexec(&regex, roman_numeral, 0, NULL, 0);
-
-    if (reti) {
-        return 0U;
-    }
+    if (regexec(&regex, roman_numeral, 0, NULL, 0))
+        return 0U; // roman_numeral is not a valid Roman numeral
 
     sum = 0U;
     for ( ; *roman_numeral != '\0'; roman_numeral++) {
