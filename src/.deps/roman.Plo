@@ -24,7 +24,8 @@ roman.lo: roman.c /usr/include/stdc-predef.h /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/string.h \
  /usr/include/xlocale.h /usr/include/x86_64-linux-gnu/bits/string.h \
  /usr/include/x86_64-linux-gnu/bits/string2.h \
- /usr/include/x86_64-linux-gnu/bits/string3.h roman.h
+ /usr/include/x86_64-linux-gnu/bits/string3.h /usr/include/regex.h \
+ roman.h
 
 /usr/include/stdc-predef.h:
 
@@ -93,5 +94,7 @@ roman.lo: roman.c /usr/include/stdc-predef.h /usr/include/stdlib.h \
 /usr/include/x86_64-linux-gnu/bits/string2.h:
 
 /usr/include/x86_64-linux-gnu/bits/string3.h:
+
+/usr/include/regex.h:
 
 roman.h:

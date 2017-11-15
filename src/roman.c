@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <regex.h>        
 #include "roman.h"
 
 #define FALSE (0)
@@ -66,11 +67,32 @@ static int is_valid_subtractive_combination_of_roman_letters(
 
 static unsigned get_value_of_roman_numeral(char *roman_numeral)
 {
+    regex_t regex;
+    int reti;
     unsigned sum;
     unsigned old_x;
     unsigned x;
     unsigned next_x;
     int n;
+    char *regex_string = (
+        "^"
+        "\\(MM\\|MMM\\|M\\)\\?"
+        "\\(CCC\\|CM\\|C\\|CD\\|DCCC\\|D\\|CC\\|DCC\\|DC\\)\\?"
+        "\\(XX\\|XL\\|LXX\\|L\\|XC\\|XXX\\|LX\\|LXXX\\|X\\)\\?"
+        "\\(III\\|IV\\|VI\\|IX\\|V\\|II\\|VII\\|I\\|VIII\\)\\?"
+        "$"
+    );
+
+    if (regcomp(&regex, regex_string, 0))
+        // regex_string failed to compile.
+        return 0U;
+
+    reti = regexec(&regex, roman_numeral, 0, NULL, 0);
+
+    regfree(&regex);
+    if (reti) {
+        return 0U;
+    }
 
     sum = 0U;
 
