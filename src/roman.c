@@ -44,7 +44,7 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
 
     if (please_compile_regex) {
         if (regcomp(&roman_numeral_regex, roman_numeral_pattern, 0))
-            return 0U;
+            exit(1);
         please_compile_regex = FALSE;
     }
 
