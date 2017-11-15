@@ -27,7 +27,6 @@ static unsigned get_value_of_roman_letter(int roman_letter)
 
 static unsigned get_value_of_roman_numeral(char *roman_numeral)
 {
-    static regex_t roman_numeral_regex;
     static char *roman_numeral_pattern = (
         "^"
         "\\(MM\\|MMM\\|M\\)\\?"
@@ -36,6 +35,7 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
         "\\(III\\|IV\\|VI\\|IX\\|V\\|II\\|VII\\|I\\|VIII\\)\\?"
         "$"
     );
+    static regex_t roman_numeral_regex;
     static int please_compile_regex = TRUE;
 
     unsigned x;
