@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include <stdlib.h>
 #include <string.h>
 #include <regex.h>        
@@ -39,32 +41,6 @@ static int get_max_run_length_of_roman_letter(int roman_letter)
     }
 }
 
-static int is_valid_subtractive_combination_of_roman_letters(
-    int subtractive_roman_letter,
-    int additive_roman_letter)
-{
-    static char *valid_combinations[] = {
-        "IV",
-        "IX",
-        "XL",
-        "XC",
-        "CD",
-        "CM",
-    };
-    int i;
-    char candidate[3];
-
-    candidate[0] = subtractive_roman_letter;
-    candidate[1] = additive_roman_letter;
-    candidate[2] = '\0';
-
-    for (i = 0; i < ARRAY_LENGTH(valid_combinations); i++)
-        if (strcmp(candidate, valid_combinations[i]) == 0)
-            return TRUE;
-
-    return FALSE;
-}
-
 static unsigned get_value_of_roman_numeral(char *roman_numeral)
 {
     regex_t regex;
@@ -88,6 +64,10 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
         return 0U;
 
     reti = regexec(&regex, roman_numeral, 0, NULL, 0);
+
+    FILE *fp = fopen("regex.log", "a");
+    fprintf(fp, "1 %d %s\n", reti, roman_numeral);
+    fclose(fp);
 
     regfree(&regex);
     if (reti) {
@@ -116,9 +96,6 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
         if (x == 0U)
             return 0U;
         if (x < next_x) {
-            if (!is_valid_subtractive_combination_of_roman_letters(
-                    roman_numeral[0], roman_numeral[1]))
-                return 0U;
             sum -= x;
         } else {
             sum += x;
