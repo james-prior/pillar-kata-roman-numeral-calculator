@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include <stdlib.h>
 #include <string.h>
 #include <regex.h>        
@@ -48,10 +46,6 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
         return 0U;
 
     reti = regexec(&regex, roman_numeral, 0, NULL, 0);
-
-    FILE *fp = fopen("regex.log", "a");
-    fprintf(fp, "1 %d %s\n", reti, roman_numeral);
-    fclose(fp);
 
     regfree(&regex);
     if (reti) {
