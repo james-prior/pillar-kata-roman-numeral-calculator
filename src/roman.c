@@ -35,7 +35,6 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
     unsigned old_x;
     unsigned x;
     unsigned next_x;
-    int n;
     char *regex_string = (
         "^"
         "\\(MM\\|MMM\\|M\\)\\?"
@@ -63,19 +62,13 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
     sum = 0U;
 
     old_x = 0U; /* deliberately does not match any roman letter value */
-    n = 0;
     for ( ; *roman_numeral != '\0'; roman_numeral++) {
         x = get_value_of_roman_letter(roman_numeral[0]);
         next_x = get_value_of_roman_letter(roman_numeral[1]);
 
         if (x != old_x) {
-            n = 0;
             old_x = x;
         }
-        n++;
-        if (n > 1 && x < next_x)
-            // Too many subtractive letters consecutively.
-            return 0U;
 
         if (x == 0U)
             return 0U;
