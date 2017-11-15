@@ -42,6 +42,8 @@ class Roman:
         '^' +
         ''.join(map(_make_digits_pattern, value_dicts)) +
         '$')
+    with open('regex.txt', 'w') as f:
+        print(repr(s), file=f)
     pattern = re.compile(s)
 
     def __init__(self, roman_numeral_or_x):
