@@ -27,20 +27,6 @@ static unsigned get_value_of_roman_letter(int roman_letter)
     }
 }
 
-static int get_max_run_length_of_roman_letter(int roman_letter)
-{
-    switch (roman_letter) {
-    case 'I': return 3; break;
-    case 'V': return 1; break;
-    case 'X': return 3; break;
-    case 'L': return 1; break;
-    case 'C': return 3; break;
-    case 'D': return 1; break;
-    case 'M': return 3; break;
-    default:  return 0; break;
-    }
-}
-
 static unsigned get_value_of_roman_numeral(char *roman_numeral)
 {
     regex_t regex;
@@ -87,8 +73,6 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
             old_x = x;
         }
         n++;
-        if (n > get_max_run_length_of_roman_letter(roman_numeral[0]))
-            return 0U;
         if (n > 1 && x < next_x)
             // Too many subtractive letters consecutively.
             return 0U;
