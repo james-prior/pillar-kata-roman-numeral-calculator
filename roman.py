@@ -38,10 +38,11 @@ class Roman:
     def _make_digits_pattern(roman_digits):
         return '(' + '|'.join(roman_digits) + ')?'
 
-    pattern = re.compile(
+    s = (
         '^' +
         ''.join(map(_make_digits_pattern, value_dicts)) +
         '$')
+    pattern = re.compile(s)
 
     def __init__(self, roman_numeral_or_x):
         try:
