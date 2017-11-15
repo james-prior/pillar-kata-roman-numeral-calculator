@@ -27,11 +27,8 @@ static unsigned get_value_of_roman_letter(int roman_letter)
 
 static unsigned get_value_of_roman_numeral(char *roman_numeral)
 {
-    static regex_t regex;
-    unsigned sum;
-    unsigned x;
-    unsigned next_x;
-    char *regex_string = (
+    static regex_t roman_numeral_regex;
+    static char *roman_numeral_pattern = (
         "^"
         "\\(MM\\|MMM\\|M\\)\\?"
         "\\(CCC\\|CM\\|C\\|CD\\|DCCC\\|D\\|CC\\|DCC\\|DC\\)\\?"
@@ -41,13 +38,17 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
     );
     static int please_compile_regex = TRUE;
 
+    unsigned x;
+    unsigned next_x;
+    unsigned sum;
+
     if (please_compile_regex) {
-        if (regcomp(&regex, regex_string, 0))
+        if (regcomp(&roman_numeral_regex, roman_numeral_pattern, 0))
             return 0U;
         please_compile_regex = FALSE;
     }
 
-    if (regexec(&regex, roman_numeral, 0, NULL, 0))
+    if (regexec(&roman_numeral_regex, roman_numeral, 0, NULL, 0))
         return 0U; // roman_numeral is not a valid Roman numeral
 
     sum = 0U;
@@ -55,10 +56,10 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
         x = get_value_of_roman_letter(roman_numeral[0]);
         next_x = get_value_of_roman_letter(roman_numeral[1]);
 
-        if (x < next_x)
-            sum -= x;
-        else
+        if (x >= next_x)
             sum += x;
+        else
+            sum -= x;
     }
 
     return sum;
