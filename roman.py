@@ -68,13 +68,12 @@ class Roman:
             self.roman_letter_values[letter]
             for letter in roman_numeral]
         next_letter_values = letter_values[1:] + [0]
-        self.value = 0
-        for letter_value, next_letter_value in zip(
-                letter_values, next_letter_values):
-            if letter_value >= next_letter_value:
-                self.value += letter_value
-            else:
-                self.value -= letter_value
+        self.value = sum(
+            +letter_value
+            if letter_value >= next_letter_value else -letter_value
+            for letter_value, next_letter_value in zip(
+                letter_values, next_letter_values)
+        )
         if self.value < self.minimum:
             raise ValueError
 
