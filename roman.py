@@ -5,6 +5,16 @@ class Roman:
     minimum = 1
     maximum = 3999
 
+    roman_letter_values = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000,
+    }
+
     def _make_list_of_roman_digits(s):
         return [''] + s.split()
 
@@ -31,9 +41,6 @@ class Roman:
         value_of_roman_tens,
         value_of_roman_units,
     )
-    value_of_roman_digits = {}
-    for d in value_dicts:
-        value_of_roman_digits.update(d)
 
     def _make_digits_pattern(roman_digits):
         return '(' + '|'.join(roman_digits) + ')?'
@@ -56,11 +63,16 @@ class Roman:
         m = re.match(self.pattern, roman_numeral)
         if not m:
             raise ValueError
-        self.value = sum(
-            self.value_of_roman_digits[s]
-            for s in m.groups()
-            if s
-        )
+
+        next_letters = list(roman_numeral[1:]) + ['past end']
+        self.value = 0
+        for letter, next_letter in zip(roman_numeral, next_letters):
+            letter_value = self.roman_letter_values.get(letter, 0)
+            next_letter_value = self.roman_letter_values.get(next_letter, 0)
+            if letter_value >= next_letter_value:
+                self.value += letter_value
+            else:
+                self.value -= letter_value
         if self.value < self.minimum:
             raise ValueError
 
