@@ -64,11 +64,13 @@ class Roman:
         if not m:
             raise ValueError
 
-        next_letters = list(roman_numeral[1:]) + ['past end']
+        letter_values = [
+            self.roman_letter_values[letter]
+            for letter in roman_numeral]
+        next_letter_values = letter_values[1:] + [0]
         self.value = 0
-        for letter, next_letter in zip(roman_numeral, next_letters):
-            letter_value = self.roman_letter_values.get(letter, 0)
-            next_letter_value = self.roman_letter_values.get(next_letter, 0)
+        for letter_value, next_letter_value in zip(
+                letter_values, next_letter_values):
             if letter_value >= next_letter_value:
                 self.value += letter_value
             else:
