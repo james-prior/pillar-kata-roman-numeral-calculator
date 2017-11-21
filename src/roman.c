@@ -35,20 +35,18 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
         "\\(III\\|IV\\|VI\\|IX\\|V\\|II\\|VII\\|I\\|VIII\\)\\?"
         "$"
     );
-    static regex_t roman_numeral_regex;
-    static int please_compile_regex = TRUE;
+    regex_t roman_numeral_regex;
+    int no_match;
 
     unsigned x;
     unsigned next_x;
     unsigned sum;
 
-    if (please_compile_regex) {
-        if (regcomp(&roman_numeral_regex, roman_numeral_pattern, 0))
-            exit(EXIT_FAILURE);
-        please_compile_regex = FALSE;
-    }
-
-    if (regexec(&roman_numeral_regex, roman_numeral, 0, NULL, 0))
+    if (regcomp(&roman_numeral_regex, roman_numeral_pattern, 0))
+        exit(EXIT_FAILURE);
+    no_match = regexec(&roman_numeral_regex, roman_numeral, 0, NULL, 0);
+    regfree(&roman_numeral_regex);
+    if (no_match)
         return 0U; // roman_numeral is not a valid Roman numeral
 
     sum = 0U;
