@@ -11,4 +11,5 @@ make
 make check
 sudo make install
 sudo ldconfig
+sudo cp src/money.h /usr/local/include/
 while inotifywait -r -e modify src tests; do make;make check; done
