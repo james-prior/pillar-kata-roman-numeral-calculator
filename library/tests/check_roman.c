@@ -112,65 +112,61 @@ START_TEST(test_new_roman_from_uint)
 }
 END_TEST
 
+struct new_bad_example_struct {
+    char *bad_roman_numeral;
+};
+static const struct new_bad_example_struct new_bad_examples[] = {
+    // empty string
+    {""},
+    /* roman letter repeated too many times consecutively */
+    {"IIII"},
+    {"IIIII"},
+    {"VV"},
+    {"CCCC"},
+    {"DD"},
+    /* subtractive roman letter repeated too many times
+    *  consecutively */
+    {"IIV"},
+    {"IIIV"},
+    {"IIIIV"},
+    {"IIX"},
+    {"XXL"},
+    {"XXC"},
+    {"CCD"},
+    {"CCM"},
+    /* invalid subtractive combinations */
+    {"VX"},
+    {"IL"},
+    {"VL"},
+    {"IC"},
+    {"VC"},
+    {"LC"},
+    {"ID"},
+    {"VD"},
+    {"XD"},
+    {"LD"},
+    {"LD"},
+    {"IM"},
+    {"VM"},
+    {"XM"},
+    {"LM"},
+    {"DM"},
+    // Invalid letters
+    {"HELLO"},
+    // number that is too large
+    // {"MMMM"},
+};
 START_TEST(test_new_bad_roman)
 {
-    struct bad_example_struct {
-        char *bad_roman_numeral;
-    };
-    struct bad_example_struct bad_examples[] = {
-        // empty string
-        {""},
-        /* roman letter repeated too many times consecutively */
-        {"IIII"},
-        {"IIIII"},
-        {"VV"},
-        {"CCCC"},
-        {"DD"},
-        /* subtractive roman letter repeated too many times
-        *  consecutively */
-        {"IIV"},
-        {"IIIV"},
-        {"IIIIV"},
-        {"IIX"},
-        {"XXL"},
-        {"XXC"},
-        {"CCD"},
-        {"CCM"},
-        /* invalid subtractive combinations */
-        {"VX"},
-        {"IL"},
-        {"VL"},
-        {"IC"},
-        {"VC"},
-        {"LC"},
-        {"ID"},
-        {"VD"},
-        {"XD"},
-        {"LD"},
-        {"LD"},
-        {"IM"},
-        {"VM"},
-        {"XM"},
-        {"LM"},
-        {"DM"},
-        // Invalid letters
-        {"HELLO"},
-        // number that is too large
-        // {"MMMM"},
-    };
-    int i;
-
-    struct bad_example_struct *p;
+    const struct new_bad_example_struct *p;
     struct roman_struct *r;
 
-    for (i = 0; i < ARRAY_LENGTH(bad_examples); i++) {
-        p = &bad_examples[i];
+    p = &new_bad_examples[_i];
 
-        r = new_roman(p->bad_roman_numeral);
-        ck_assert_ptr_eq(r, NULL);
-        if (r != NULL)
-            free_roman(r);
-    }
+    r = new_roman(p->bad_roman_numeral);
+    ck_assert_ptr_eq(r, NULL);
+    if (r != NULL)
+        free_roman(r);
 }
 END_TEST
 
@@ -474,7 +470,8 @@ Suite *roman_suite(void)
     tcase_add_loop_test(
         tc_core, test_new_roman, 0, ARRAY_LENGTH(new_good_examples));
     tcase_add_test(tc_core, test_new_roman_from_uint);
-    tcase_add_test(tc_core, test_new_bad_roman);
+    tcase_add_loop_test(
+        tc_core, test_new_bad_roman, 0, ARRAY_LENGTH(new_bad_examples));
     tcase_add_test(tc_core, test_new_bad_roman_from_uint);
     suite_add_tcase(s, tc_core);
 
