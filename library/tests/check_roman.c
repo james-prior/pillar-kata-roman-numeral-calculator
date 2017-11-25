@@ -189,92 +189,88 @@ START_TEST(test_new_bad_roman_from_uint)
 }
 END_TEST
 
+struct print_example_struct {
+    unsigned value;
+    char *expected_roman_numeral;
+};
+static const struct print_example_struct print_good_examples[] = {
+    {1U, "I"},
+    {2U, "II"},
+    {3U, "III"},
+    {4U, "IV"},
+    {5U, "V"},
+    {6U, "VI"},
+    {7U, "VII"},
+    {8U, "VIII"},
+    {9U, "IX"},
+    {10U, "X"},
+    {11U, "XI"},
+    {12U, "XII"},
+    {13U, "XIII"},
+    {14U, "XIV"},
+    {15U, "XV"},
+    {16U, "XVI"},
+    {17U, "XVII"},
+    {18U, "XVIII"},
+    {19U, "XIX"},
+    {20U, "XX"},
+    {29U, "XXIX"},
+    {30U, "XXX"},
+    {38U, "XXXVIII"},
+    {40U, "XL"},
+    {41U, "XLI"},
+    {44U, "XLIV"},
+    {49U, "XLIX"},
+    {50U, "L"},
+    {56U, "LVI"},
+    {65U, "LXV"},
+    {68U, "LXVIII"},
+    {74U, "LXXIV"},
+    {83U, "LXXXIII"},
+    {89U, "LXXXIX"},
+    {92U, "XCII"},
+    {99U, "XCIX"},
+    {100U, "C"},
+    {123U, "CXXIII"},
+    {199U, "CXCIX"},
+    {200U, "CC"},
+    {234U, "CCXXXIV"},
+    {300U, "CCC"},
+    {345U, "CCCXLV"},
+    {383U, "CCCLXXXIII"},
+    {456U, "CDLVI"},
+    {499U, "CDXCIX"},
+    {500U, "D"},
+    {567U, "DLXVII"},
+    {678U, "DCLXXVIII"},
+    {789U, "DCCLXXXIX"},
+    {888U, "DCCCLXXXVIII"},
+    {890U, "DCCCXC"},
+    {901U, "CMI"},
+    {999U, "CMXCIX"},
+    {1000U, "M"},
+    {1098U, "MXCVIII"},
+    {1883U, "MDCCCLXXXIII"},
+    {2000U, "MM"},
+    {2109U, "MMCIX"},
+    {3000U, "MMM"},
+    {3210U, "MMMCCX"},
+    {3883U, "MMMDCCCLXXXIII"},
+    {3999U, "MMMCMXCIX"},
+};
 START_TEST(test_print_roman)
 {
-    struct example_struct {
-        unsigned value;
-        char *expected_roman_numeral;
-    };
-    struct example_struct good_examples[] = {
-        {1U, "I"},
-        {2U, "II"},
-        {3U, "III"},
-        {4U, "IV"},
-        {5U, "V"},
-        {6U, "VI"},
-        {7U, "VII"},
-        {8U, "VIII"},
-        {9U, "IX"},
-        {10U, "X"},
-        {11U, "XI"},
-        {12U, "XII"},
-        {13U, "XIII"},
-        {14U, "XIV"},
-        {15U, "XV"},
-        {16U, "XVI"},
-        {17U, "XVII"},
-        {18U, "XVIII"},
-        {19U, "XIX"},
-        {20U, "XX"},
-        {29U, "XXIX"},
-        {30U, "XXX"},
-        {38U, "XXXVIII"},
-        {40U, "XL"},
-        {41U, "XLI"},
-        {44U, "XLIV"},
-        {49U, "XLIX"},
-        {50U, "L"},
-        {56U, "LVI"},
-        {65U, "LXV"},
-        {68U, "LXVIII"},
-        {74U, "LXXIV"},
-        {83U, "LXXXIII"},
-        {89U, "LXXXIX"},
-        {92U, "XCII"},
-        {99U, "XCIX"},
-        {100U, "C"},
-        {123U, "CXXIII"},
-        {199U, "CXCIX"},
-        {200U, "CC"},
-        {234U, "CCXXXIV"},
-        {300U, "CCC"},
-        {345U, "CCCXLV"},
-        {383U, "CCCLXXXIII"},
-        {456U, "CDLVI"},
-        {499U, "CDXCIX"},
-        {500U, "D"},
-        {567U, "DLXVII"},
-        {678U, "DCLXXVIII"},
-        {789U, "DCCLXXXIX"},
-        {888U, "DCCCLXXXVIII"},
-        {890U, "DCCCXC"},
-        {901U, "CMI"},
-        {999U, "CMXCIX"},
-        {1000U, "M"},
-        {1098U, "MXCVIII"},
-        {1883U, "MDCCCLXXXIII"},
-        {2000U, "MM"},
-        {2109U, "MMCIX"},
-        {3000U, "MMM"},
-        {3210U, "MMMCCX"},
-        {3883U, "MMMDCCCLXXXIII"},
-        {3999U, "MMMCMXCIX"},
-    };
-    int i;
-
-    struct example_struct *p;
+    const struct print_example_struct *p;
     struct roman_struct *r;
     char *s;
 
-    for (i = 0; i < ARRAY_LENGTH(good_examples); i++) {
-        p = &good_examples[i];
+    p = &print_good_examples[_i];
 
-        r = new_roman_from_uint(p->value);
-        ck_assert_ptr_ne(r, NULL);
-        s = print_roman(r);
-        ck_assert_str_eq(s, p->expected_roman_numeral);
-        free_roman(r);
-    }
+    r = new_roman_from_uint(p->value);
+    ck_assert_ptr_ne(r, NULL);
+    s = print_roman(r);
+    ck_assert_str_eq(s, p->expected_roman_numeral);
+    free_roman(r);
 }
 END_TEST
 
@@ -473,7 +469,8 @@ Suite *roman_suite(void)
     /* print roman numerals */
     tc_print = tcase_create("print");
 
-    tcase_add_test(tc_core, test_print_roman);
+    tcase_add_loop_test(
+        tc_core, test_print_roman, 0, ARRAY_LENGTH(print_good_examples));
     suite_add_tcase(s, tc_print);
 
     /* do roman numeral arithment */
