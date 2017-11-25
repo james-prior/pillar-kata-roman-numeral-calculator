@@ -294,57 +294,53 @@ START_TEST(test_print_roman)
 }
 END_TEST
 
+struct add_good_example_struct {
+    // all are Roman numerals.
+    char *addend1;
+    char *addend2;
+    char *expected_sum;
+};
+static const struct add_good_example_struct add_good_examples[] = {
+    {"I", "I", "II"},
+    {"I", "II", "III"},
+    {"II", "III", "V"},
+    {"III", "V", "VIII"},
+    {"V", "VIII", "XIII"},
+    {"VIII", "XIII", "XXI"},
+    {"XIII", "XXI", "XXXIV"},
+    {"XXI", "XXXIV", "LV"},
+    {"XXXIV", "LV", "LXXXIX"},
+    {"LV", "LXXXIX", "CXLIV"},
+    {"LXXXIX", "CXLIV", "CCXXXIII"},
+    {"CXLIV", "CCXXXIII", "CCCLXXVII"},
+    {"CCXXXIII", "CCCLXXVII", "DCX"},
+    {"CCCLXXVII", "DCX", "CMLXXXVII"},
+    {"DCX", "CMLXXXVII", "MDXCVII"},
+    {"CMLXXXVII", "MDXCVII", "MMDLXXXIV"},
+    {"MMMCMXCVIII", "I", "MMMCMXCIX"},
+};
 START_TEST(test_add_roman_numerals)
 {
-    struct example_struct {
-        // all are Roman numerals.
-        char *addend1;
-        char *addend2;
-        char *expected_sum;
-    };
-    struct example_struct good_examples[] = {
-        {"I", "I", "II"},
-        {"I", "II", "III"},
-        {"II", "III", "V"},
-        {"III", "V", "VIII"},
-        {"V", "VIII", "XIII"},
-        {"VIII", "XIII", "XXI"},
-        {"XIII", "XXI", "XXXIV"},
-        {"XXI", "XXXIV", "LV"},
-        {"XXXIV", "LV", "LXXXIX"},
-        {"LV", "LXXXIX", "CXLIV"},
-        {"LXXXIX", "CXLIV", "CCXXXIII"},
-        {"CXLIV", "CCXXXIII", "CCCLXXVII"},
-        {"CCXXXIII", "CCCLXXVII", "DCX"},
-        {"CCCLXXVII", "DCX", "CMLXXXVII"},
-        {"DCX", "CMLXXXVII", "MDXCVII"},
-        {"CMLXXXVII", "MDXCVII", "MMDLXXXIV"},
-        {"MMMCMXCVIII", "I", "MMMCMXCIX"},
-    };
-    int i;
-
-    struct example_struct *p;
+    const struct add_good_example_struct *p;
     struct roman_struct *addend1;
     struct roman_struct *addend2;
     struct roman_struct *sum;
     char *s;
 
-    for (i = 0; i < ARRAY_LENGTH(good_examples); i++) {
-        p = &good_examples[i];
+    p = &add_good_examples[_i];
 
-        addend1 = new_roman(p->addend1);
-        ck_assert_ptr_ne(addend1, NULL);
-        addend2 = new_roman(p->addend2);
-        ck_assert_ptr_ne(addend2, NULL);
-        sum = add_roman(addend1, addend2);
-        ck_assert_ptr_ne(sum, NULL);
-        s = print_roman(sum);
-        ck_assert_ptr_ne(s, NULL);
-        ck_assert_str_eq(s, p->expected_sum);
-        free_roman(addend1);
-        free_roman(addend2);
-        free_roman(sum);
-    }
+    addend1 = new_roman(p->addend1);
+    ck_assert_ptr_ne(addend1, NULL);
+    addend2 = new_roman(p->addend2);
+    ck_assert_ptr_ne(addend2, NULL);
+    sum = add_roman(addend1, addend2);
+    ck_assert_ptr_ne(sum, NULL);
+    s = print_roman(sum);
+    ck_assert_ptr_ne(s, NULL);
+    ck_assert_str_eq(s, p->expected_sum);
+    free_roman(addend1);
+    free_roman(addend2);
+    free_roman(sum);
 }
 END_TEST
 
@@ -494,7 +490,10 @@ Suite *roman_suite(void)
     /* do roman numeral arithment */
     tc_math = tcase_create("arithmetic");
 
-    tcase_add_test(tc_core, test_add_roman_numerals);
+    tcase_add_loop_test(
+        tc_core, test_add_roman_numerals,
+        0, ARRAY_LENGTH(add_good_examples)
+    );
     tcase_add_loop_test(
         tc_core, test_subtract_roman_numerals,
         0, ARRAY_LENGTH(sub_good_examples)
