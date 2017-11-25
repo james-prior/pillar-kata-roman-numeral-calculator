@@ -373,7 +373,6 @@ static const struct sub_good_example_struct sub_good_examples[] = {
     {"MMDLXXXIV", "MDXCVII", "CMLXXXVII"},
     {"MMMCMXCIX", "I", "MMMCMXCVIII"},
 };
-
 START_TEST(test_subtract_roman_numerals)
 {
     const struct sub_good_example_struct *p;
@@ -435,40 +434,36 @@ START_TEST(test_addition_overflow_roman_numerals)
 }
 END_TEST
 
+struct bad_sub_example_struct {
+    // all are Roman numerals.
+    char *minuend;
+    char *subtrahend;
+};
+static const struct bad_sub_example_struct sub_bad_examples[] = {
+    {"I", "I"},
+    {"I", "II"},
+    {"M", "MM"},
+    {"MMMCMXCVIII", "MMMCMXCIX"},
+    {"MMMCMXCIX", "MMMCMXCIX"},
+};
 START_TEST(test_bad_subtract_roman_numerals)
 {
-    struct example_struct {
-        // all are Roman numerals.
-        char *minuend;
-        char *subtrahend;
-    };
-    struct example_struct bad_examples[] = {
-        {"I", "I"},
-        {"I", "II"},
-        {"M", "MM"},
-        {"MMMCMXCVIII", "MMMCMXCIX"},
-        {"MMMCMXCIX", "MMMCMXCIX"},
-    };
-    int i;
-
-    struct example_struct *p;
+    const struct bad_sub_example_struct *p;
     struct roman_struct *minuend;
     struct roman_struct *subtrahend;
     struct roman_struct *difference;
 
-    for (i = 0; i < ARRAY_LENGTH(bad_examples); i++) {
-        p = &bad_examples[i];
+    p = &sub_bad_examples[_i];
 
-        minuend = new_roman(p->minuend);
-        ck_assert_ptr_ne(minuend, NULL);
-        subtrahend = new_roman(p->subtrahend);
-        ck_assert_ptr_ne(subtrahend, NULL);
-        difference = subtract_roman(minuend, subtrahend);
-        ck_assert_ptr_eq(difference, NULL);
-        free_roman(minuend);
-        free_roman(subtrahend);
-        free_roman(difference);
-    }
+    minuend = new_roman(p->minuend);
+    ck_assert_ptr_ne(minuend, NULL);
+    subtrahend = new_roman(p->subtrahend);
+    ck_assert_ptr_ne(subtrahend, NULL);
+    difference = subtract_roman(minuend, subtrahend);
+    ck_assert_ptr_eq(difference, NULL);
+    free_roman(minuend);
+    free_roman(subtrahend);
+    free_roman(difference);
 }
 END_TEST
 
@@ -506,7 +501,10 @@ Suite *roman_suite(void)
     );
 
     tcase_add_test(tc_core, test_addition_overflow_roman_numerals);
-    tcase_add_test(tc_core, test_bad_subtract_roman_numerals);
+    tcase_add_loop_test(
+        tc_core, test_bad_subtract_roman_numerals,
+        0, ARRAY_LENGTH(sub_bad_examples)
+    );
     suite_add_tcase(s, tc_math);
 
     return s;
