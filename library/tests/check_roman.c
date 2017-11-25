@@ -86,29 +86,25 @@ START_TEST(test_new_roman)
 }
 END_TEST
 
+struct new_uint_example_struct {
+    unsigned value; // Both input and expected output
+};
+static const struct new_uint_example_struct new_uint_examples[] = {
+    {1U},
+    {2U},
+    {3998U},
+    {3999U},
+};
 START_TEST(test_new_roman_from_uint)
 {
-    struct example_struct {
-        unsigned value; // Both input and expected output
-    };
-    struct example_struct examples[] = {
-        {1U},
-        {2U},
-        {3998U},
-        {3999U},
-    };
-    int i;
-
-    struct example_struct *p;
+    const struct new_uint_example_struct *p;
     struct roman_struct *r;
 
-    for (i = 0; i < ARRAY_LENGTH(examples); i++) {
-        p = &examples[i];
+    p = &new_uint_examples[_i];
 
-        r = new_roman_from_uint(p->value);
-        ck_assert_uint_eq(get_roman_value(r), p->value);
-        free_roman(r);
-    }
+    r = new_roman_from_uint(p->value);
+    ck_assert_uint_eq(get_roman_value(r), p->value);
+    free_roman(r);
 }
 END_TEST
 
@@ -469,7 +465,8 @@ Suite *roman_suite(void)
 
     tcase_add_loop_test(
         tc_core, test_new_roman, 0, ARRAY_LENGTH(new_good_examples));
-    tcase_add_test(tc_core, test_new_roman_from_uint);
+    tcase_add_loop_test(
+        tc_core, test_new_roman_from_uint, 0, ARRAY_LENGTH(new_uint_examples));
     tcase_add_loop_test(
         tc_core, test_new_bad_roman, 0, ARRAY_LENGTH(new_bad_examples));
     tcase_add_test(tc_core, test_new_bad_roman_from_uint);
