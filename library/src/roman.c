@@ -6,7 +6,7 @@
 #define FALSE (0)
 #define TRUE (!FALSE)
 
-#define ARRAY_LENGTH(x) (sizeof(x) / sizeof(*(x)))
+#define ARRAY_LENGTH(x) ((int)(sizeof(x) / sizeof(*(x))))
 
 #define MIN_ROMAN_NUMERAL_VALUE (1U)
 #define MAX_ROMAN_NUMERAL_VALUE (3999U)
