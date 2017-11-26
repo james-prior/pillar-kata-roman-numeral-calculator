@@ -2,7 +2,7 @@
 #include <check.h>
 #include "../src/roman.h"
 
-#define ARRAY_LENGTH(x) (sizeof(x) / sizeof(*(x)))
+#define ARRAY_LENGTH(x) ((int)(sizeof(x) / sizeof(*(x))))
 
 struct new_good_example_struct {
     char *roman_numeral;
