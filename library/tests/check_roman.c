@@ -466,26 +466,25 @@ Suite *roman_suite(void)
     tc_print = tcase_create("print");
 
     tcase_add_loop_test(
-        tc_core, test_print_roman, 0, ARRAY_LENGTH(print_good_examples));
+        tc_print, test_print_roman, 0, ARRAY_LENGTH(print_good_examples));
     suite_add_tcase(s, tc_print);
 
     /* do roman numeral arithment */
     tc_math = tcase_create("arithmetic");
 
     tcase_add_loop_test(
-        tc_core, test_add_roman_numerals,
+        tc_math, test_add_roman_numerals,
         0, ARRAY_LENGTH(add_good_examples)
     );
     tcase_add_loop_test(
-        tc_core, test_subtract_roman_numerals,
+        tc_math, test_subtract_roman_numerals,
         0, ARRAY_LENGTH(sub_good_examples)
     );
-
     tcase_add_loop_test(
-        tc_core, test_addition_overflow_roman_numerals,
+        tc_math, test_addition_overflow_roman_numerals,
         0, ARRAY_LENGTH(add_bad_examples));
     tcase_add_loop_test(
-        tc_core, test_bad_subtract_roman_numerals,
+        tc_math, test_bad_subtract_roman_numerals,
         0, ARRAY_LENGTH(sub_bad_examples)
     );
     suite_add_tcase(s, tc_math);
