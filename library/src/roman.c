@@ -140,7 +140,6 @@ struct roman_struct *add_roman(
 {
     unsigned sum;
     struct roman_struct *r;
-    char *s;
 
     sum = addend1->value + addend2->value;
     r = new_roman_from_uint(sum);
@@ -157,7 +156,6 @@ struct roman_struct *subtract_roman(
 {
     unsigned difference;
     struct roman_struct *r;
-    char *s;
 
     difference = minuend->value - subtrahend->value;
     r = new_roman_from_uint(difference);
