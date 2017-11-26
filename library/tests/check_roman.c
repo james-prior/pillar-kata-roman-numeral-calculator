@@ -443,8 +443,6 @@ Suite *roman_suite(void)
 {
     Suite *s;
     TCase *tc_core;
-    TCase *tc_print;
-    TCase *tc_math;
 
     s = suite_create("Roman");
 
@@ -460,34 +458,28 @@ Suite *roman_suite(void)
     tcase_add_loop_test(
         tc_core, test_new_bad_roman_from_uint,
         0, ARRAY_LENGTH(new_bad_uint_bad_examples));
-    suite_add_tcase(s, tc_core);
 
     /* print roman numerals */
-    tc_print = tcase_create("print");
-
     tcase_add_loop_test(
-        tc_print, test_print_roman, 0, ARRAY_LENGTH(print_good_examples));
-    suite_add_tcase(s, tc_print);
+        tc_core, test_print_roman, 0, ARRAY_LENGTH(print_good_examples));
 
     /* do roman numeral arithment */
-    tc_math = tcase_create("arithmetic");
-
     tcase_add_loop_test(
-        tc_math, test_add_roman_numerals,
+        tc_core, test_add_roman_numerals,
         0, ARRAY_LENGTH(add_good_examples)
     );
     tcase_add_loop_test(
-        tc_math, test_subtract_roman_numerals,
+        tc_core, test_subtract_roman_numerals,
         0, ARRAY_LENGTH(sub_good_examples)
     );
     tcase_add_loop_test(
-        tc_math, test_addition_overflow_roman_numerals,
+        tc_core, test_addition_overflow_roman_numerals,
         0, ARRAY_LENGTH(add_bad_examples));
     tcase_add_loop_test(
-        tc_math, test_bad_subtract_roman_numerals,
+        tc_core, test_bad_subtract_roman_numerals,
         0, ARRAY_LENGTH(sub_bad_examples)
     );
-    suite_add_tcase(s, tc_math);
+    suite_add_tcase(s, tc_core);
 
     return s;
 }
