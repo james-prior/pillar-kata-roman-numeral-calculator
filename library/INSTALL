@@ -1,4 +1,5 @@
 # this is a very rough work in progress
+# works for ubuntu 16.04
 
 sudo apt install autoconf
 sudo apt install check
@@ -11,5 +12,9 @@ make
 make check
 sudo make install
 sudo ldconfig
-sudo cp src/money.h /usr/local/include/
-while inotifywait -r -e modify src tests; do make;make check; done
+sudo cp src/roman.h /usr/local/include/
+while inotifywait -r -e modify src tests; do
+    make
+    make check
+    cat tests/test-suite.log
+done
