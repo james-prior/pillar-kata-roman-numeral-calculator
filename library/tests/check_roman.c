@@ -4,51 +4,6 @@
 
 #define ARRAY_LENGTH(x) ((int)(sizeof(x) / sizeof(*(x))))
 
-// struct new_uint_example_struct {
-//     unsigned value; // Both input and expected output
-// };
-// static const struct new_uint_example_struct new_uint_examples[] = {
-//     {1U},
-//     {2U},
-//     {3998U},
-//     {3999U},
-// };
-// START_TEST(test_new_roman_from_uint)
-// {
-//     const struct new_uint_example_struct *p;
-//     struct roman_struct *r;
-// 
-//     p = &new_uint_examples[_i];
-// 
-//     r = new_roman_from_uint(p->value);
-//     ck_assert_uint_eq(get_roman_value(r), p->value);
-//     free_roman(r);
-// }
-// END_TEST
-// 
-// struct new_bad_uint_example_struct {
-//     unsigned value; // Both input and expected output
-// };
-// static const struct new_bad_uint_example_struct new_bad_uint_bad_examples[] = {
-//     {0U},
-//     {4000U},
-//     {4001U},
-//     {(unsigned)-1},
-// };
-// START_TEST(test_new_bad_roman_from_uint)
-// {
-//     const struct new_bad_uint_example_struct *p;
-//     struct roman_struct *r;
-// 
-//     p = &new_bad_uint_bad_examples[_i];
-// 
-//     r = new_roman_from_uint(p->value);
-//     ck_assert_ptr_eq(r, NULL);
-//     if (r != NULL)
-//         free_roman(r);
-// }
-// END_TEST
-// 
 // struct print_example_struct {
 //     unsigned value;
 //     char *expected_roman_numeral;
