@@ -29,10 +29,10 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
 {
     static char *roman_numeral_pattern = (
         "^"
-        "\\(MM\\|MMM\\|M\\)\\?"
-        "\\(CCC\\|CM\\|C\\|CD\\|DCCC\\|D\\|CC\\|DCC\\|DC\\)\\?"
-        "\\(XX\\|XL\\|LXX\\|L\\|XC\\|XXX\\|LX\\|LXXX\\|X\\)\\?"
-        "\\(III\\|IV\\|VI\\|IX\\|V\\|II\\|VII\\|I\\|VIII\\)\\?"
+        "\\(M\\|MM\\|MMM\\)\\?"
+        "\\(C\\|CC\\|CCC\\|CD\\|D\\|DC\\|DCC\\|DCCC\\|CM\\)\\?"
+        "\\(X\\|XX\\|XXX\\|XL\\|L\\|LX\\|LXX\\|LXXX\\|XC\\)\\?"
+        "\\(I\\|II\\|III\\|IV\\|V\\|VI\\|VII\\|VIII\\|IX\\)\\?"
         "$"
     );
     regex_t roman_numeral_regex;
