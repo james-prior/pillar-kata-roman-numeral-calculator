@@ -181,55 +181,43 @@ START_TEST(test_add_roman_numerals)
 }
 END_TEST
 
-// struct sub_good_example_struct {
-//     // all are Roman numerals.
-//     char *minuend;
-//     char *subtrahend;
-//     char *expected_difference;
-// };
-// static const struct sub_good_example_struct sub_good_examples[] = {
-//     {"II", "I", "I"},
-//     {"III", "II", "I"},
-//     {"V", "III", "II"},
-//     {"VIII", "V", "III"},
-//     {"XIII", "VIII", "V"},
-//     {"XXI", "XIII", "VIII"},
-//     {"XXXIV", "XXI", "XIII"},
-//     {"LV", "XXXIV", "XXI"},
-//     {"LXXXIX", "LV", "XXXIV"},
-//     {"CXLIV", "LXXXIX", "LV"},
-//     {"CCXXXIII", "CXLIV", "LXXXIX"},
-//     {"CCCLXXVII", "CCXXXIII", "CXLIV"},
-//     {"DCX", "CCCLXXVII", "CCXXXIII"},
-//     {"CMLXXXVII", "DCX", "CCCLXXVII"},
-//     {"MDXCVII", "CMLXXXVII", "DCX"},
-//     {"MMDLXXXIV", "MDXCVII", "CMLXXXVII"},
-//     {"MMMCMXCIX", "I", "MMMCMXCVIII"},
-// };
-// START_TEST(test_subtract_roman_numerals)
-// {
-//     const struct sub_good_example_struct *p;
-//     struct roman_struct *minuend;
-//     struct roman_struct *subtrahend;
-//     struct roman_struct *expected_difference;
-//     char *s;
-// 
-//     p = &sub_good_examples[_i];
-// 
-//     minuend = new_roman(p->minuend);
-//     ck_assert_ptr_ne(minuend, NULL);
-//     subtrahend = new_roman(p->subtrahend);
-//     ck_assert_ptr_ne(subtrahend, NULL);
-//     expected_difference = subtract_roman(minuend, subtrahend);
-//     ck_assert_ptr_ne(expected_difference, NULL);
-//     s = print_roman(expected_difference);
-//     ck_assert_ptr_ne(s, NULL);
-//     ck_assert_str_eq(s, p->expected_difference);
-//     free_roman(minuend);
-//     free_roman(subtrahend);
-//     free_roman(expected_difference);
-// }
-// END_TEST
+struct sub_good_example_struct {
+    // all are Roman numerals.
+    char *minuend;
+    char *subtrahend;
+    char *expected_difference;
+};
+static const struct sub_good_example_struct sub_good_examples[] = {
+    {"II", "I", "I"},
+    {"III", "II", "I"},
+    {"V", "III", "II"},
+    {"VIII", "V", "III"},
+    {"XIII", "VIII", "V"},
+    {"XXI", "XIII", "VIII"},
+    {"XXXIV", "XXI", "XIII"},
+    {"LV", "XXXIV", "XXI"},
+    {"LXXXIX", "LV", "XXXIV"},
+    {"CXLIV", "LXXXIX", "LV"},
+    {"CCXXXIII", "CXLIV", "LXXXIX"},
+    {"CCCLXXVII", "CCXXXIII", "CXLIV"},
+    {"DCX", "CCCLXXVII", "CCXXXIII"},
+    {"CMLXXXVII", "DCX", "CCCLXXVII"},
+    {"MDXCVII", "CMLXXXVII", "DCX"},
+    {"MMDLXXXIV", "MDXCVII", "CMLXXXVII"},
+    {"MMMCMXCIX", "I", "MMMCMXCVIII"},
+};
+START_TEST(test_subtract_roman_numerals)
+{
+    const struct sub_good_example_struct *p;
+    roman_numeral difference;
+    roman_numeral *result;
+
+    p = &sub_good_examples[_i];
+
+    result = subtract_roman_numerals(&difference, p->minuend, p->subtrahend);
+    ck_assert_str_eq((char *)result, p->expected_difference);
+}
+END_TEST
 
 struct add_bad_example_struct {
     char *addend1;
@@ -343,10 +331,10 @@ Suite *roman_suite(void)
         tc_core, test_add_roman_numerals,
         0, ARRAY_LENGTH(add_good_examples)
     );
-    // tcase_add_loop_test(
-    //     tc_core, test_subtract_roman_numerals,
-    //     0, ARRAY_LENGTH(sub_good_examples)
-    // );
+    tcase_add_loop_test(
+        tc_core, test_subtract_roman_numerals,
+        0, ARRAY_LENGTH(sub_good_examples)
+    );
     tcase_add_loop_test(
         tc_core, test_bad_addition_roman_numerals,
         0, ARRAY_LENGTH(add_bad_examples));

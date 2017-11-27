@@ -147,6 +147,21 @@ roman_numeral *add_roman_numerals(
         return NULL;
     return print_roman(sum, a + b);
 }
+
+roman_numeral *subtract_roman_numerals(
+    roman_numeral *difference, char *minuend, char *subtrahend)
+{
+    unsigned a, b;
+
+    a = get_value_of_roman_numeral(minuend);
+    if (a == 0)
+        return NULL;
+    b = get_value_of_roman_numeral(subtrahend);
+    if (b == 0)
+        return NULL;
+    return print_roman(difference, a - b);
+}
+
 // struct roman_struct *add_roman(
 //     struct roman_struct *addend1,
 //     struct roman_struct *addend2
