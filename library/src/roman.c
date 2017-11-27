@@ -22,6 +22,7 @@ static unsigned get_value_of_roman_letter(int roman_letter)
     }
 }
 
+// Returns 0U if any error.
 static unsigned get_value_of_roman_numeral(char *roman_numeral)
 {
     static char *roman_numeral_pattern = (
@@ -60,7 +61,9 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
     return sum;
 }
 
-static roman_numeral *print_roman(roman_numeral *buf, unsigned x)
+// Returns buf if successfully converts x to roman numeral.
+// Returns NULL if any error.
+static roman_numeral *sprint_roman(roman_numeral *buf, unsigned x)
 {
     static char *roman_units[] = {
         "",
@@ -131,31 +134,33 @@ static roman_numeral *print_roman(roman_numeral *buf, unsigned x)
     return (roman_numeral *)s;
 }
 
+// Returns NULL if any error.
 roman_numeral *add_roman_numerals(
     roman_numeral *sum, char *addend1, char *addend2)
 {
     unsigned a, b;
 
     a = get_value_of_roman_numeral(addend1);
-    if (a == 0)
+    if (a == 0U)
         return NULL;
     b = get_value_of_roman_numeral(addend2);
-    if (b == 0)
+    if (b == 0U)
         return NULL;
-    return print_roman(sum, a + b);
+    return sprint_roman(sum, a + b);
 }
 
+// Returns NULL if any error.
 roman_numeral *subtract_roman_numerals(
     roman_numeral *difference, char *minuend, char *subtrahend)
 {
     unsigned a, b;
 
     a = get_value_of_roman_numeral(minuend);
-    if (a == 0)
+    if (a == 0U)
         return NULL;
     b = get_value_of_roman_numeral(subtrahend);
-    if (b == 0)
+    if (b == 0U)
         return NULL;
-    return print_roman(difference, a - b);
+    return sprint_roman(difference, a - b);
 }
 
