@@ -63,7 +63,7 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
     return sum;
 }
 
-char *print_roman(struct roman_struct *roman_numeral)
+static roman_numeral *print_roman(roman_numeral *buf, unsigned x)
 {
     static char *roman_units[] = {
         "",
@@ -114,98 +114,112 @@ char *print_roman(struct roman_struct *roman_numeral)
         roman_thousands,
     };
 
-    static char buf[4 * ARRAY_LENGTH(roman_digits_lists) + 1];
+    char *s = (char *)buf;
     unsigned digits[ARRAY_LENGTH(roman_digits_lists)]; /*
         least significant digit first */
-    unsigned value;
     int i;
 
-    value = roman_numeral->value;
+    // if (x < MIN_ROMAN_NUMERAL_VALUE || x > MAX_ROMAN_NUMERAL_VALUE)
+    //     return NULL;
+
     for (i = 0; i < ARRAY_LENGTH(digits); i++) {
-        digits[i] = value % 10U;
-        value /= 10U;
+        digits[i] = x % 10U;
+        x /= 10U;
     }
 
-    buf[0] = '\0';
+    s[0] = '\0';
     for (i = ARRAY_LENGTH(roman_digits_lists); --i >= 0; )
-        strcat(buf, roman_digits_lists[i][digits[i]]);
+        strcat(s, roman_digits_lists[i][digits[i]]);
 
-    return buf;
+    return (roman_numeral *)s;
 }
 
-struct roman_struct *add_roman(
-    struct roman_struct *addend1,
-    struct roman_struct *addend2
-)
+roman_numeral *add_roman_numerals(
+    roman_numeral *sum, char *addend1, char *addend2)
 {
-    unsigned sum;
-    struct roman_struct *r;
+    unsigned a, b;
 
-    sum = addend1->value + addend2->value;
-    r = new_roman_from_uint(sum);
-    if (r == NULL)
+    a = get_value_of_roman_numeral(addend1);
+    if (a == 0)
         return NULL;
-
-    return r;
-}
-
-struct roman_struct *subtract_roman(
-    struct roman_struct *minuend,
-    struct roman_struct *subtrahend
-)
-{
-    unsigned difference;
-    struct roman_struct *r;
-
-    difference = minuend->value - subtrahend->value;
-    r = new_roman_from_uint(difference);
-    if (r == NULL)
+    b = get_value_of_roman_numeral(addend2);
+    if (b == 0)
         return NULL;
-
-    return r;
+    return print_roman(sum, a + b);
 }
-
-struct roman_struct *new_roman(char *roman_numeral)
-{
-    struct roman_struct *r;
-
-    r = malloc(sizeof(struct roman_struct));
-    if (r == NULL)
-        return NULL;
-
-    r->value = get_value_of_roman_numeral(roman_numeral);
-    if (r->value <= 0) {
-        free_roman(r);
-        return NULL;
-    }
-
-    return r;
-}
-
-struct roman_struct *new_roman_from_uint(unsigned value)
-{
-    struct roman_struct *r;
-
-    if (value < MIN_ROMAN_NUMERAL_VALUE ||
-            value > MAX_ROMAN_NUMERAL_VALUE)
-        return NULL;
-
-    r = malloc(sizeof(struct roman_struct));
-    if (r == NULL)
-        return NULL;
-
-    r->value = value;
-
-    return r;
-}
-
-unsigned get_roman_value(struct roman_struct *r)
-{
-    return r->value;
-}
-
-void free_roman(struct roman_struct *r)
-{
-    free(r);
-}
-
+// struct roman_struct *add_roman(
+//     struct roman_struct *addend1,
+//     struct roman_struct *addend2
+// )
+// {
+//     unsigned sum;
+//     struct roman_struct *r;
+// 
+//     sum = addend1->value + addend2->value;
+//     r = new_roman_from_uint(sum);
+//     if (r == NULL)
+//         return NULL;
+// 
+//     return r;
+// }
+// 
+// struct roman_struct *subtract_roman(
+//     struct roman_struct *minuend,
+//     struct roman_struct *subtrahend
+// )
+// {
+//     unsigned difference;
+//     struct roman_struct *r;
+// 
+//     difference = minuend->value - subtrahend->value;
+//     r = new_roman_from_uint(difference);
+//     if (r == NULL)
+//         return NULL;
+// 
+//     return r;
+// }
+// 
+// struct roman_struct *new_roman(char *roman_numeral)
+// {
+//     struct roman_struct *r;
+// 
+//     r = malloc(sizeof(struct roman_struct));
+//     if (r == NULL)
+//         return NULL;
+// 
+//     r->value = get_value_of_roman_numeral(roman_numeral);
+//     if (r->value <= 0) {
+//         free_roman(r);
+//         return NULL;
+//     }
+// 
+//     return r;
+// }
+// 
+// struct roman_struct *new_roman_from_uint(unsigned value)
+// {
+//     struct roman_struct *r;
+// 
+//     if (value < MIN_ROMAN_NUMERAL_VALUE ||
+//             value > MAX_ROMAN_NUMERAL_VALUE)
+//         return NULL;
+// 
+//     r = malloc(sizeof(struct roman_struct));
+//     if (r == NULL)
+//         return NULL;
+// 
+//     r->value = value;
+// 
+//     return r;
+// }
+// 
+// unsigned get_roman_value(struct roman_struct *r)
+// {
+//     return r->value;
+// }
+// 
+// void free_roman(struct roman_struct *r)
+// {
+//     free(r);
+// }
+// 
