@@ -3,9 +3,6 @@
 #include <regex.h>        
 #include "roman.h"
 
-// #define FALSE (0)
-// #define TRUE (!FALSE)
-
 #define ARRAY_LENGTH(x) ((int)(sizeof(x) / sizeof(*(x))))
 
 #define MIN_ROMAN_NUMERAL_VALUE (1U)
@@ -162,79 +159,3 @@ roman_numeral *subtract_roman_numerals(
     return print_roman(difference, a - b);
 }
 
-// struct roman_struct *add_roman(
-//     struct roman_struct *addend1,
-//     struct roman_struct *addend2
-// )
-// {
-//     unsigned sum;
-//     struct roman_struct *r;
-// 
-//     sum = addend1->value + addend2->value;
-//     r = new_roman_from_uint(sum);
-//     if (r == NULL)
-//         return NULL;
-// 
-//     return r;
-// }
-// 
-// struct roman_struct *subtract_roman(
-//     struct roman_struct *minuend,
-//     struct roman_struct *subtrahend
-// )
-// {
-//     unsigned difference;
-//     struct roman_struct *r;
-// 
-//     difference = minuend->value - subtrahend->value;
-//     r = new_roman_from_uint(difference);
-//     if (r == NULL)
-//         return NULL;
-// 
-//     return r;
-// }
-// 
-// struct roman_struct *new_roman(char *roman_numeral)
-// {
-//     struct roman_struct *r;
-// 
-//     r = malloc(sizeof(struct roman_struct));
-//     if (r == NULL)
-//         return NULL;
-// 
-//     r->value = get_value_of_roman_numeral(roman_numeral);
-//     if (r->value <= 0) {
-//         free_roman(r);
-//         return NULL;
-//     }
-// 
-//     return r;
-// }
-// 
-// struct roman_struct *new_roman_from_uint(unsigned value)
-// {
-//     struct roman_struct *r;
-// 
-//     if (value < MIN_ROMAN_NUMERAL_VALUE ||
-//             value > MAX_ROMAN_NUMERAL_VALUE)
-//         return NULL;
-// 
-//     r = malloc(sizeof(struct roman_struct));
-//     if (r == NULL)
-//         return NULL;
-// 
-//     r->value = value;
-// 
-//     return r;
-// }
-// 
-// unsigned get_roman_value(struct roman_struct *r)
-// {
-//     return r->value;
-// }
-// 
-// void free_roman(struct roman_struct *r)
-// {
-//     free(r);
-// }
-// 
