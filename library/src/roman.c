@@ -3,13 +3,13 @@
 #include <regex.h>        
 #include "roman.h"
 
-#define FALSE (0)
-#define TRUE (!FALSE)
+// #define FALSE (0)
+// #define TRUE (!FALSE)
 
 #define ARRAY_LENGTH(x) ((int)(sizeof(x) / sizeof(*(x))))
 
-#define MIN_ROMAN_NUMERAL_VALUE (1U)
-#define MAX_ROMAN_NUMERAL_VALUE (3999U)
+// #define MIN_ROMAN_NUMERAL_VALUE (1U)
+// #define MAX_ROMAN_NUMERAL_VALUE (3999U)
 
 static unsigned get_value_of_roman_letter(int roman_letter)
 {
