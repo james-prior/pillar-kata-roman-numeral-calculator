@@ -373,39 +373,30 @@ END_TEST
 //     free_roman(expected_difference);
 // }
 // END_TEST
-// 
-// struct add_bad_example_struct {
-//     // all are Roman numerals.
-//     char *addend1;
-//     char *addend2;
-// };
-// static const struct add_bad_example_struct add_bad_examples[] = {
-//     {"MM", "MM"},
-//     {"MMMCMXCIX", "I"},
-//     {"I", "MMMCMXCIX"},
-//     {"MMMCMXCIX", "MMMCMXCIX"},
-// };
-// START_TEST(test_addition_overflow_roman_numerals)
-// {
-//     const struct add_bad_example_struct *p;
-//     struct roman_struct *addend1;
-//     struct roman_struct *addend2;
-//     struct roman_struct *sum;
-// 
-//     p = &add_bad_examples[_i];
-// 
-//     addend1 = new_roman(p->addend1);
-//     ck_assert_ptr_ne(addend1, NULL);
-//     addend2 = new_roman(p->addend2);
-//     ck_assert_ptr_ne(addend2, NULL);
-//     sum = add_roman(addend1, addend2);
-//     ck_assert_ptr_eq(sum, NULL);
-//     free_roman(addend1);
-//     free_roman(addend2);
-//     free_roman(sum);
-// }
-// END_TEST
-// 
+
+struct add_bad_example_struct {
+    char *addend1;
+    char *addend2;
+};
+static const struct add_bad_example_struct add_bad_examples[] = {
+    {"MM", "MM"},
+    {"MMMCMXCIX", "I"},
+    {"I", "MMMCMXCIX"},
+    {"MMMCMXCIX", "MMMCMXCIX"},
+};
+START_TEST(test_addition_overflow_roman_numerals)
+{
+    const struct add_bad_example_struct *p;
+    roman_numeral sum;
+    roman_numeral *result;
+
+    p = &add_bad_examples[_i];
+
+    result = add_roman_numerals(&sum, p->addend1, p->addend2);
+    ck_assert_ptr_eq((char *)result, NULL);
+}
+END_TEST
+
 // struct bad_sub_example_struct {
 //     // all are Roman numerals.
 //     char *minuend;
@@ -458,9 +449,9 @@ Suite *roman_suite(void)
     //     tc_core, test_subtract_roman_numerals,
     //     0, ARRAY_LENGTH(sub_good_examples)
     // );
-    // tcase_add_loop_test(
-    //     tc_core, test_addition_overflow_roman_numerals,
-    //     0, ARRAY_LENGTH(add_bad_examples));
+    tcase_add_loop_test(
+        tc_core, test_addition_overflow_roman_numerals,
+        0, ARRAY_LENGTH(add_bad_examples));
     // tcase_add_loop_test(
     //     tc_core, test_bad_subtract_roman_numerals,
     //     0, ARRAY_LENGTH(sub_bad_examples)

@@ -8,8 +8,8 @@
 
 #define ARRAY_LENGTH(x) ((int)(sizeof(x) / sizeof(*(x))))
 
-// #define MIN_ROMAN_NUMERAL_VALUE (1U)
-// #define MAX_ROMAN_NUMERAL_VALUE (3999U)
+#define MIN_ROMAN_NUMERAL_VALUE (1U)
+#define MAX_ROMAN_NUMERAL_VALUE (3999U)
 
 static unsigned get_value_of_roman_letter(int roman_letter)
 {
@@ -119,8 +119,8 @@ static roman_numeral *print_roman(roman_numeral *buf, unsigned x)
         least significant digit first */
     int i;
 
-    // if (x < MIN_ROMAN_NUMERAL_VALUE || x > MAX_ROMAN_NUMERAL_VALUE)
-    //     return NULL;
+    if (x < MIN_ROMAN_NUMERAL_VALUE || x > MAX_ROMAN_NUMERAL_VALUE)
+        return NULL;
 
     for (i = 0; i < ARRAY_LENGTH(digits); i++) {
         digits[i] = x % 10U;
