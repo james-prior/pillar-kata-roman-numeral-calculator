@@ -298,6 +298,18 @@ static const struct add_good_example_struct add_good_examples[] = {
     {"DCX", "CMLXXXVII", "MDXCVII"},
     {"CMLXXXVII", "MDXCVII", "MMDLXXXIV"},
     {"MMMCMXCVIII", "I", "MMMCMXCIX"},
+    // Trying to test all roman digits.
+    {"CXXIII", "CXI", "CCXXXIV"},
+    {"CXI", "CCXXXIV", "CCCXLV"},
+    {"CCCXLV", "CXI", "CDLVI"},
+    {"CXI", "CDLVI", "DLXVII"},
+    {"DLXVII", "CXI", "DCLXXVIII"},
+    {"CXI", "DCLXXVIII", "DCCLXXXIX"},
+    {"DCCLXXXIX", "CI", "DCCCXC"},
+    {"DCCCXC", "XI", "CMI"},
+    {"CMI", "CXI", "MXII"},
+    {"MXII", "MCXI", "MMCXXIII"},
+    {"MCXI", "MMCXXIII", "MMMCCXXXIV"},
 };
 START_TEST(test_add_roman_numerals)
 {
