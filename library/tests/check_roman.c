@@ -283,38 +283,30 @@ START_TEST(test_bad_addition_roman_numerals)
 }
 END_TEST
 
-// struct bad_sub_example_struct {
-//     // all are Roman numerals.
-//     char *minuend;
-//     char *subtrahend;
-// };
-// static const struct bad_sub_example_struct sub_bad_examples[] = {
-//     {"I", "I"},
-//     {"I", "II"},
-//     {"M", "MM"},
-//     {"MMMCMXCVIII", "MMMCMXCIX"},
-//     {"MMMCMXCIX", "MMMCMXCIX"},
-// };
-// START_TEST(test_bad_subtract_roman_numerals)
-// {
-//     const struct bad_sub_example_struct *p;
-//     struct roman_struct *minuend;
-//     struct roman_struct *subtrahend;
-//     struct roman_struct *difference;
-// 
-//     p = &sub_bad_examples[_i];
-// 
-//     minuend = new_roman(p->minuend);
-//     ck_assert_ptr_ne(minuend, NULL);
-//     subtrahend = new_roman(p->subtrahend);
-//     ck_assert_ptr_ne(subtrahend, NULL);
-//     difference = subtract_roman(minuend, subtrahend);
-//     ck_assert_ptr_eq(difference, NULL);
-//     free_roman(minuend);
-//     free_roman(subtrahend);
-//     free_roman(difference);
-// }
-// END_TEST
+struct bad_sub_example_struct {
+    // all are Roman numerals.
+    char *minuend;
+    char *subtrahend;
+};
+static const struct bad_sub_example_struct sub_bad_examples[] = {
+    {"I", "I"},
+    {"I", "II"},
+    {"M", "MM"},
+    {"MMMCMXCVIII", "MMMCMXCIX"},
+    {"MMMCMXCIX", "MMMCMXCIX"},
+};
+START_TEST(test_bad_subtract_roman_numerals)
+{
+    const struct bad_sub_example_struct *p;
+    roman_numeral difference;
+    roman_numeral *result;
+
+    p = &sub_bad_examples[_i];
+
+    result = subtract_roman_numerals(&difference, p->minuend, p->subtrahend);
+    ck_assert_ptr_eq((char *)result, NULL);
+}
+END_TEST
 
 Suite *roman_suite(void)
 {
@@ -338,10 +330,10 @@ Suite *roman_suite(void)
     tcase_add_loop_test(
         tc_core, test_bad_addition_roman_numerals,
         0, ARRAY_LENGTH(add_bad_examples));
-    // tcase_add_loop_test(
-    //     tc_core, test_bad_subtract_roman_numerals,
-    //     0, ARRAY_LENGTH(sub_bad_examples)
-    // );
+    tcase_add_loop_test(
+        tc_core, test_bad_subtract_roman_numerals,
+        0, ARRAY_LENGTH(sub_bad_examples)
+    );
     suite_add_tcase(s, tc_core);
 
     return s;
