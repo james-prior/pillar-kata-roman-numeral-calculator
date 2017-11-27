@@ -4,88 +4,6 @@
 
 #define ARRAY_LENGTH(x) ((int)(sizeof(x) / sizeof(*(x))))
 
-// struct new_good_example_struct {
-//     char *roman_numeral;
-//     unsigned expected_value;
-// };
-// static const struct new_good_example_struct new_good_examples[] = {
-//     {"I", 1U},
-//     {"II", 2U},
-//     {"III", 3U},
-//     {"IV", 4U},
-//     {"V", 5U},
-//     {"VI", 6U},
-//     {"VII", 7U},
-//     {"VIII", 8U},
-//     {"IX", 9U},
-//     {"X", 10U},
-//     {"XI", 11U},
-//     {"XII", 12U},
-//     {"XIII", 13U},
-//     {"XIV", 14U},
-//     {"XV", 15U},
-//     {"XVI", 16U},
-//     {"XVII", 17U},
-//     {"XVIII", 18U},
-//     {"XIX", 19U},
-//     {"XX", 20U},
-//     {"XXIX", 29U},
-//     {"XXX", 30U},
-//     {"XXXVIII", 38U},
-//     {"XL", 40U},
-//     {"XLI", 41U},
-//     {"XLIV", 44U},
-//     {"XLIX", 49U},
-//     {"L", 50U},
-//     {"LVI", 56U},
-//     {"LXV", 65U},
-//     {"LXVIII", 68U},
-//     {"LXXIV", 74U},
-//     {"LXXXIII", 83U},
-//     {"LXXXIX", 89U},
-//     {"XCII", 92U},
-//     {"XCIX", 99U},
-//     {"C", 100U},
-//     {"CXXIII", 123U},
-//     {"CXCIX", 199U},
-//     {"CC", 200U},
-//     {"CCXXXIV", 234U},
-//     {"CCC", 300U},
-//     {"CCCXLV", 345U},
-//     {"CCCLXXXIII", 383U},
-//     {"CDLVI", 456U},
-//     {"CDXCIX", 499U},
-//     {"D", 500U},
-//     {"DLXVII", 567U},
-//     {"DCLXXVIII", 678U},
-//     {"DCCLXXXIX", 789U},
-//     {"DCCCLXXXVIII", 888U},
-//     {"DCCCXC", 890U},
-//     {"CMI", 901U},
-//     {"CMXCIX", 999U},
-//     {"M", 1000U},
-//     {"MXCVIII", 1098U},
-//     {"MDCCCLXXXIII", 1883U},
-//     {"MM", 2000U},
-//     {"MMCIX", 2109U},
-//     {"MMM", 3000U},
-//     {"MMMCCX", 3210U},
-//     {"MMMDCCCLXXXIII", 3883U},
-//     {"MMMCMXCIX", 3999U},
-// };
-// START_TEST(test_new_roman)
-// {
-//     const struct new_good_example_struct *p;
-//     struct roman_struct *r;
-// 
-//     p = &new_good_examples[_i];
-// 
-//     r = new_roman(p->roman_numeral);
-//     ck_assert_uint_eq(get_roman_value(r), p->expected_value);
-//     free_roman(r);
-// }
-// END_TEST
-// 
 // struct new_uint_example_struct {
 //     unsigned value; // Both input and expected output
 // };
@@ -252,6 +170,69 @@ static const struct add_good_example_struct add_good_examples[] = {
     {"CMI", "CXI", "MXII"},
     {"MXII", "MCXI", "MMCXXIII"},
     {"MCXI", "MMCXXIII", "MMMCCXXXIV"},
+    // Test many roman numerals (math is trivial).
+    {"I", "I", "II"},
+    {"II", "I", "III"},
+    {"III", "I", "IV"},
+    {"IV", "I", "V"},
+    {"V", "I", "VI"},
+    {"VI", "I", "VII"},
+    {"VII", "I", "VIII"},
+    {"VIII", "I", "IX"},
+    {"IX", "I", "X"},
+    {"X", "I", "XI"},
+    {"XI", "I", "XII"},
+    {"XII", "I", "XIII"},
+    {"XIII", "I", "XIV"},
+    {"XIV", "I", "XV"},
+    {"XV", "I", "XVI"},
+    {"XVI", "I", "XVII"},
+    {"XVII", "I", "XVIII"},
+    {"XVIII", "I", "XIX"},
+    {"XIX", "I", "XX"},
+    {"XX", "I", "XXI"},
+    {"XXIX", "I", "XXX"},
+    {"XXX", "I", "XXXI"},
+    {"XXXVIII", "I", "XXXIX"},
+    {"XL", "I", "XLI"},
+    {"XLI", "I", "XLII"},
+    {"XLIV", "I", "XLV"},
+    {"XLIX", "I", "L"},
+    {"L", "I", "LI"},
+    {"LVI", "I", "LVII"},
+    {"LXV", "I", "LXVI"},
+    {"LXVIII", "I", "LXIX"},
+    {"LXXIV", "I", "LXXV"},
+    {"LXXXIII", "I", "LXXXIV"},
+    {"LXXXIX", "I", "XC"},
+    {"XCII", "I", "XCIII"},
+    {"XCIX", "I", "C"},
+    {"C", "I", "CI"},
+    {"CXXIII", "I", "CXXIV"},
+    {"CXCIX", "I", "CC"},
+    {"CC", "I", "CCI"},
+    {"CCXXXIV", "I", "CCXXXV"},
+    {"CCC", "I", "CCCI"},
+    {"CCCXLV", "I", "CCCXLVI"},
+    {"CCCLXXXIII", "I", "CCCLXXXIV"},
+    {"CDLVI", "I", "CDLVII"},
+    {"CDXCIX", "I", "D"},
+    {"D", "I", "DI"},
+    {"DLXVII", "I", "DLXVIII"},
+    {"DCLXXVIII", "I", "DCLXXIX"},
+    {"DCCLXXXIX", "I", "DCCXC"},
+    {"DCCCLXXXVIII", "I", "DCCCLXXXIX"},
+    {"DCCCXC", "I", "DCCCXCI"},
+    {"CMI", "I", "CMII"},
+    {"CMXCIX", "I", "M"},
+    {"M", "I", "MI"},
+    {"MXCVIII", "I", "MXCIX"},
+    {"MDCCCLXXXIII", "I", "MDCCCLXXXIV"},
+    {"MM", "I", "MMI"},
+    {"MMCIX", "I", "MMCX"},
+    {"MMM", "I", "MMMI"},
+    {"MMMCCX", "I", "MMMCCXI"},
+    {"MMMDCCCLXXXIII", "I", "MMMDCCCLXXXIV"},
 };
 START_TEST(test_add_roman_numerals)
 {
