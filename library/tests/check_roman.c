@@ -220,6 +220,7 @@ START_TEST(test_subtract_roman_numerals)
 END_TEST
 
 struct add_bad_example_struct {
+    // all are Roman numerals.
     char *addend1;
     char *addend2;
 };
@@ -231,14 +232,13 @@ static const struct add_bad_example_struct add_bad_examples[] = {
     {"MMMCMXCIX", "MMMCMXCIX"},
     // empty string
     {"", ""},
-    /* roman letter repeated too many times consecutively */
+    // Roman letter repeated too many times consecutively.
     {"IIII", "IIII"},
     {"IIIII", "IIIII"},
     {"VV", "VV"},
     {"CCCC", "CCCC"},
     {"DD", "DD"},
-    /* subtractive roman letter repeated too many times
-    *  consecutively */
+    // Subtractive roman letter repeated too many times consecutively.
     {"IIV", "IIV"},
     {"IIIV", "IIIV"},
     {"IIIIV", "IIIIV"},
@@ -247,7 +247,7 @@ static const struct add_bad_example_struct add_bad_examples[] = {
     {"XXC", "XXC"},
     {"CCD", "CCD"},
     {"CCM", "CCM"},
-    /* invalid subtractive combinations */
+    // invalid subtractive combinations
     {"VX", "VX"},
     {"IL", "IL"},
     {"VL", "VL"},
@@ -263,12 +263,11 @@ static const struct add_bad_example_struct add_bad_examples[] = {
     {"XM", "XM"},
     {"LM", "LM"},
     {"DM", "DM"},
-    // Invalid letters
-    {"HELLO", "HELLO"},
-    // number that is too large
+    // invalid letters
+    {"HELLO", "WORLD"},
+    {"i", "i"}, // lowercase
+    // Number is too large.
     {"MMMM", "MMMM"},
-    // lowercase
-    {"i", "i"},
 };
 START_TEST(test_bad_addition_roman_numerals)
 {
@@ -315,10 +314,8 @@ Suite *roman_suite(void)
 
     s = suite_create("Roman");
 
-    /* creation test cases */
     tc_core = tcase_create("create");
 
-    /* do roman numeral arithment */
     tcase_add_loop_test(
         tc_core, test_add_roman_numerals,
         0, ARRAY_LENGTH(add_good_examples)
