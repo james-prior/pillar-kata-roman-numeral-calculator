@@ -217,69 +217,68 @@ START_TEST(test_subtract_roman_numerals)
 }
 END_TEST
 
-// struct add_bad_example_struct {
-//     // all are Roman numerals.
-//     char *addend1;
-//     char *addend2;
-// };
-// static const struct add_bad_example_struct add_bad_examples[] = {
-//     // Sum is too big even though addends are valid roman numerals.
-//     {"MM", "MM"},
-//     {"MMMCMXCIX", "I"},
-//     {"I", "MMMCMXCIX"},
-//     {"MMMCMXCIX", "MMMCMXCIX"},
-//     // empty string
-//     {"", ""},
-//     // Roman letter repeated too many times consecutively.
-//     {"IIII", "IIII"},
-//     {"IIIII", "IIIII"},
-//     {"VV", "VV"},
-//     {"CCCC", "CCCC"},
-//     {"DD", "DD"},
-//     // Subtractive roman letter repeated too many times consecutively.
-//     {"IIV", "IIV"},
-//     {"IIIV", "IIIV"},
-//     {"IIIIV", "IIIIV"},
-//     {"IIX", "IIX"},
-//     {"XXL", "XXL"},
-//     {"XXC", "XXC"},
-//     {"CCD", "CCD"},
-//     {"CCM", "CCM"},
-//     // invalid subtractive combinations
-//     {"VX", "VX"},
-//     {"IL", "IL"},
-//     {"VL", "VL"},
-//     {"IC", "IC"},
-//     {"VC", "VC"},
-//     {"LC", "LC"},
-//     {"ID", "ID"},
-//     {"VD", "VD"},
-//     {"XD", "XD"},
-//     {"LD", "LD"},
-//     {"IM", "IM"},
-//     {"VM", "VM"},
-//     {"XM", "XM"},
-//     {"LM", "LM"},
-//     {"DM", "DM"},
-//     // invalid letters
-//     {"HELLO", "WORLD"},
-//     {"i", "i"}, // lowercase
-//     // Number is too large.
-//     {"MMMM", "MMMM"},
-// };
-// START_TEST(test_bad_addition_roman_numerals)
-// {
-//     const struct add_bad_example_struct *p;
-//     roman_numeral sum;
-//     roman_numeral *result;
-// 
-//     p = &add_bad_examples[_i];
-// 
-//     result = add_roman_numerals(&sum, p->addend1, p->addend2);
-//     ck_assert_ptr_eq((char *)result, NULL);
-// }
-// END_TEST
-// 
+struct add_bad_example_struct {
+    // all are Roman numerals.
+    char *addend1;
+    char *addend2;
+};
+static const struct add_bad_example_struct add_bad_examples[] = {
+    // Sum is too big even though addends are valid roman numerals.
+    {"MM", "MM"},
+    {"MMMCMXCIX", "I"},
+    {"I", "MMMCMXCIX"},
+    {"MMMCMXCIX", "MMMCMXCIX"},
+    // empty string
+    {"", ""},
+    // Roman letter repeated too many times consecutively.
+    {"IIII", "IIII"},
+    {"II", "IIIII"},
+    {"VV", "VV"},
+    {"CCCC", "CCCC"},
+    {"DD", "DD"},
+    // Subtractive roman letter repeated too many times consecutively.
+    {"IIV", "IIV"},
+    {"IIIV", "IIIV"},
+    {"IIIIV", "IIIIV"},
+    {"IIX", "IIX"},
+    {"XXL", "XXL"},
+    {"XXC", "XXC"},
+    {"CCD", "CCD"},
+    {"CCM", "CCM"},
+    // invalid subtractive combinations
+    {"VX", "VX"},
+    {"IL", "IL"},
+    {"VL", "VL"},
+    {"IC", "IC"},
+    {"VC", "VC"},
+    {"LC", "LC"},
+    {"ID", "ID"},
+    {"VD", "VD"},
+    {"XD", "XD"},
+    {"LD", "LD"},
+    {"IM", "IM"},
+    {"VM", "VM"},
+    {"XM", "XM"},
+    {"LM", "LM"},
+    {"DM", "DM"},
+    // invalid letters
+    {"HELLO", "WORLD"},
+    {"i", "i"}, // lowercase
+    // Number is too large.
+    {"MMMM", "MMMM"},
+};
+START_TEST(test_bad_addition_roman_numerals)
+{
+    const struct add_bad_example_struct *p;
+    char *result;
+
+    p = &add_bad_examples[_i];
+
+    result = add_roman_numerals(p->addend1, p->addend2);
+    ck_assert_ptr_eq((char *)result, NULL);
+}
+END_TEST
+
 // struct bad_sub_example_struct {
 //     // all are Roman numerals.
 //     char *minuend;
@@ -322,9 +321,9 @@ Suite *roman_suite(void)
         tc_core, test_subtract_roman_numerals,
         0, ARRAY_LENGTH(sub_good_examples)
     );
-    // tcase_add_loop_test(
-    //     tc_core, test_bad_addition_roman_numerals,
-    //     0, ARRAY_LENGTH(add_bad_examples));
+    tcase_add_loop_test(
+        tc_core, test_bad_addition_roman_numerals,
+        0, ARRAY_LENGTH(add_bad_examples));
     // tcase_add_loop_test(
     //     tc_core, test_bad_subtract_roman_numerals,
     //     0, ARRAY_LENGTH(sub_bad_examples)
