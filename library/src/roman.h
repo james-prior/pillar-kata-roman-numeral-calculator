@@ -6,7 +6,6 @@
 // The following return NULL for any error.
 // Otherwise return pointer to static buffers.
 char *add_roman_numerals(char *addend1, char *addend2);
-// char *subtract_roman_numerals(
-//     char *minuend, char *subtrahend);
+char *subtract_roman_numerals(char *minuend, char *subtrahend);
 
 #endif

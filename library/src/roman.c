@@ -148,18 +148,17 @@ char *add_roman_numerals(char *addend1, char *addend2)
     return sprint_roman(a + b);
 }
 
-// // Returns NULL if any error.
-// char *subtract_roman_numerals(
-//     char *minuend, char *subtrahend)
-// {
-//     unsigned a, b;
-// 
-//     a = get_value_of_roman_numeral(minuend);
-//     if (a == 0U)
-//         return NULL;
-//     b = get_value_of_roman_numeral(subtrahend);
-//     if (b == 0U)
-//         return NULL;
-//     return sprint_roman(difference, a - b);
-// }
+// Returns NULL if any error.
+char *subtract_roman_numerals(char *minuend, char *subtrahend)
+{
+    unsigned a, b;
+
+    a = get_value_of_roman_numeral(minuend);
+    if (a == 0U)
+        return NULL;
+    b = get_value_of_roman_numeral(subtrahend);
+    if (b == 0U)
+        return NULL;
+    return sprint_roman(a - b);
+}
 
