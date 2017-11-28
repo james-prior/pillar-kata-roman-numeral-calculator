@@ -134,8 +134,10 @@ static char *sprint_roman(unsigned x)
     return buf;
 }
 
-// Returns NULL if any error.
-// Otherwise returns pointer to roman numeral result in static buffer.
+/* Returns pointer to roman numeral result in static buffer
+*  shared with subtract_roman_numerals
+*  that is overwritten by subsequent calls.
+*  Returns NULL for any error. */
 char *add_roman_numerals(char *addend1, char *addend2)
 {
     unsigned a, b;
@@ -149,8 +151,10 @@ char *add_roman_numerals(char *addend1, char *addend2)
     return sprint_roman(a + b);
 }
 
-// Returns NULL if any error.
-// Otherwise returns pointer to roman numeral result in static buffer.
+/* Returns pointer to roman numeral result in static buffer
+*  shared with add_roman_numerals
+*  that is overwritten by subsequent calls.
+*  Returns NULL for any error. */
 char *subtract_roman_numerals(char *minuend, char *subtrahend)
 {
     unsigned a, b;
