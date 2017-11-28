@@ -279,30 +279,31 @@ START_TEST(test_bad_addition_roman_numerals)
 }
 END_TEST
 
-// struct bad_sub_example_struct {
-//     // all are Roman numerals.
-//     char *minuend;
-//     char *subtrahend;
-// };
-// static const struct bad_sub_example_struct sub_bad_examples[] = {
-//     {"I", "I"},
-//     {"I", "II"},
-//     {"M", "MM"},
-//     {"MMMCMXCVIII", "MMMCMXCIX"},
-//     {"MMMCMXCIX", "MMMCMXCIX"},
-// };
-// START_TEST(test_bad_subtract_roman_numerals)
-// {
-//     const struct bad_sub_example_struct *p;
-//     roman_numeral difference;
-//     roman_numeral *result;
-// 
-//     p = &sub_bad_examples[_i];
-// 
-//     result = subtract_roman_numerals(&difference, p->minuend, p->subtrahend);
-//     ck_assert_ptr_eq((char *)result, NULL);
-// }
-// END_TEST
+struct bad_sub_example_struct {
+    // all are Roman numerals.
+    char *minuend;
+    char *subtrahend;
+};
+static const struct bad_sub_example_struct sub_bad_examples[] = {
+    {"IIII", "I"},
+    {"C", "IIII"},
+    {"I", "I"},
+    {"I", "II"},
+    {"M", "MM"},
+    {"MMMCMXCVIII", "MMMCMXCIX"},
+    {"MMMCMXCIX", "MMMCMXCIX"},
+};
+START_TEST(test_bad_subtract_roman_numerals)
+{
+    const struct bad_sub_example_struct *p;
+    char *result;
+
+    p = &sub_bad_examples[_i];
+
+    result = subtract_roman_numerals(p->minuend, p->subtrahend);
+    ck_assert_ptr_eq((char *)result, NULL);
+}
+END_TEST
 
 Suite *roman_suite(void)
 {
@@ -324,10 +325,10 @@ Suite *roman_suite(void)
     tcase_add_loop_test(
         tc_core, test_bad_addition_roman_numerals,
         0, ARRAY_LENGTH(add_bad_examples));
-    // tcase_add_loop_test(
-    //     tc_core, test_bad_subtract_roman_numerals,
-    //     0, ARRAY_LENGTH(sub_bad_examples)
-    // );
+    tcase_add_loop_test(
+        tc_core, test_bad_subtract_roman_numerals,
+        0, ARRAY_LENGTH(sub_bad_examples)
+    );
     suite_add_tcase(s, tc_core);
 
     return s;
