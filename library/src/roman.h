@@ -3,11 +3,10 @@
 
 #define MAX_ROMAN_NUMERAL_LENGTH (4+4+4+3+1)
 
-typedef char roman_numeral[MAX_ROMAN_NUMERAL_LENGTH];
 // The following return NULL for any error.
-roman_numeral *add_roman_numerals(
-    roman_numeral *sum, char *addend1, char *addend2);
-roman_numeral *subtract_roman_numerals(
-    roman_numeral *difference, char *minuend, char *subtrahend);
+// Otherwise return pointer to static buffers.
+char *add_roman_numerals(char *addend1, char *addend2);
+// char *subtract_roman_numerals(
+//     char *minuend, char *subtrahend);
 
 #endif

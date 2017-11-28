@@ -63,7 +63,7 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
 
 // Returns buf if successfully converts x to roman numeral.
 // Returns NULL if any error.
-static roman_numeral *sprint_roman(roman_numeral *buf, unsigned x)
+static char *sprint_roman(unsigned x)
 {
     static char *roman_units[] = {
         "",
@@ -113,8 +113,8 @@ static roman_numeral *sprint_roman(roman_numeral *buf, unsigned x)
         roman_hundreds,
         roman_thousands,
     };
+    static char buf[MAX_ROMAN_NUMERAL_LENGTH];
 
-    char *s = (char *)buf;
     unsigned digits[ARRAY_LENGTH(roman_digits_lists)]; /*
         least significant digit first */
     int i;
@@ -127,16 +127,15 @@ static roman_numeral *sprint_roman(roman_numeral *buf, unsigned x)
         x /= 10U;
     }
 
-    s[0] = '\0';
+    buf[0] = '\0';
     for (i = ARRAY_LENGTH(roman_digits_lists); --i >= 0; )
-        strcat(s, roman_digits_lists[i][digits[i]]);
+        strcat(buf, roman_digits_lists[i][digits[i]]);
 
-    return (roman_numeral *)s;
+    return buf;
 }
 
 // Returns NULL if any error.
-roman_numeral *add_roman_numerals(
-    roman_numeral *sum, char *addend1, char *addend2)
+char *add_roman_numerals(char *addend1, char *addend2)
 {
     unsigned a, b;
 
@@ -146,21 +145,21 @@ roman_numeral *add_roman_numerals(
     b = get_value_of_roman_numeral(addend2);
     if (b == 0U)
         return NULL;
-    return sprint_roman(sum, a + b);
+    return sprint_roman(a + b);
 }
 
-// Returns NULL if any error.
-roman_numeral *subtract_roman_numerals(
-    roman_numeral *difference, char *minuend, char *subtrahend)
-{
-    unsigned a, b;
-
-    a = get_value_of_roman_numeral(minuend);
-    if (a == 0U)
-        return NULL;
-    b = get_value_of_roman_numeral(subtrahend);
-    if (b == 0U)
-        return NULL;
-    return sprint_roman(difference, a - b);
-}
+// // Returns NULL if any error.
+// char *subtract_roman_numerals(
+//     char *minuend, char *subtrahend)
+// {
+//     unsigned a, b;
+// 
+//     a = get_value_of_roman_numeral(minuend);
+//     if (a == 0U)
+//         return NULL;
+//     b = get_value_of_roman_numeral(subtrahend);
+//     if (b == 0U)
+//         return NULL;
+//     return sprint_roman(difference, a - b);
+// }
 
