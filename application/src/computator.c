@@ -25,7 +25,16 @@ static char *get_usage(int argc, char *argv[])
 
 char *meat(int argc, char *argv[])
 {
-    return get_usage(argc, argv);
+    static char buf[1000];
+
+    if (argc < 3)
+        return get_usage(argc, argv);
+
+    strcpy(buf, (
+        "I I\n"
+        "I II\n"
+    ));
+    return buf;
 }
 
 int MAIN_FUNCTION(int argc, char *argv[])
