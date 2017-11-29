@@ -15,6 +15,9 @@ char *computator_i_i_argv[] = {"computator", "I", "I"};
 char *computator_ii_iii_vi_argv[] = {"computator", "II", "III", "VI"};
 char *computator_3998_1_argv[] = {"computator", "MMMCMXCVIII", "I"};
 char *computator_mm_mm_mmm_argv[] = {"computator", "MM", "MM", "MMM"};
+char *computator___argv[] = {"computator", "", ""};
+char *computator_hello_i_argv[] = {"computator", "hello", "I"};
+char *computator_i_robot_argv[] = {"computator", "I", "ROBOT"};
 static const struct add_good_example_struct add_good_examples[] = {
     {ARRAY_LENGTH(hello_argv), hello_argv, (
         "USAGE:\n"
@@ -48,6 +51,16 @@ static const struct add_good_example_struct add_good_examples[] = {
     {ARRAY_LENGTH(computator_mm_mm_mmm_argv), computator_mm_mm_mmm_argv, (
         "MM MM\n"
         "MM ERRATUM\n"
+    )},
+    {ARRAY_LENGTH(computator___argv), computator___argv, (
+        " ERRATUM\n"
+    )},
+    {ARRAY_LENGTH(computator_hello_i_argv), computator_hello_i_argv, (
+        "hello ERRATUM\n"
+    )},
+    {ARRAY_LENGTH(computator_i_robot_argv), computator_i_robot_argv, (
+        "I I\n"
+        "ROBOT ERRATUM\n"
     )},
 };
 START_TEST(test_add_roman_numerals)

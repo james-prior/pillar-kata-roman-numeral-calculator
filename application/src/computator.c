@@ -25,6 +25,20 @@ static char *get_usage(int argc, char *argv[])
     return buf;
 }
 
+/* Returns roman_numeral if it is a vaild roman numeral.
+*  Otherwise returns NULL. */
+static char *good_roman_numeral(char *roman_numeral)
+{
+    char *result;
+
+    if (roman_numeral[0] != 'M')
+        result = add_roman_numerals(roman_numeral, "I");
+    else
+        result = subtract_roman_numerals(roman_numeral, "I");
+
+    return (result != NULL) ? roman_numeral : NULL;
+}
+
 char *meat(int argc, char *argv[])
 {
     int i;
@@ -40,7 +54,7 @@ char *meat(int argc, char *argv[])
     buf[0] = '\0';
     for (i = 1; i < argc; i++) {
         if (i == 1) {
-            result = argv[i];
+            result = good_roman_numeral(argv[i]);
         } else {
             result = add_roman_numerals(sum, argv[i]);
         }
