@@ -43,7 +43,6 @@ char *kinda_main(int argc, char *argv[])
 {
     int i;
     char *buf;
-    char line[MAX_LINE_LENGTH];
     char sum[MAX_ROMAN_NUMERAL_LENGTH];
     char *result;
 
@@ -70,13 +69,12 @@ char *kinda_main(int argc, char *argv[])
         if (result != NULL)
             strcpy(sum, result);
         snprintf(
-            line,
+            buf + strlen(buf),
             MAX_LINE_LENGTH,
             "%s %s\n",
             argv[i],
             ((result != NULL) ? result : "ERRATUM")
         );
-        strcat(buf, line);
         if (result == NULL)
             break;
     }
