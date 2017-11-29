@@ -22,6 +22,10 @@ char *computator_mm_ni_argv[] = {"computator", "M", "-I"};
 char *computator_3999_ni_argv[] = {"computator", "MMMCMXCIX", "-I"};
 char *computator_i_ni_argv[] = {"computator", "I", "-I"};
 char *computator_i_nm_argv[] = {"computator", "I", "-M"};
+char *computator_add_and_sub_argv[] = {
+    "computator",
+    "M", "-D", "C", "-L", "X", "-V", "I", "-DL", "-V", "MCMXCVIII", "MM", "I"
+};
 static const struct add_good_example_struct add_good_examples[] = {
     // Test usage.
     {ARRAY_LENGTH(hello_argv), hello_argv, (
@@ -87,6 +91,21 @@ static const struct add_good_example_struct add_good_examples[] = {
     {ARRAY_LENGTH(computator_i_nm_argv), computator_i_nm_argv, (
         "I I\n"
         "-M ERRATUM\n"
+    )},
+    // Test addition and subtraction.
+    {ARRAY_LENGTH(computator_add_and_sub_argv), computator_add_and_sub_argv, (
+        "M M\n"
+        "-D D\n"
+        "C DC\n"
+        "-L DL\n"
+        "X DLX\n"
+        "-V DLV\n"
+        "I DLVI\n"
+        "-DL VI\n"
+        "-V I\n"
+        "MCMXCVIII MCMXCIX\n"
+        "MM MMMCMXCIX\n"
+        "I ERRATUM\n"
     )},
 };
 START_TEST(test_add_roman_numerals)
