@@ -11,6 +11,7 @@ struct example_struct {
 };
 char *hello_argv[] = {"hello"};
 char *world_i_argv[] = {"world", "I"};
+char *world_hello_argv[] = {"world", "HELLO"};
 char *computator_i_i_argv[] = {"computator", "I", "I"};
 char *computator_ii_iii_vi_argv[] = {"computator", "II", "III", "VI"};
 char *computator_3998_1_argv[] = {"computator", "MMMCMXCVIII", "I"};
@@ -30,19 +31,18 @@ static const struct example_struct examples[] = {
     // Test usage.
     {ARRAY_LENGTH(hello_argv), hello_argv, (
         "USAGE:\n"
-        "    hello ROMAN_NUMERAL [-]ROMAN_NUMERAL [[-]ROMAN_NUMERAL]...\n"
+        "    hello ROMAN_NUMERAL [[-]ROMAN_NUMERAL]...\n"
         "\n"
         "DESCRIPTION:\n"
         "    Adds roman numerals, showing intermediate sums.\n"
         "    Roman numerals prefixed with a '-' are subtracted.\n"
     )},
+    // Test single argument.
     {ARRAY_LENGTH(world_i_argv), world_i_argv, (
-        "USAGE:\n"
-        "    world ROMAN_NUMERAL [-]ROMAN_NUMERAL [[-]ROMAN_NUMERAL]...\n"
-        "\n"
-        "DESCRIPTION:\n"
-        "    Adds roman numerals, showing intermediate sums.\n"
-        "    Roman numerals prefixed with a '-' are subtracted.\n"
+        "I I\n"
+    )},
+    {ARRAY_LENGTH(world_hello_argv), world_hello_argv, (
+        "HELLO ERRATUM\n"
     )},
     // Test addition.
     {ARRAY_LENGTH(computator_i_i_argv), computator_i_i_argv, (

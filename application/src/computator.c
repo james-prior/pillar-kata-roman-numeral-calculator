@@ -14,7 +14,7 @@ static char *get_usage(int argc, char *argv[])
         buf,
         (
             "USAGE:\n"
-            "    %s ROMAN_NUMERAL [-]ROMAN_NUMERAL [[-]ROMAN_NUMERAL]...\n"
+            "    %s ROMAN_NUMERAL [[-]ROMAN_NUMERAL]...\n"
             "\n"
             "DESCRIPTION:\n"
             "    Adds roman numerals, showing intermediate sums.\n"
@@ -47,7 +47,7 @@ char *kinda_main(int argc, char *argv[])
     char sum[MAX_ROMAN_NUMERAL_LENGTH];
     char *result;
 
-    if (argc < 3)
+    if (argc < 2)
         return get_usage(argc, argv);
 
     buf = malloc(argc * MAX_LINE_LENGTH);
