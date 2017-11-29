@@ -27,7 +27,7 @@ static char *get_usage(int argc, char *argv[])
 
 /* Returns roman_numeral if it is a vaild roman numeral.
 *  Otherwise returns NULL. */
-static char *good_roman_numeral(char *roman_numeral)
+static char *pass_good_roman_numeral(char *roman_numeral)
 {
     char *result;
 
@@ -54,7 +54,7 @@ char *meat(int argc, char *argv[])
     buf[0] = '\0';
     for (i = 1; i < argc; i++) {
         if (i == 1) {
-            result = good_roman_numeral(argv[i]);
+            result = pass_good_roman_numeral(argv[i]);
         } else {
             char *operand2 = argv[i];
             char *(*operator)(char *, char *);
