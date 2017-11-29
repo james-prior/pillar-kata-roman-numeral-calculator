@@ -66,15 +66,11 @@ char *kinda_main(int argc, char *argv[])
             }
             result = operator(sum, operand2);
         }
-        if (result != NULL)
-            strcpy(sum, result);
-        snprintf(
-            buf + strlen(buf),
-            MAX_LINE_LENGTH,
-            "%s %s\n",
-            argv[i],
+        strcpy(
+            sum,
             ((result != NULL) ? result : "ERRATUM")
         );
+        snprintf(buf + strlen(buf), MAX_LINE_LENGTH, "%s %s\n", argv[i], sum);
         if (result == NULL)
             break;
     }
