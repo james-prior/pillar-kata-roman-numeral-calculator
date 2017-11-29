@@ -39,7 +39,7 @@ static char *pass_good_roman_numeral(char *roman_numeral)
     return (result != NULL) ? roman_numeral : NULL;
 }
 
-char *meat(int argc, char *argv[])
+char *kinda_main(int argc, char *argv[])
 {
     int i;
     char *buf;
@@ -86,7 +86,7 @@ char *meat(int argc, char *argv[])
 
 int MAIN_FUNCTION(int argc, char *argv[])
 {
-    printf("%s", meat(argc, argv));
+    printf("%s", kinda_main(argc, argv));
 
     exit(EXIT_SUCCESS);
 }

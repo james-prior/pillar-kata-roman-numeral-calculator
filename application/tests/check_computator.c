@@ -113,7 +113,7 @@ START_TEST(test_roman_numeral_calculator)
     const struct example_struct *p;
 
     p = &examples[_i];
-    ck_assert_str_eq(meat(p->argc, p->argv), p->expected_string);
+    ck_assert_str_eq(kinda_main(p->argc, p->argv), p->expected_string);
 }
 END_TEST
 

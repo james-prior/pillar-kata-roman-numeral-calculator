@@ -9,5 +9,5 @@ int testable_main(int argc, char *argv[]);
 #define MAIN_FUNCTION main
 #endif
 
-char *meat(int argc, char *argv[]);
+char *kinda_main(int argc, char *argv[]);
 #endif
