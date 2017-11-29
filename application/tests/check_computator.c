@@ -12,6 +12,9 @@ struct add_good_example_struct {
 char *hello_argv[] = {"hello"};
 char *hello_i_argv[] = {"world", "I"};
 char *hello_i_i_argv[] = {"computator", "I", "I"};
+char *hello_ii_iii_vi_argv[] = {"computator", "II", "III", "VI"};
+char *hello_3998_1_argv[] = {"computator", "MMMCMXCVIII", "I"};
+char *hello_mm_mm_argv[] = {"computator", "MM", "MM"};
 static const struct add_good_example_struct add_good_examples[] = {
     {1, hello_argv, (
         "USAGE:\n"
@@ -32,6 +35,19 @@ static const struct add_good_example_struct add_good_examples[] = {
     {3, hello_i_i_argv, (
         "I I\n"
         "I II\n"
+    )},
+    {4, hello_ii_iii_vi_argv, (
+        "II II\n"
+        "III V\n"
+        "VI XI\n"
+    )},
+    {3, hello_3998_1_argv, (
+        "MMMCMXCVIII MMMCMXCVIII\n"
+        "I MMMCMXCIX\n"
+    )},
+    {3, hello_mm_mm_argv, (
+        "MM MM\n"
+        "MM ERRATUM\n"
     )},
     // {"I", "I", "II"},
     // {"I", "II", "III"},
