@@ -4,7 +4,7 @@
 
 #define ARRAY_LENGTH(x) (sizeof(x) / sizeof(*(x)))
 
-struct add_good_example_struct {
+struct example_struct {
     int argc;
     char **argv;
     char *expected_string;
@@ -26,7 +26,7 @@ char *computator_add_and_sub_argv[] = {
     "computator",
     "M", "-D", "C", "-L", "X", "-V", "I", "-DL", "-V", "MCMXCVIII", "MM", "I"
 };
-static const struct add_good_example_struct add_good_examples[] = {
+static const struct example_struct examples[] = {
     // Test usage.
     {ARRAY_LENGTH(hello_argv), hello_argv, (
         "USAGE:\n"
@@ -108,28 +108,27 @@ static const struct add_good_example_struct add_good_examples[] = {
         "I ERRATUM\n"
     )},
 };
-START_TEST(test_add_roman_numerals)
+START_TEST(test_roman_numeral_calculator)
 {
-    const struct add_good_example_struct *p;
+    const struct example_struct *p;
 
-    p = &add_good_examples[_i];
+    p = &examples[_i];
     ck_assert_str_eq(meat(p->argc, p->argv), p->expected_string);
 }
 END_TEST
 
-Suite *roman_suite(void)
+Suite *roman_numeral_calculator_suite(void)
 {
     Suite *s;
     TCase *tc_math;
 
-    s = suite_create("Roman");
+    s = suite_create("Roman Numeral Calculator");
 
-    /* do roman numeral arithment */
-    tc_math = tcase_create("arithmetic");
+    tc_math = tcase_create("calculator");
 
     tcase_add_loop_test(
-        tc_math, test_add_roman_numerals,
-        0, ARRAY_LENGTH(add_good_examples)
+        tc_math, test_roman_numeral_calculator,
+        0, ARRAY_LENGTH(examples)
     );
 
     suite_add_tcase(s, tc_math);
@@ -143,7 +142,7 @@ int main(void)
     Suite *s;
     SRunner *sr;
 
-    s = roman_suite();
+    s = roman_numeral_calculator_suite();
     sr = srunner_create(s);
 
     srunner_run_all(sr, CK_NORMAL);
