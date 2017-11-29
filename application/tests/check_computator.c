@@ -10,13 +10,13 @@ struct add_good_example_struct {
     char *expected_string;
 };
 char *hello_argv[] = {"hello"};
-char *hello_i_argv[] = {"world", "I"};
-char *hello_i_i_argv[] = {"computator", "I", "I"};
-char *hello_ii_iii_vi_argv[] = {"computator", "II", "III", "VI"};
-char *hello_3998_1_argv[] = {"computator", "MMMCMXCVIII", "I"};
-char *hello_mm_mm_argv[] = {"computator", "MM", "MM"};
+char *world_i_argv[] = {"world", "I"};
+char *computator_i_i_argv[] = {"computator", "I", "I"};
+char *computator_ii_iii_vi_argv[] = {"computator", "II", "III", "VI"};
+char *computator_3998_1_argv[] = {"computator", "MMMCMXCVIII", "I"};
+char *computator_mm_mm_mmm_argv[] = {"computator", "MM", "MM", "MMM"};
 static const struct add_good_example_struct add_good_examples[] = {
-    {1, hello_argv, (
+    {ARRAY_LENGTH(hello_argv), hello_argv, (
         "USAGE:\n"
         "    hello ROMAN_NUMERAL [-]ROMAN_NUMERAL [[-]ROMAN_NUMERAL]...\n"
         "\n"
@@ -24,7 +24,7 @@ static const struct add_good_example_struct add_good_examples[] = {
         "    Adds roman numerals, showing intermediate sums.\n"
         "    Roman numerals prefixed with a '-' are subtracted.\n"
     )},
-    {2, hello_i_argv, (
+    {ARRAY_LENGTH(world_i_argv), world_i_argv, (
         "USAGE:\n"
         "    world ROMAN_NUMERAL [-]ROMAN_NUMERAL [[-]ROMAN_NUMERAL]...\n"
         "\n"
@@ -32,40 +32,23 @@ static const struct add_good_example_struct add_good_examples[] = {
         "    Adds roman numerals, showing intermediate sums.\n"
         "    Roman numerals prefixed with a '-' are subtracted.\n"
     )},
-    {3, hello_i_i_argv, (
+    {ARRAY_LENGTH(computator_i_i_argv), computator_i_i_argv, (
         "I I\n"
         "I II\n"
     )},
-    {4, hello_ii_iii_vi_argv, (
+    {ARRAY_LENGTH(computator_ii_iii_vi_argv), computator_ii_iii_vi_argv, (
         "II II\n"
         "III V\n"
         "VI XI\n"
     )},
-    {3, hello_3998_1_argv, (
+    {ARRAY_LENGTH(computator_3998_1_argv), computator_3998_1_argv, (
         "MMMCMXCVIII MMMCMXCVIII\n"
         "I MMMCMXCIX\n"
     )},
-    {3, hello_mm_mm_argv, (
+    {ARRAY_LENGTH(computator_mm_mm_mmm_argv), computator_mm_mm_mmm_argv, (
         "MM MM\n"
         "MM ERRATUM\n"
     )},
-    // {"I", "I", "II"},
-    // {"I", "II", "III"},
-    // {"II", "III", "V"},
-    // {"III", "V", "VIII"},
-    // {"V", "VIII", "XIII"},
-    // {"VIII", "XIII", "XXI"},
-    // {"XIII", "XXI", "XXXIV"},
-    // {"XXI", "XXXIV", "LV"},
-    // {"XXXIV", "LV", "LXXXIX"},
-    // {"LV", "LXXXIX", "CXLIV"},
-    // {"LXXXIX", "CXLIV", "CCXXXIII"},
-    // {"CXLIV", "CCXXXIII", "CCCLXXVII"},
-    // {"CCXXXIII", "CCCLXXVII", "DCX"},
-    // {"CCCLXXVII", "DCX", "CMLXXXVII"},
-    // {"DCX", "CMLXXXVII", "MDXCVII"},
-    // {"CMLXXXVII", "MDXCVII", "MMDLXXXIV"},
-    // {"MMMCMXCVIII", "I", "MMMCMXCIX"},
 };
 START_TEST(test_add_roman_numerals)
 {
