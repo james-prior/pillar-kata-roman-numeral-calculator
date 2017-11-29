@@ -18,7 +18,12 @@ char *computator_mm_mm_mmm_argv[] = {"computator", "MM", "MM", "MMM"};
 char *computator___argv[] = {"computator", "", ""};
 char *computator_hello_i_argv[] = {"computator", "hello", "I"};
 char *computator_i_robot_argv[] = {"computator", "I", "ROBOT"};
+char *computator_mm_ni_argv[] = {"computator", "M", "-I"};
+char *computator_3999_ni_argv[] = {"computator", "MMMCMXCIX", "-I"};
+char *computator_i_ni_argv[] = {"computator", "I", "-I"};
+char *computator_i_nm_argv[] = {"computator", "I", "-M"};
 static const struct add_good_example_struct add_good_examples[] = {
+    // Test usage.
     {ARRAY_LENGTH(hello_argv), hello_argv, (
         "USAGE:\n"
         "    hello ROMAN_NUMERAL [-]ROMAN_NUMERAL [[-]ROMAN_NUMERAL]...\n"
@@ -35,6 +40,7 @@ static const struct add_good_example_struct add_good_examples[] = {
         "    Adds roman numerals, showing intermediate sums.\n"
         "    Roman numerals prefixed with a '-' are subtracted.\n"
     )},
+    // Test addition.
     {ARRAY_LENGTH(computator_i_i_argv), computator_i_i_argv, (
         "I I\n"
         "I II\n"
@@ -48,10 +54,12 @@ static const struct add_good_example_struct add_good_examples[] = {
         "MMMCMXCVIII MMMCMXCVIII\n"
         "I MMMCMXCIX\n"
     )},
+    // Test overflow with valid roman numerals.
     {ARRAY_LENGTH(computator_mm_mm_mmm_argv), computator_mm_mm_mmm_argv, (
         "MM MM\n"
         "MM ERRATUM\n"
     )},
+    // Test invalid roman numerals.
     {ARRAY_LENGTH(computator___argv), computator___argv, (
         " ERRATUM\n"
     )},
@@ -61,6 +69,24 @@ static const struct add_good_example_struct add_good_examples[] = {
     {ARRAY_LENGTH(computator_i_robot_argv), computator_i_robot_argv, (
         "I I\n"
         "ROBOT ERRATUM\n"
+    )},
+    // Test subtraction.
+    {ARRAY_LENGTH(computator_mm_ni_argv), computator_mm_ni_argv, (
+        "M M\n"
+        "-I CMXCIX\n"
+    )},
+    {ARRAY_LENGTH(computator_3999_ni_argv), computator_3999_ni_argv, (
+        "MMMCMXCIX MMMCMXCIX\n"
+        "-I MMMCMXCVIII\n"
+    )},
+    // Test bad subtraction.
+    {ARRAY_LENGTH(computator_i_ni_argv), computator_i_ni_argv, (
+        "I I\n"
+        "-I ERRATUM\n"
+    )},
+    {ARRAY_LENGTH(computator_i_nm_argv), computator_i_nm_argv, (
+        "I I\n"
+        "-M ERRATUM\n"
     )},
 };
 START_TEST(test_add_roman_numerals)

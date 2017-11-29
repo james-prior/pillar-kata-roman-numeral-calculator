@@ -56,7 +56,16 @@ char *meat(int argc, char *argv[])
         if (i == 1) {
             result = good_roman_numeral(argv[i]);
         } else {
-            result = add_roman_numerals(sum, argv[i]);
+            char *operand2 = argv[i];
+            char *(*operator)(char *, char *);
+
+            if (operand2[0] == '-') {
+                operand2++;
+                operator = subtract_roman_numerals;
+            } else {
+                operator = add_roman_numerals;
+            }
+            result = operator(sum, operand2);
         }
         if (result != NULL)
             strcpy(sum, result);
