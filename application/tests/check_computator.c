@@ -10,10 +10,19 @@ struct add_good_example_struct {
     char *expected_string;
 };
 char *hello_argv[] = {"hello"};
+char *hello_i_argv[] = {"world", "I"};
 static const struct add_good_example_struct add_good_examples[] = {
     {1, hello_argv, (
         "USAGE:\n"
         "    hello ROMAN_NUMERAL [-]ROMAN_NUMERAL [[-]ROMAN_NUMERAL]...\n"
+        "\n"
+        "DESCRIPTION:\n"
+        "    Adds roman numerals, showing intermediate sums.\n"
+        "    Roman numerals prefixed with a '-' are subtracted.\n"
+    )},
+    {2, hello_i_argv, (
+        "USAGE:\n"
+        "    world ROMAN_NUMERAL [-]ROMAN_NUMERAL [[-]ROMAN_NUMERAL]...\n"
         "\n"
         "DESCRIPTION:\n"
         "    Adds roman numerals, showing intermediate sums.\n"
