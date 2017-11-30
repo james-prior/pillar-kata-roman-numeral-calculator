@@ -1,4 +1,29 @@
 # this is a very rough work in progress
+# for ubuntu 14.04.5
+
+sudo apt-get update
+sudo add-apt-repository universe
+sudo apt-get update
+sudo apt install autoconf
+sudo apt install check
+sudo apt-get install libtool libtool-doc
+sudo apt-get install inotify-tools
+
+autoreconf --install
+cp -pi build-aux/install-sh .
+./configure
+make
+make check
+sudo make install
+sudo ldconfig
+sudo cp src/roman.h /usr/local/include/
+while inotifywait -r -e modify src tests; do
+    make
+    make check
+    cat tests/test-suite.log
+done
+
+# this is a very rough work in progress
 # works for ubuntu 16.04
 
 sudo apt install autoconf
