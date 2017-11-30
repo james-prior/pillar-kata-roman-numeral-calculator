@@ -55,16 +55,12 @@ char *kinda_main(int argc, char *argv[])
         if (i == 1) {
             result = pass_good_roman_numeral(argv[i]);
         } else {
-            char *operand2 = argv[i];
-            char *(*operator)(char *, char *);
+            char *operand = argv[i];
 
-            if (operand2[0] == '-') {
-                operand2++;
-                operator = subtract_roman_numerals;
-            } else {
-                operator = add_roman_numerals;
-            }
-            result = operator(sum, operand2);
+            if (operand[0] == '-')
+                result = subtract_roman_numerals(sum, operand+1);
+            else
+                result = add_roman_numerals(sum, operand);
         }
         strcpy(
             sum,
