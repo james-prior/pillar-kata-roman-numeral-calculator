@@ -2,7 +2,7 @@
 
 # Prelude.
 AC_PREREQ([2.59])
-AC_INIT([Roman], [0.3], [check-devel AT lists.sourceforge.net])
+AC_INIT([Roman Numeral Library], [1.0], [jep200404 AT columbus.rr.com])
 AM_PROG_AR
 
 # unique source file --- primitive safety check 
