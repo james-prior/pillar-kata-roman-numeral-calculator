@@ -37,7 +37,7 @@ Please submit your test driven solution via a public Git repository
   "XXIV").
 * If a lesser numeral is put before a bigger it means subtraction of the lesser
   from the bigger ("IV" means four, "CM" means ninehundred).
-    * only a single subtractive numeral is allowed before a bigger numeral
+    * only a single lesser numeral is allowed before a bigger numeral
     * I is allowed before only V and X
     * X is allowed before only L and C
     * C is allowed before only D and M
