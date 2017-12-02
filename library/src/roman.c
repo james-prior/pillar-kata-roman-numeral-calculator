@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include <regex.h>        
+#include <regex.h>
 #include "roman.h"
 
 #define ARRAY_LENGTH(x) ((int)(sizeof(x) / sizeof(*(x))))
