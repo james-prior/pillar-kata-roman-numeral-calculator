@@ -8,15 +8,11 @@ class Roman:
             str(i): roman_digit
             for i, roman_digit in enumerate(roman_digits)}
 
-    roman_units = _make_dict_of_roman_digits('I II III IV V VI VII VIII IX')
-    roman_tens = _make_dict_of_roman_digits('X XX XXX XL L LX LXX LXXX XC')
-    roman_hundreds = _make_dict_of_roman_digits('C CC CCC CD D DC DCC DCCC CM')
-    roman_thousands = _make_dict_of_roman_digits('M MM MMM')
     roman_digits_dicts = (
-        roman_thousands,
-        roman_hundreds,
-        roman_tens,
-        roman_units,
+        _make_dict_of_roman_digits('M MM MMM'),
+        _make_dict_of_roman_digits('C CC CCC CD D DC DCC DCCC CM'),
+        _make_dict_of_roman_digits('X XX XXX XL L LX LXX LXXX XC'),
+        _make_dict_of_roman_digits('I II III IV V VI VII VIII IX'),
     )
 
     value_of_roman_letters = {
