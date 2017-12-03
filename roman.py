@@ -12,6 +12,12 @@ class Roman:
     roman_tens = _make_dict_of_roman_digits('X XX XXX XL L LX LXX LXXX XC')
     roman_hundreds = _make_dict_of_roman_digits('C CC CCC CD D DC DCC DCCC CM')
     roman_thousands = _make_dict_of_roman_digits('M MM MMM')
+    roman_digits_dicts = (
+        roman_thousands,
+        roman_hundreds,
+        roman_tens,
+        roman_units,
+    )
 
     value_of_roman_letters = {
         'I': 1,
@@ -95,18 +101,11 @@ class Roman:
         return Roman(value)
 
     def __str__(self):
-        roman_digits_dicts = (
-            self.roman_thousands,
-            self.roman_hundreds,
-            self.roman_tens,
-            self.roman_units,
-        )
-
-        max_n_digits = len(roman_digits_dicts)
+        max_n_digits = len(self.roman_digits_dicts)
         digits = '%0*d' % (max_n_digits, self.value)
         roman_digits = [
             d[i]
-            for i, d in zip(digits, roman_digits_dicts)
+            for i, d in zip(digits, self.roman_digits_dicts)
         ]
         return ''.join(roman_digits)
 
