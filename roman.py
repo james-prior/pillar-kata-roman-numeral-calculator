@@ -22,6 +22,12 @@ class Roman:
     roman_tens = _make_list_of_roman_digits('X XX XXX XL L LX LXX LXXX XC')
     roman_hundreds = _make_list_of_roman_digits('C CC CCC CD D DC DCC DCCC CM')
     roman_thousands = _make_list_of_roman_digits('M MM MMM')
+    roman_digits = (
+        roman_units,
+        roman_tens,
+        roman_hundreds,
+        roman_thousands,
+    )
 
     def _make_value_of_roman_digits(roman_digits, scaler):
         return {
@@ -50,11 +56,11 @@ class Roman:
         ''.join(map(_make_digits_pattern, value_dicts)) +
         '$')
 
-    def __init__(self, roman_numeral_or_x):
+    def __init__(self, roman_numeral_or_int):
         try:
-            self.value = int(roman_numeral_or_x)
+            self.value = int(roman_numeral_or_int)
         except ValueError:
-            roman_numeral = roman_numeral_or_x
+            roman_numeral = roman_numeral_or_int
         else:
             if self.minimum <= self.value <= self.maximum:
                 return
@@ -93,19 +99,12 @@ class Roman:
         return Roman(value)
 
     def __str__(self):
-        value = self.value
         reversed_digits = map(int, reversed(str(self.value)))
-        roman_dicts = [
-            self.roman_units,
-            self.roman_tens,
-            self.roman_hundreds,
-            self.roman_thousands,
-        ]
-        terms = [
+        reversed_roman_digits = [
             d[i]
-            for i, d in zip(reversed_digits, roman_dicts)
+            for i, d in zip(reversed_digits, self.roman_digits)
         ]
-        return ''.join(reversed(terms))
+        return ''.join(reversed(reversed_roman_digits))
 
     def __repr__(self):
         return "{name}({value})".format(
