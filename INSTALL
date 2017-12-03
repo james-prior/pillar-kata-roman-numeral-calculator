@@ -1,4 +1,26 @@
-sudo apt-get install python3-venv
-python3 -m venv env
-source env/bin/activate
-pip install -r requirements-dev.txt
+This version is a hack to output the regular expression to regex.txt.
+Merely importing roman causes the file to be written.
+This causes py.test -f . fits,
+because writing to a file causes the tests to run
+again which causes the file to written again ad naseum.
+
+    doric@column:~/pillar-kata-roman-numeral-calculator$ python3
+    Python 3.5.2 (default, Nov 23 2017, 16:37:01) 
+    [GCC 5.4.0 20160609] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import roman
+    >>> 
+    doric@column:~/pillar-kata-roman-numeral-calculator$ cat regex.txt 
+    '^(M|MM|MMM)?(DCC|CC|CCC|C|CD|DCCC|CM|DC|D)?(LXX|L|LX|X|XX|XXX|LXXX|XC|XL)?(I|VIII|IX|IV|III|VI|V|VII|II)?$'
+    doric@column:~/pillar-kata-roman-numeral-calculator$ 
+
+To run pytest for development, run the following on Ubuntu
+in the same directory as this file.
+
+    sudo apt-get update
+    sudo apt-get -y install python3.4-venv || # for Ubuntu 14.04.5
+    sudo apt-get -y install python3-venv # for Ubuntu 16.04
+    python3 -m venv env
+    source env/bin/activate
+    pip install -r requirements-dev.txt
+    py.test -f .
