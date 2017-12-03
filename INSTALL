@@ -1,4 +1,0 @@
-sudo apt-get -y install git
-git clone https://github.com/james-prior/pillar-kata-roman-numeral-calculator.git
-cd pillar-kata-roman-numeral-calculator
-git checkout master

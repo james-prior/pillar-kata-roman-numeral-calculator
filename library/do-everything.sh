@@ -1,10 +1,12 @@
 #!/usr/bin/env sh
 
-# run this in the same directory that this file is in
-# works for ubuntu 14.04.5
+# Run this in the same directory that this file is in.
+# Works for ubuntu 14.04.5.
 
 # Unless given --no-test-loop option on command line,
 # automatically (re)runs tests at end.
+
+set -v
 
 # prerequisites
 sudo apt-get update
