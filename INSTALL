@@ -1,6 +1,6 @@
 A Roman bookkeeper can perform addition and subtraction in Python REPL.
 
-    doric@column:~/kata-roman-numeral-calculator$ python3
+    doric@column:~/pillar-kata-roman-numeral-calculator$ python3
     Python 3.5.2 (default, Sep 14 2017, 22:51:06) 
     [GCC 5.4.0 20160609] on linux
     Type "help", "copyright", "credits" or "license" for more information.
@@ -19,7 +19,7 @@ A Roman bookkeeper can perform addition and subtraction in Python REPL.
     >>> s - Roman('II') - Roman('L')
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-      File "/home/doric/kata-roman-numeral-calculator/roman.py", line 93, in __sub__
+      File "/home/doric/pillar-kata-roman-numeral-calculator/roman.py", line 93, in __sub__
         raise OverflowError
     OverflowError
     >>> s - Roman('II') - Roman('XL')
@@ -38,13 +38,13 @@ A Roman bookkeeper can perform addition and subtraction in Python REPL.
     >>> s -= Roman('MM')
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-      File "/home/doric/kata-roman-numeral-calculator/roman.py", line 93, in __sub__
+      File "/home/doric/pillar-kata-roman-numeral-calculator/roman.py", line 93, in __sub__
         raise OverflowError
     OverflowError
     >>> s
     Roman('MIX')
     >>> 
-    doric@column:~/kata-roman-numeral-calculator$ 
+    doric@column:~/pillar-kata-roman-numeral-calculator$ 
 
 I have not included a Python Roman numeral calculator in the repo.
 
