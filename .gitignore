@@ -1,10 +1,13 @@
 .cache/
 env/
 .*.swp  # vi swap files
+__pycache__/
+library/__pycache__/
+library/tests/__pycache__/
 
 #output files to ignore
-application/src/computator
-application/tests/check_computator
+demo-program/src/computator
+demo-program/tests/check_computator
 library/Makefile
 library/Makefile.in
 library/aclocal.m4
