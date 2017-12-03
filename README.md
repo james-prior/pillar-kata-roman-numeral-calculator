@@ -88,9 +88,9 @@ I tried and abandoned multiple approaches. It was a fun.
 
     The library can be used from Python REPL. For example:
 
-        (env) kata@pillar:~/kata-roman-numeral-calculator$ git co 8e62fe5
+        (env) doric@column:~/pillar-kata-roman-numeral-calculator$ git co 8e62fe5
         HEAD is now at 8e62fe5... roman.py: Refactor creation of pattern.
-        (env) kata@pillar:~/kata-roman-numeral-calculator$ python
+        (env) doric@column:~/pillar-kata-roman-numeral-calculator$ python
         Python 3.5.2 (default, Nov 23 2017, 16:37:01) 
         [GCC 5.4.0 20160609] on linux
         Type "help", "copyright", "credits" or "license" for more information.
@@ -106,7 +106,7 @@ I tried and abandoned multiple approaches. It was a fun.
         >>> Roman('I') - Roman('I')
         Traceback (most recent call last):
           File "<stdin>", line 1, in <module>
-          File "/home/kata/kata-roman-numeral-calculator/roman.py", line 79, in __sub__
+          File "/home/doric/pillar-kata-roman-numeral-calculator/roman.py", line 79, in __sub__
             raise OverflowError
         OverflowError
         >>> Roman('MMMCMXCVIII') + Roman('I')
@@ -114,11 +114,11 @@ I tried and abandoned multiple approaches. It was a fun.
         >>> Roman('MMMCMXCVIII') + Roman('I') + Roman('I')
         Traceback (most recent call last):
           File "<stdin>", line 1, in <module>
-          File "/home/kata/kata-roman-numeral-calculator/roman.py", line 73, in __add__
+          File "/home/doric/pillar-kata-roman-numeral-calculator/roman.py", line 73, in __add__
             raise OverflowError
         OverflowError
         >>> 
-        (env) kata@pillar:~/kata-roman-numeral-calculator$ 
+        (env) doric@column:~/pillar-kata-roman-numeral-calculator$ 
 
         I never bothered to commit a calculator program that used
         my Python library.

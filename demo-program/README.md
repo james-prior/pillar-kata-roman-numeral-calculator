@@ -48,7 +48,7 @@ If there is a error at any point,
 "ERRATUM" appears for the running sum and the program stops.
 For example:
 
-    kata@pillar:~/kata-roman-numeral-calculator/demo-program$ src/computator I II III IV V VI -XX MMMCMXCVIII I
+    doric@column:~/pillar-kata-roman-numeral-calculator/demo-program$ src/computator I II III IV V VI -XX MMMCMXCVIII I
     I I
     II III
     III VI
@@ -58,7 +58,7 @@ For example:
     -XX I
     MMMCMXCVIII MMMCMXCIX
     I ERRATUM
-    kata@pillar:~/kata-roman-numeral-calculator/demo-program$ 
+    doric@column:~/pillar-kata-roman-numeral-calculator/demo-program$ 
 
 ## Do everything
 
