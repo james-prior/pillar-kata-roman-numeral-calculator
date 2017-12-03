@@ -68,7 +68,7 @@ a live distro in a virtual machine with 2 GB of RAM.
     git clone https://github.com/james-prior/pillar-kata-roman-numeral-calculator.git
     cd pillar-kata-roman-numeral-calculator
     git checkout master
-    ./do-everything
+    ./do-everything.sh
 
 ---
 
