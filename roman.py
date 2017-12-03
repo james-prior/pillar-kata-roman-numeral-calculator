@@ -19,23 +19,18 @@ class Roman:
         roman_units,
     )
 
-    def _make_value_of_roman_digits(roman_digits, scaler):
+    def _make_value_of_roman_digits(roman_digits, multiplier):
         return {
-            roman_digit: i * scaler
+            roman_digit: i * multiplier
             for i, roman_digit in enumerate(roman_digits)
             if roman_digit
         }
 
-    value_of_roman_thousands = _make_value_of_roman_digits(
-        roman_thousands, 1000)
-    value_of_roman_hundreds = _make_value_of_roman_digits(roman_hundreds, 100)
-    value_of_roman_tens = _make_value_of_roman_digits(roman_tens, 10)
-    value_of_roman_units = _make_value_of_roman_digits(roman_units, 1)
     value_dicts = (
-        value_of_roman_thousands,
-        value_of_roman_hundreds,
-        value_of_roman_tens,
-        value_of_roman_units,
+        _make_value_of_roman_digits(roman_thousands, 1000),
+        _make_value_of_roman_digits(roman_hundreds, 100),
+        _make_value_of_roman_digits(roman_tens, 10),
+        _make_value_of_roman_digits(roman_units, 1),
     )
     value_of_roman_digits = {}
     for d in value_dicts:
@@ -63,9 +58,9 @@ class Roman:
         if not m:
             raise ValueError
         self.value = sum(
-            self.value_of_roman_digits[s]
-            for s in m.groups()
-            if s
+            self.value_of_roman_digits[roman_digit]
+            for roman_digit in m.groups()
+            if roman_digit
         )
         if self.value < self.minimum:
             raise ValueError
@@ -89,8 +84,8 @@ class Roman:
         max_n_digits = len(self.roman_digits)
         digits = '%0*d' % (max_n_digits, self.value)
         roman_digits = (
-            d[int(i)]
-            for i, d in zip(digits, self.roman_digits)
+            roman_digit[int(i)]
+            for i, roman_digit in zip(digits, self.roman_digits)
         )
         return ''.join(roman_digits)
 
