@@ -27,6 +27,13 @@ char *computator_add_and_sub_argv[] = {
     "computator",
     "M", "-D", "C", "-L", "X", "-V", "I", "-DL", "-V", "MCMXCVIII", "MM", "I"
 };
+char *computator_i_iiiii_i_argv[] = {
+    "computator",
+    "I",
+    "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
+    "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII",
+    "I"
+};
 static const struct example_struct examples[] = {
     // Test usage.
     {ARRAY_LENGTH(hello_argv), hello_argv, (
@@ -106,6 +113,12 @@ static const struct example_struct examples[] = {
         "MCMXCVIII MCMXCIX\n"
         "MM MMMCMXCIX\n"
         "I ERRATUM\n"
+    )},
+    // Test long argument.
+    {ARRAY_LENGTH(computator_i_iiiii_i_argv), computator_i_iiiii_i_argv, (
+        "I I\n"
+        "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
+        "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
     )},
 };
 START_TEST(test_roman_numeral_calculator)
