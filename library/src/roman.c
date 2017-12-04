@@ -44,7 +44,7 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
         exit(EXIT_FAILURE);
     no_match = regexec(&roman_numeral_regex, roman_numeral, 0, NULL, 0);
     regfree(&roman_numeral_regex);
-    if (no_match)
+    if (no_match != 0)
         return 0U; // roman_numeral is not a valid Roman numeral
 
     sum = 0U;
@@ -63,7 +63,7 @@ static unsigned get_value_of_roman_numeral(char *roman_numeral)
 
 // Returns buf if successfully converts x to roman numeral.
 // Returns NULL if any error.
-static char *sprint_roman(unsigned x)
+static char *uint_to_roman_numeral(unsigned x)
 {
     static char *roman_units[] = {
         "",
@@ -128,7 +128,7 @@ static char *sprint_roman(unsigned x)
     }
 
     buf[0] = '\0';
-    for (i = ARRAY_LENGTH(roman_digits_lists); --i >= 0; )
+    for (i = ARRAY_LENGTH(roman_digits_lists); i-- > 0; )
         strcat(buf, roman_digits_lists[i][digits[i]]);
 
     return buf;
@@ -148,7 +148,7 @@ char *add_roman_numerals(char *addend1, char *addend2)
     b = get_value_of_roman_numeral(addend2);
     if (b == 0U)
         return NULL;
-    return sprint_roman(a + b);
+    return uint_to_roman_numeral(a + b);
 }
 
 /* Returns pointer to roman numeral result in static buffer
@@ -165,6 +165,6 @@ char *subtract_roman_numerals(char *minuend, char *subtrahend)
     b = get_value_of_roman_numeral(subtrahend);
     if (b == 0U)
         return NULL;
-    return sprint_roman(a - b);
+    return uint_to_roman_numeral(a - b);
 }
 
