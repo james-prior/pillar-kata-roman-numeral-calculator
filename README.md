@@ -74,7 +74,31 @@ a live distro in a virtual machine with 2 GB of RAM.
 
 # The journey
 
-I tried and abandoned multiple approaches. It was a fun.
+I tried and abandoned multiple approaches. They were fun.
+They are described below.
+
+The final solution is in the master branch.
+You might want to look at only that if you have little time.
+
+Actual Romans were inconsistent in how they wrote Roman numerals,
+so I used a stricter style.
+
+I am used to implementing this kind of task with logic in small
+fast tight code to implement rules with minimal data. This is
+important for things written in C to run on little 8-bit
+microcontrollers that have little memory or horsepower.
+
+Regular expressions (regexes) for numbers can be very
+complicated. For example, look at the regular expression for
+floats in cell #7 of
+https://github.com/james-prior/cohpy/blob/master/20170424-cohpy-lbyl-v-eafp.ipynb
+I was surprised how easy it was to make a regular expression for
+Roman numerals and how easy it made parsing Roman numerals. Using
+a regular expression made the code small and easy to read. That
+surprised me. As Eric Raymond says:
+
+    9. Smart data structures and dumb code works a lot better than the other way around.
+    http://www.catb.org/~esr/writings/cathedral-bazaar/cathedral-bazaar/ar01s06.html
 
 ## Python library:
 
@@ -123,21 +147,27 @@ I tried and abandoned multiple approaches. It was a fun.
         I never bothered to commit a calculator program that used
         my Python library.
 
+    python-1-somewhat-functional-approach branch
     8580e2b 2017-11-06 21:29:29 -0500
 
         Somewhat functional approach for creating Roman object.
         It is reasonably readable, but I wanted something better.
 
-    48b1750 2017-11-06 22:38:37 -0500 (jp-failed-experiment-1)
+    python-2-loop-with-tricky-logic branch
+    48b1750 2017-11-06 22:38:37 -0500
+
 
         Refactored. Parses in reverse order, simplified code,
         but I wanted something better yet.
 
-    8e62fe5 2017-11-07 23:34:27 -0500 (python-regex-best)
+    python-3-regex-parsing-groups branch
+    1170a20 2017-12-03 17:48:02 -0500
+    (8e62fe5 2017-11-07 23:34:27 -0500)
 
         Used regex to parse Roman numerals.
         That greatly simplified the code. This was a game changer.
-        I liked this approach so much I later used it for C code.
+        I liked this approach so much I later used its regex for
+        validating Roman numerals in C code.
 
         8f9bdd0 2017-11-07 03:41:07 -0500
 
@@ -146,11 +176,15 @@ I tried and abandoned multiple approaches. It was a fun.
             benefitted from this, so I dropped later in 10fe267
             because of YAGNI.
 
-        dd59522 2017-11-15 11:54:11 -0500 (python-show-regex)
+        python-5-show-regex branches
+        a0091bb 2017-12-03 17:30:58 -0500
+        (dd59522 2017-11-15 11:54:11 -0500)
 
             Have Python show its regex, to copy into C code.
 
-    07d8259 2017-11-15 11:43:08 -0500 (jp-dev4)
+    python-4-complicated-logic-loop branch
+    fe29297 2017-12-03 17:46:14 -0500
+    (07d8259 2017-11-15 11:43:08 -0500)
 
         Use complicated logic to parse Roman numerals instead of regex.
 
@@ -160,7 +194,18 @@ I tried and abandoned multiple approaches. It was a fun.
             even be able to run Python.
 
             If one is using Linux, one has plenty of memory and
-            CPU, so I would use regex approach for Linux.
+            CPU, so one would use a regex approach for Linux.
+
+    python-6-sum-generator-regex-only-validate
+    2418bcf 2017-12-03 17:47:38 -0500
+    (4f6f45e 2017-11-19 23:10:28 -0500)
+
+        Inspired by C use of regex only to validate Roman
+        numeral, but not to parse or convert it.
+
+        For Python, I don't know which approach I like more,
+        that of python-3-regex-parsing-groups or this
+        in python-6-sum-generator-regex-only-validate.
 
 ## C library:
 
@@ -217,3 +262,4 @@ I tried and abandoned multiple approaches. It was a fun.
     MD5SUMS:0abc200fd4b84a1e8881287d70dfb822 *ubuntu-14.04.5-desktop-amd64.iso
     SHA1SUMS:a782741d92cb1abbed978a41dcca5244435e7a58 *ubuntu-14.04.5-desktop-amd64.iso
     SHA256SUMS:f5ce20686a2f3201f04a309d04171ee15757f00954b33b87f3f1d36b3b0f5356 *ubuntu-14.04.5-desktop-amd64.iso
+
