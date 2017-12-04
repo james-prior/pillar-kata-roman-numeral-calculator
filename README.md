@@ -97,7 +97,7 @@ It is not important when running a big fat OS like Ubuntu.
 Regular expressions (regexes) for numbers can be very
 complicated. For example, look at the regular expression for
 floats in cell #7 of
-https://github.com/james-prior/cohpy/blob/master/20170424-cohpy-lbyl-v-eafp.ipynb
+[20170424-cohpy-lbyl-v-eafp.ipynb](https://github.com/james-prior/cohpy/blob/master/20170424-cohpy-lbyl-v-eafp.ipynb).
 I was surprised how easy it was to make a regular expression for
 Roman numerals and how easy it made validating or parsing Roman
 numerals. Using a regular expression made the code small and easy
