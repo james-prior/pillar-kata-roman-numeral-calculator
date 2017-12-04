@@ -61,7 +61,7 @@ so that I can do my work faster and with fewer mathematical errors.
 # Installation
 
 The following instructions work for Ubuntu 14.04, particularly
-for booting the Ubuntu 14.04.5 64-bit desktop installation DVD[1] as
+for booting the Ubuntu 14.04.5 64-bit desktop installation DVD as
 a live distro in a virtual machine with 2 GB of RAM.
 
     sudo apt-get -y install git
@@ -70,7 +70,12 @@ a live distro in a virtual machine with 2 GB of RAM.
     git checkout master
     ./do-everything.sh
 
----
+The DVD image used was:
+
+    -rw-r-----. 1 doric doric 1104052224 Aug  3  2016 ubuntu-14.04.5-desktop-amd64.iso
+    MD5SUMS:0abc200fd4b84a1e8881287d70dfb822 *ubuntu-14.04.5-desktop-amd64.iso
+    SHA1SUMS:a782741d92cb1abbed978a41dcca5244435e7a58 *ubuntu-14.04.5-desktop-amd64.iso
+    SHA256SUMS:f5ce20686a2f3201f04a309d04171ee15757f00954b33b87f3f1d36b3b0f5356 *ubuntu-14.04.5-desktop-amd64.iso
 
 # The journey
 
@@ -251,15 +256,3 @@ surprised me. As Eric Raymond says:
     for library.
 
     b806b5a 2017-11-29 20:05:53 -0500
-
----
-
-# Footnotes
-
-[1] The image used was:
-
-    -rw-r-----. 1 pillar pillar 1104052224 Aug  3  2016 ubuntu-14.04.5-desktop-amd64.iso
-    MD5SUMS:0abc200fd4b84a1e8881287d70dfb822 *ubuntu-14.04.5-desktop-amd64.iso
-    SHA1SUMS:a782741d92cb1abbed978a41dcca5244435e7a58 *ubuntu-14.04.5-desktop-amd64.iso
-    SHA256SUMS:f5ce20686a2f3201f04a309d04171ee15757f00954b33b87f3f1d36b3b0f5356 *ubuntu-14.04.5-desktop-amd64.iso
-
