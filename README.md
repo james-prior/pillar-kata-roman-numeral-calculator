@@ -88,11 +88,11 @@ You might want to look at only that if you have little time.
 Actual Romans were inconsistent in how they wrote Roman numerals,
 so I used a stricter style and modified the rules above for that.
 
-I am used to implementing this kind of task with logic in small
-fast tight code to implement rules with minimal data. This is
-important for programs written to run on little 8-bit
-microcontrollers that have little memory or horsepower.
-It is not important when running a big fat OS like Ubuntu.
+I am used to implementing this kind of task with commplicated
+logic in small fast tight code to implement rules with minimal
+data. This is important for programs written to run on little
+8-bit microcontrollers that have little memory or horsepower. It
+is not important when running a big fat OS like Ubuntu.
 
 Regular expressions (regexes) for numbers can be very
 complicated. For example, look at the regular expression for
