@@ -165,7 +165,6 @@ As Eric Raymond says:
     python-2-loop-with-tricky-logic branch
     48b1750 2017-11-06 22:38:37 -0500
 
-
         Refactored. Parses in reverse order, simplified code,
         but I wanted something better yet.
 
@@ -182,8 +181,8 @@ As Eric Raymond says:
 
             Can mix math between Roman and int.
             This is nice, but a Roman bookkeeper would not have
-            benefitted from this, so I dropped later in 10fe267
-            because of YAGNI.
+            benefitted from this, so I dropped this ability later
+            in 10fe267 because of YAGNI.
 
         python-5-show-regex branches
         a0091bb 2017-12-03 17:30:58 -0500
@@ -213,8 +212,8 @@ As Eric Raymond says:
         numeral, but not to parse or convert it.
 
         For Python, I don't know which approach I like more,
-        that of python-3-regex-parsing-groups or this
-        in python-6-sum-generator-regex-only-validate.
+        that of python-3-regex-parsing-groups or of
+        python-6-sum-generator-regex-only-validate.
 
 ## C library:
 
