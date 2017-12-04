@@ -86,21 +86,25 @@ The final solution is in the master branch.
 You might want to look at only that if you have little time.
 
 Actual Romans were inconsistent in how they wrote Roman numerals,
-so I used a stricter style.
+so I used a stricter style and modified the rules above for that.
 
 I am used to implementing this kind of task with logic in small
 fast tight code to implement rules with minimal data. This is
-important for things written in C to run on little 8-bit
+important for programs written to run on little 8-bit
 microcontrollers that have little memory or horsepower.
+It is not important when running a big fat OS like Ubuntu.
 
 Regular expressions (regexes) for numbers can be very
 complicated. For example, look at the regular expression for
 floats in cell #7 of
 https://github.com/james-prior/cohpy/blob/master/20170424-cohpy-lbyl-v-eafp.ipynb
 I was surprised how easy it was to make a regular expression for
-Roman numerals and how easy it made parsing Roman numerals. Using
-a regular expression made the code small and easy to read. That
-surprised me. As Eric Raymond says:
+Roman numerals and how easy it made validating or parsing Roman
+numerals. Using a regular expression made the code small and easy
+to read. So although I explored using small fast tight code with
+tricky logic, I settled on using regular expressions which made
+the code much simpler and easier to understand.
+As Eric Raymond says:
 
     9. Smart data structures and dumb code works a lot better than the other way around.
     http://www.catb.org/~esr/writings/cathedral-bazaar/cathedral-bazaar/ar01s06.html
@@ -245,14 +249,18 @@ surprised me. As Eric Raymond says:
         Simplified API to use a shared static buffer for returned
         Roman numerals. This is the simplest overall.
 
+        There were small improvements after this commit.
+
 ## C demo-program
 
-    This little program demonstates that the library works.
-
-    This was done completely separately from the library to show
-    that it was using the roman package installed on the system.
-    Hand edited Makefile was used instead of autotools monster.
-    Makefile is simple, but not as portable was with autotools
-    for library.
-
     b806b5a 2017-11-29 20:05:53 -0500
+
+        This little program demonstrates that the library works.
+
+        This was done completely separately from the library to show
+        that it uses the roman package installed on the system.
+        Hand edited Makefile was used instead of autotools monster.
+        The Makefile is simple, but not as portable as with autotools
+        for the library.
+
+        There were small improvements after this commit.
