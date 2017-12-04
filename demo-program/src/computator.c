@@ -52,11 +52,11 @@ char *kinda_main(int argc, char *argv[])
     buf = malloc(argc * MAX_LINE_LENGTH);
     buf[0] = '\0';
     for (i = 1; i < argc; i++) {
-        if (i == 1) {
-            result = pass_good_roman_numeral(argv[i]);
-        } else {
-            char *operand = argv[i];
+        char *operand = argv[i];
 
+        if (i == 1) {
+            result = pass_good_roman_numeral(operand);
+        } else {
             if (operand[0] == '-')
                 result = subtract_roman_numerals(sum, operand+1);
             else
