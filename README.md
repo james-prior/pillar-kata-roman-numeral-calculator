@@ -88,7 +88,7 @@ You might want to look at only that if you have little time.
 Actual Romans were inconsistent in how they wrote Roman numerals,
 so I used a stricter style and modified the rules above for that.
 
-I am used to implementing this kind of task with commplicated
+I am used to implementing this kind of task with complicated
 logic in small fast tight code to implement rules with minimal
 data. This is important for programs written to run on little
 8-bit microcontrollers that have little memory or horsepower. It
