@@ -47,9 +47,10 @@ struct main_return_struct *kinda_main(int argc, char *argv[])
     char *result;
     static struct main_return_struct r;
 
-
+    r.stderr = "";
+    r.stdout = "";
     if (argc < 2) {
-        r.stdout = get_usage(argc, argv);
+        r.stderr = get_usage(argc, argv);
         r.exit_status = EXIT_FAILURE;
         return &r;
     }
@@ -88,7 +89,10 @@ int MAIN_FUNCTION(int argc, char *argv[])
     struct main_return_struct *r;
 
     r = kinda_main(argc, argv);
-    printf("%s", r->stdout);
+    if (*r->stdout != '\0')
+        printf("%s", r->stdout);
+    if (*r->stderr != '\0')
+        fprintf(stderr, "%s", r->stderr);
 
     exit(r->exit_status);
 }

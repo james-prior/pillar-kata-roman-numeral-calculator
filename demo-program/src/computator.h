@@ -10,6 +10,7 @@
 
 struct main_return_struct {
     char *stdout;
+    char *stderr;
     int exit_status;
 };
 

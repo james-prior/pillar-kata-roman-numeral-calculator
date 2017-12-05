@@ -8,7 +8,8 @@ struct example_struct {
     int argc;
     char **argv;
     int expected_exit_status;
-    char *expected_string;
+    char *expected_stderr;
+    char *expected_stdout;
 };
 char *hello_argv[] = {"hello"};
 char *world_i_argv[] = {"world", "I"};
@@ -45,78 +46,78 @@ static const struct example_struct examples[] = {
             "DESCRIPTION:\n"
             "    Adds roman numerals, showing intermediate sums.\n"
             "    Roman numerals prefixed with a '-' are subtracted.\n"
-    )},
+    ), ""},
     // Test single argument.
     {ARRAY_LENGTH(world_i_argv), world_i_argv,
-        EXIT_SUCCESS, (
+        EXIT_SUCCESS, "", (
             "I I\n"
     )},
     {ARRAY_LENGTH(world_hello_argv), world_hello_argv,
-        EXIT_FAILURE, (
+        EXIT_FAILURE, "", (
             "HELLO ERRATUM\n"
     )},
     // Test addition.
     {ARRAY_LENGTH(computator_i_i_argv), computator_i_i_argv,
-        EXIT_SUCCESS, (
+        EXIT_SUCCESS, "", (
             "I I\n"
             "I II\n"
     )},
     {ARRAY_LENGTH(computator_ii_iii_vi_argv), computator_ii_iii_vi_argv,
-        EXIT_SUCCESS, (
+        EXIT_SUCCESS, "", (
             "II II\n"
             "III V\n"
             "VI XI\n"
     )},
     {ARRAY_LENGTH(computator_3998_1_argv), computator_3998_1_argv,
-        EXIT_SUCCESS, (
+        EXIT_SUCCESS, "", (
             "MMMCMXCVIII MMMCMXCVIII\n"
             "I MMMCMXCIX\n"
     )},
     // Test overflow with valid roman numerals.
     {ARRAY_LENGTH(computator_mm_mm_mmm_argv), computator_mm_mm_mmm_argv,
-        EXIT_FAILURE, (
+        EXIT_FAILURE, "", (
             "MM MM\n"
             "MM ERRATUM\n"
     )},
     // Test invalid roman numerals.
     {ARRAY_LENGTH(computator___argv), computator___argv,
-        EXIT_FAILURE, (
+        EXIT_FAILURE, "", (
             " ERRATUM\n"
     )},
     {ARRAY_LENGTH(computator_hello_i_argv), computator_hello_i_argv,
-        EXIT_FAILURE, (
+        EXIT_FAILURE, "", (
             "hello ERRATUM\n"
     )},
     {ARRAY_LENGTH(computator_i_robot_argv), computator_i_robot_argv,
-        EXIT_FAILURE, (
+        EXIT_FAILURE, "", (
             "I I\n"
             "ROBOT ERRATUM\n"
     )},
     // Test subtraction.
     {ARRAY_LENGTH(computator_mm_ni_argv), computator_mm_ni_argv,
-        EXIT_SUCCESS, (
+        EXIT_SUCCESS, "", (
             "M M\n"
             "-I CMXCIX\n"
     )},
     {ARRAY_LENGTH(computator_3999_ni_argv), computator_3999_ni_argv,
-        EXIT_SUCCESS, (
+        EXIT_SUCCESS, "", (
             "MMMCMXCIX MMMCMXCIX\n"
             "-I MMMCMXCVIII\n"
     )},
     // Test bad subtraction.
     {ARRAY_LENGTH(computator_i_ni_argv), computator_i_ni_argv,
-        EXIT_FAILURE, (
+        EXIT_FAILURE, "", (
             "I I\n"
             "-I ERRATUM\n"
     )},
     {ARRAY_LENGTH(computator_i_nm_argv), computator_i_nm_argv,
-        EXIT_FAILURE, (
+        EXIT_FAILURE, "", (
             "I I\n"
             "-M ERRATUM\n"
     )},
     // Test addition and subtraction.
     {ARRAY_LENGTH(computator_add_and_sub_argv), computator_add_and_sub_argv,
-        EXIT_FAILURE, (
+        EXIT_FAILURE, "", (
             "M M\n"
             "-D D\n"
             "C DC\n"
@@ -132,7 +133,7 @@ static const struct example_struct examples[] = {
     )},
     // Test long argument.
     {ARRAY_LENGTH(computator_i_iiiii_i_argv), computator_i_iiiii_i_argv,
-        EXIT_FAILURE, (
+        EXIT_FAILURE, "", (
             "I I\n"
             "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
             "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
@@ -146,7 +147,8 @@ START_TEST(test_roman_numeral_calculator)
     p = &examples[_i];
     r = kinda_main(p->argc, p->argv);
     ck_assert_int_eq(r->exit_status, p->expected_exit_status);
-    ck_assert_str_eq(r->stdout, p->expected_string);
+    ck_assert_str_eq(r->stderr, p->expected_stderr);
+    ck_assert_str_eq(r->stdout, p->expected_stdout);
 }
 END_TEST
 
