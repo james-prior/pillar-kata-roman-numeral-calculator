@@ -39,15 +39,21 @@ static char *pass_good_roman_numeral(char *roman_numeral)
     return (result != NULL) ? roman_numeral : NULL;
 }
 
-char *kinda_main(int argc, char *argv[])
+struct main_return_struct *kinda_main(int argc, char *argv[])
 {
     int i;
     char *buf;
     char sum[MAX_ROMAN_NUMERAL_LENGTH];
     char *result;
+    static struct main_return_struct r;
 
-    if (argc < 2)
-        return get_usage(argc, argv);
+
+    if (argc < 2) {
+        r.stdout = get_usage(argc, argv);
+        r.exit_status = EXIT_FAILURE;
+        return &r;
+    }
+    r.exit_status = EXIT_SUCCESS; // Innocent until found otherwise.
 
     buf = malloc(argc * MAX_LINE_LENGTH);
     buf[0] = '\0';
@@ -67,16 +73,22 @@ char *kinda_main(int argc, char *argv[])
             ((result != NULL) ? result : "ERRATUM")
         );
         snprintf(buf + strlen(buf), MAX_LINE_LENGTH, "%s %s\n", argv[i], sum);
-        if (result == NULL)
+        if (result == NULL) {
+            r.exit_status = EXIT_FAILURE;
             break;
+        }
     }
 
-    return buf;
+    r.stdout = buf;
+    return &r;
 }
 
 int MAIN_FUNCTION(int argc, char *argv[])
 {
-    printf("%s", kinda_main(argc, argv));
+    struct main_return_struct *r;
 
-    exit(EXIT_SUCCESS);
+    r = kinda_main(argc, argv);
+    printf("%s", r->stdout);
+
+    exit(r->exit_status);
 }

@@ -8,5 +8,10 @@
 #define MAIN_FUNCTION main
 #endif
 
-char *kinda_main(int argc, char *argv[]);
+struct main_return_struct {
+    char *stdout;
+    int exit_status;
+};
+
+struct main_return_struct *kinda_main(int argc, char *argv[]);
 #endif
