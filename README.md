@@ -205,7 +205,7 @@ As Eric Raymond says:
             CPU, so one would use a regex approach for Linux.
 
     python-6-sum-generator-regex-only-validate
-    2418bcf 2017-12-03 17:47:38 -0500
+    d1fc29f 2017-12-06 10:28:01 -0500
     (4f6f45e 2017-11-19 23:10:28 -0500)
 
         Inspired by C use of regex only to validate Roman
