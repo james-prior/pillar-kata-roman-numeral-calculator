@@ -112,6 +112,13 @@ def test_str_returns_expected(number, expected_roman_numeral):
     assert expected_roman_numeral == str(Roman(number))
 
 
+@pytest.mark.parametrize(
+    'number, expected_roman_numeral', int_expected_roman_numerals)
+def test_repr_returns_expected(number, expected_roman_numeral):
+    expected_repr = "Roman(%r)" % expected_roman_numeral
+    assert expected_repr == repr(Roman(number))
+
+
 addends_sums_lines = '''
     I I II
     I II III
